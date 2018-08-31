@@ -1,301 +1,219 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>TongBei 订单</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/weui.min.css">
-    <link rel="stylesheet" href="css/jquery-weui.min.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css" >
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/order.css">
-    <link rel="stylesheet" href="css/theme-color.css">
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-</head>
-<body>
-<header class="zyw-header">
-    <div class="zyw-container white-color">
-        <div class="head-l"><a href="javascript:window.history.back(-1)" target="_self"><img src="img/svg/head-return.svg" alt=""></a></div>
-        <h1>我的收藏</h1>
-        <div class="head-r"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
-    </div>
-</header>
-<section class="zyw-container">
-    <div class="weui-tab">
-        <div class="weui-navbar">
-            <a class="weui-navbar__item weui-bar__item--on" href="#order_all">全部</a>
-            <a class="weui-navbar__item" href="#order_dfk">待付款</a>
-            <a class="weui-navbar__item" href="#order_dfh">待发货</a>
-            <a class="weui-navbar__item" href="#order_dsh">待收货</a>
-            <a class="weui-navbar__item" href="#order_dpj">待评价</a>
-        </div>
-        <div class="weui-tab__bd">
-            <div id="order_all" class="weui-tab__bd-item weui-tab__bd-item--active">
-                <div class="order-group">
-                    <div class="order-group-item clearfix">
-                        <div class="order-item-box">
-                            <h4 class="order-item-id">订单号：52145859543856977
-                                <span class="order-item-state theme-color pull-right">待付款</span>
-                            </h4>
-                            <div class="media">
-                                <a href="" class="pull-left">
-                                    <img src="https://m.360buyimg.com/mobilecms/s130x130_jfs/t14977/207/2235221225/14466/12dfc3a3/5a7c2b10N55b661b9.jpg!q70.jpg" alt="" class="media-object order-item-img">
-                                </a>
-                                <div class="media-body">
-                                    <div class="order-item-info">
-                                        <h5 class="order-item-title">Apple iPhone X (A1865) 64GB 银色 移动联通电信4G手机</h5>
-                                        <p class="order-item-fare">运费：15.00</p>
-                                        <div class="pull-right text-right order-item-r">
-                                            <p class="order-item-prince">￥4800.00</p>
-                                            <p class="order-item-length">x 2</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-right order-item-sum">共计1件商品，合计4815.00（含运费15.00元）</p>
-                        <div class="order-item-btn pull-right">
-                            <button class="btn btn-sm btn-default">取消订单</button>
-                            <button class="btn btn-sm btn-primary theme-bdcolor theme-bgcolor">付款</button>
-                        </div>
-                    </div>
-                    <div class="order-group-item clearfix">
-                        <div class="order-item-box">
-                            <h4 class="order-item-id">订单号：52145859543856977
-                                <span class="order-item-state theme-color pull-right">待发货</span>
-                            </h4>
-                            <div class="media">
-                                <a href="" class="pull-left">
-                                    <img src="https://m.360buyimg.com/mobilecms/s130x130_jfs/t14977/207/2235221225/14466/12dfc3a3/5a7c2b10N55b661b9.jpg!q70.jpg" alt="" class="media-object order-item-img">
-                                </a>
-                                <div class="media-body">
-                                    <div class="order-item-info">
-                                        <h5 class="order-item-title">Apple iPhone X (A1865) 64GB 银色 移动联通电信4G手机</h5>
-                                        <p class="order-item-fare">运费：15.00</p>
-                                        <div class="pull-right text-right order-item-r">
-                                            <p class="order-item-prince">￥4800.00</p>
-                                            <p class="order-item-length">x 2</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-right order-item-sum">共计1件商品，合计4815.00（含运费15.00元）</p>
-                        <div class="order-item-btn pull-right">
-                            <button class="btn btn-sm btn-primary theme-bdcolor theme-bgcolor">提醒发货</button>
-                        </div>
-                    </div>
+    <head>
+        <meta charset="utf-8">
+        <title>TongBei 订单</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/weui.min.css">
+        <link rel="stylesheet" href="css/jquery-weui.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css" >
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/order.css">
+        <link rel="stylesheet" href="css/theme-color.css">
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <header class="zyw-header">
+            <div class="zyw-container white-color">
+                <div class="head-l"><a href="javascript:window.history.back(-1)" target="_self"><img src="img/svg/head-return.svg" alt=""></a></div>
+                <h1>我的订单</h1>
+                <!--<div class="head-r"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>-->
+            </div>
+        </header>
+        <section class="zyw-container">
+            <div class="weui-tab">
+                <div class="weui-navbar">
+                    <a class="weui-navbar__item weui-bar__item--on" href="#order_all">全部</a>
+                    <a class="weui-navbar__item" href="#order_dfk">待收货</a>
+                    <a class="weui-navbar__item" href="#order_dfh">待核实</a>
+                    <a class="weui-navbar__item" href="#order_dsh">已完成</a>
+                </div>
+                <div class="weui-tab__bd">
+                    <!--全部-->
+                    <div id="order_all" class="weui-tab__bd-item weui-tab__bd-item--active"></div>
+                    <!--待收货-->
+                    <div id="order_dfk" class="weui-tab__bd-item"></div>
+                    <!--待审核-->
+                    <div id="order_dfh" class="weui-tab__bd-item"></div>
+                    <!--已完成-->
+                    <div id="order_dsh" class="weui-tab__bd-item"></div>
                 </div>
             </div>
-            <div id="order_dfk" class="weui-tab__bd-item">
-                <div class="order-group">
-                    <div class="order-group-item clearfix">
-                        <div class="order-item-box">
-                            <h4 class="order-item-id">订单号：52145859543856977
-                                <span class="order-item-state theme-color pull-right">待付款</span>
-                            </h4>
-                            <div class="media">
-                                <a href="" class="pull-left">
-                                    <img src="https://m.360buyimg.com/mobilecms/s130x130_jfs/t14977/207/2235221225/14466/12dfc3a3/5a7c2b10N55b661b9.jpg!q70.jpg" alt="" class="media-object order-item-img">
-                                </a>
-                                <div class="media-body">
-                                    <div class="order-item-info">
-                                        <h5 class="order-item-title">Apple iPhone X (A1865) 64GB 银色 移动联通电信4G手机</h5>
-                                        <p class="order-item-fare">运费：15.00</p>
-                                        <div class="pull-right text-right order-item-r">
-                                            <p class="order-item-prince">￥4800.00</p>
-                                            <p class="order-item-length">x 2</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-right order-item-sum">共计1件商品，合计4815.00（含运费15.00元）</p>
-                        <div class="order-item-btn pull-right">
-                            <button class="btn btn-sm btn-default">取消订单</button>
-                            <button class="btn btn-sm btn-primary theme-bdcolor theme-bgcolor">付款</button>
-                        </div>
-                    </div>
-                    <div class="order-group-item clearfix">
-                        <div class="order-item-box">
-                            <h4 class="order-item-id">订单号：52145859543856977
-                                <span class="order-item-state theme-color pull-right">待付款</span>
-                            </h4>
-                            <div class="media">
-                                <a href="" class="pull-left">
-                                    <img src="https://m.360buyimg.com/mobilecms/s130x130_jfs/t14977/207/2235221225/14466/12dfc3a3/5a7c2b10N55b661b9.jpg!q70.jpg" alt="" class="media-object order-item-img">
-                                </a>
-                                <div class="media-body">
-                                    <div class="order-item-info">
-                                        <h5 class="order-item-title">Apple iPhone X (A1865) 64GB 银色 移动联通电信4G手机</h5>
-                                        <p class="order-item-fare">运费：15.00</p>
-                                        <div class="pull-right text-right order-item-r">
-                                            <p class="order-item-prince">￥4800.00</p>
-                                            <p class="order-item-length">x 2</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-right order-item-sum">共计1件商品，合计4815.00（含运费15.00元）</p>
-                        <div class="order-item-btn pull-right">
-                            <button class="btn btn-sm btn-default">取消订单</button>
-                            <button class="btn btn-sm btn-primary theme-bdcolor theme-bgcolor">付款</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="order_dfh" class="weui-tab__bd-item">
-                <div class="order-group">
-                    <div class="order-group-item clearfix">
-                        <div class="order-item-box">
-                            <h4 class="order-item-id">订单号：52145859543856977
-                                <span class="order-item-state theme-color pull-right">待发货</span>
-                            </h4>
-                            <div class="media">
-                                <a href="" class="pull-left">
-                                    <img src="https://m.360buyimg.com/mobilecms/s130x130_jfs/t14977/207/2235221225/14466/12dfc3a3/5a7c2b10N55b661b9.jpg!q70.jpg" alt="" class="media-object order-item-img">
-                                </a>
-                                <div class="media-body">
-                                    <div class="order-item-info">
-                                        <h5 class="order-item-title">Apple iPhone X (A1865) 64GB 银色 移动联通电信4G手机</h5>
-                                        <p class="order-item-fare">运费：15.00</p>
-                                        <div class="pull-right text-right order-item-r">
-                                            <p class="order-item-prince">￥4800.00</p>
-                                            <p class="order-item-length">x 2</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-right order-item-sum">共计1件商品，合计4815.00（含运费15.00元）</p>
-                        <div class="order-item-btn pull-right">
-                            <button class="btn btn-sm btn-primary theme-bdcolor theme-bgcolor">提醒发货</button>
-                        </div>
-                    </div>
-                    <div class="order-group-item clearfix">
-                        <div class="order-item-box">
-                            <h4 class="order-item-id">订单号：52145859543856977
-                                <span class="order-item-state theme-color pull-right">待发货</span>
-                            </h4>
-                            <div class="media">
-                                <a href="" class="pull-left">
-                                    <img src="https://m.360buyimg.com/mobilecms/s130x130_jfs/t14977/207/2235221225/14466/12dfc3a3/5a7c2b10N55b661b9.jpg!q70.jpg" alt="" class="media-object order-item-img">
-                                </a>
-                                <div class="media-body">
-                                    <div class="order-item-info">
-                                        <h5 class="order-item-title">Apple iPhone X (A1865) 64GB 银色 移动联通电信4G手机</h5>
-                                        <p class="order-item-fare">运费：15.00</p>
-                                        <div class="pull-right text-right order-item-r">
-                                            <p class="order-item-prince">￥4800.00</p>
-                                            <p class="order-item-length">x 2</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-right order-item-sum">共计1件商品，合计4815.00（含运费15.00元）</p>
-                        <div class="order-item-btn pull-right">
-                            <button class="btn btn-sm btn-primary theme-bdcolor theme-bgcolor">提醒发货</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="order_dsh" class="weui-tab__bd-item">
-                <div class="order-group">
-                    <div class="order-group-item clearfix">
-                        <div class="order-item-box">
-                            <h4 class="order-item-id">订单号：52145859543856977
-                                <span class="order-item-state theme-color pull-right">待收货</span>
-                            </h4>
-                            <div class="media">
-                                <a href="" class="pull-left">
-                                    <img src="https://m.360buyimg.com/mobilecms/s130x130_jfs/t14977/207/2235221225/14466/12dfc3a3/5a7c2b10N55b661b9.jpg!q70.jpg" alt="" class="media-object order-item-img">
-                                </a>
-                                <div class="media-body">
-                                    <div class="order-item-info">
-                                        <h5 class="order-item-title">Apple iPhone X (A1865) 64GB 银色 移动联通电信4G手机</h5>
-                                        <p class="order-item-fare">运费：15.00</p>
-                                        <div class="pull-right text-right order-item-r">
-                                            <p class="order-item-prince">￥4800.00</p>
-                                            <p class="order-item-length">x 2</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-right order-item-sum">共计1件商品，合计4815.00（含运费15.00元）</p>
-                        <div class="order-item-btn pull-right">
-                            <button class="btn btn-sm btn-primary theme-bdcolor theme-bgcolor">确认收货</button>
-                        </div>
-                    </div>
-                    <div class="order-group-item clearfix">
-                        <div class="order-item-box">
-                            <h4 class="order-item-id">订单号：52145859543856977
-                                <span class="order-item-state theme-color pull-right">待收货</span>
-                            </h4>
-                            <div class="media">
-                                <a href="" class="pull-left">
-                                    <img src="https://m.360buyimg.com/mobilecms/s130x130_jfs/t14977/207/2235221225/14466/12dfc3a3/5a7c2b10N55b661b9.jpg!q70.jpg" alt="" class="media-object order-item-img">
-                                </a>
-                                <div class="media-body">
-                                    <div class="order-item-info">
-                                        <h5 class="order-item-title">Apple iPhone X (A1865) 64GB 银色 移动联通电信4G手机</h5>
-                                        <p class="order-item-fare">运费：15.00</p>
-                                        <div class="pull-right text-right order-item-r">
-                                            <p class="order-item-prince">￥4800.00</p>
-                                            <p class="order-item-length">x 2</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-right order-item-sum">共计1件商品，合计4815.00（含运费15.00元）</p>
-                        <div class="order-item-btn pull-right">
-                            <button class="btn btn-sm btn-primary theme-bdcolor theme-bgcolor">确认收货</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="order_dpj" class="weui-tab__bd-item">
-                <div class="order-group">
-                    <div class="order-group-item clearfix">
-                        <div class="order-item-box">
-                            <h4 class="order-item-id">订单号：52145859543856977
-                                <span class="order-item-state theme-color pull-right">待评价</span>
-                            </h4>
-                            <div class="media">
-                                <a href="" class="pull-left">
-                                    <img src="https://m.360buyimg.com/mobilecms/s130x130_jfs/t14977/207/2235221225/14466/12dfc3a3/5a7c2b10N55b661b9.jpg!q70.jpg" alt="" class="media-object order-item-img">
-                                </a>
-                                <div class="media-body">
-                                    <div class="order-item-info">
-                                        <h5 class="order-item-title">Apple iPhone X (A1865) 64GB 银色 移动联通电信4G手机</h5>
-                                        <p class="order-item-fare">运费：15.00</p>
-                                        <div class="pull-right text-right order-item-r">
-                                            <p class="order-item-prince">￥4800.00</p>
-                                            <p class="order-item-length">x 2</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-right order-item-sum">共计1件商品，合计4815.00（含运费15.00元）</p>
-                        <div class="order-item-btn pull-right">
-                            <button class="btn btn-sm btn-primary theme-bdcolor theme-bgcolor">去评价</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<script src="js/jquery.min.js"></script>
-<script src="js/jquery-weui.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-</body>
+        </section>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery-weui.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            $.ajax({
+            	type:"post",
+            	url:"php/order.php",
+            	async:true,
+            	dataType:'json',
+            	data:{
+            	    UseId:1
+            	},
+            	success:function(data){
+            	    //显示全部订单
+            	    if(data['all'].length){
+            	        for(var i=0;i<data['all'].length;i++){
+            	            var ElmTextAll = "<div class='order-group'>"
+            	            ElmTextAll += "<div class='order-group-item clearfix'>"
+            	            ElmTextAll += "<div class='order-item-box'>"
+            	            ElmTextAll += "<h4 class='order-item-id'>订单号："+data['all'][i]['code']
+            	            ElmTextAll += "<span class='order-item-state theme-color pull-right'>状态："+data['all'][i]['type']+"</span>"
+            	            ElmTextAll += "</h4>"
+            	            var Mid = data['all'][i]['id']
+            	            for (var y=0;y<data['all'+Mid].length;y++) {
+            	            	ElmTextAll += "<div class='media'>"
+                	            ElmTextAll += "<a href='' class='pull-left'>"
+                	            ElmTextAll += "<img src='"+data['all'+Mid][y]['url']+"' alt='' class='media-object order-item-img'>"
+                	            ElmTextAll += "</a>"
+                	            ElmTextAll += "<div class='media-body'>"
+                	            ElmTextAll += "<div class='order-item-info'>"
+                	            ElmTextAll += "<h5 class='order-item-title'>"+data['all'+Mid][y]['name']+"</h5>"
+                	            ElmTextAll += "<p class='order-item-fare'>类别："+data['all'+Mid][y]['type']+"</p>"
+                	            ElmTextAll += "<div class='pull-right text-right order-item-r'>"
+                	            ElmTextAll += "<p class='order-item-prince'>￥"+data['all'+Mid][y]['price']+'/'+data['all'+Mid][y]['unit']+"</p>"
+                	            ElmTextAll += "<p class='order-item-length'>x "+data['all'+Mid][y]['num']+"</p>"
+                	            ElmTextAll += "</div>"
+                	            ElmTextAll += "</div>"
+                	            ElmTextAll += "</div>"
+                	            ElmTextAll += "</div>"
+            	            }
+            	            ElmTextAll += "</div>"
+            	            ElmTextAll += "<p class='text-right order-item-sum'>合计："+data['all'][i]['priceA']+"</p>"
+            	            ElmTextAll += "<div class='order-item-btn pull-right'>"
+            	            ElmTextAll += "<button class='btn btn-sm btn-default'>取消订单</button>"
+            	            ElmTextAll += "<button class='btn btn-sm btn-primary theme-bdcolor theme-bgcolor'>付款</button>"
+            	            ElmTextAll += "</div>"
+            	            ElmTextAll += "</div>"
+            	            ElmTextAll += "</div>"
+            	           $('#order_all').append(ElmTextAll)
+                	    }
+            	    }
+            	    //显示待收货订单
+            	    if(data['get'].length){
+                        for(var i=0;i<data['get'].length;i++){
+                            var ElmTextAll = "<div class='order-group'>"
+                            ElmTextAll += "<div class='order-group-item clearfix'>"
+                            ElmTextAll += "<div class='order-item-box'>"
+                            ElmTextAll += "<h4 class='order-item-id'>订单号："+data['get'][i]['code']
+                            ElmTextAll += "<span class='order-item-state theme-color pull-right'>状态：待收货</span>"
+                            ElmTextAll += "</h4>"
+                            var Mid = data['get'][i]['id']
+                            for (var y=0;y<data['get'+Mid].length;y++) {
+                                ElmTextAll += "<div class='media'>"
+                                ElmTextAll += "<a href='' class='pull-left'>"
+                                ElmTextAll += "<img src='"+data['get'+Mid][y]['url']+"' alt='' class='media-object order-item-img'>"
+                                ElmTextAll += "</a>"
+                                ElmTextAll += "<div class='media-body'>"
+                                ElmTextAll += "<div class='order-item-info'>"
+                                ElmTextAll += "<h5 class='order-item-title'>"+data['get'+Mid][y]['name']+"</h5>"
+                                ElmTextAll += "<p class='order-item-fare'>类别："+data['get'+Mid][y]['type']+"</p>"
+                                ElmTextAll += "<div class='pull-right text-right order-item-r'>"
+                                ElmTextAll += "<p class='order-item-prince'>￥"+data['get'+Mid][y]['price']+'/'+data['get'+Mid][y]['unit']+"</p>"
+                                ElmTextAll += "<p class='order-item-length'>x "+data['get'+Mid][y]['num']+"</p>"
+                                ElmTextAll += "</div>"
+                                ElmTextAll += "</div>"
+                                ElmTextAll += "</div>"
+                                ElmTextAll += "</div>"
+                            }
+                            ElmTextAll += "</div>"
+                            ElmTextAll += "<p class='text-right order-item-sum'>合计："+data['get'][i]['priceA']+"</p>"
+                            ElmTextAll += "<div class='order-item-btn pull-right'>"
+                            ElmTextAll += "<button class='btn btn-sm btn-default'>取消订单</button>"
+                            ElmTextAll += "<button class='btn btn-sm btn-primary theme-bdcolor theme-bgcolor'>付款</button>"
+                            ElmTextAll += "</div>"
+                            ElmTextAll += "</div>"
+                            ElmTextAll += "</div>"
+                           $('#order_dfk').append(ElmTextAll)
+                        }
+                    }
+            	    //显示待核实订单
+            	    if(data['che'].length){
+                        for(var i=0;i<data['che'].length;i++){
+                            var ElmTextAll = "<div class='order-group'>"
+                            ElmTextAll += "<div class='order-group-item clearfix'>"
+                            ElmTextAll += "<div class='order-item-box'>"
+                            ElmTextAll += "<h4 class='order-item-id'>订单号："+data['che'][i]['code']
+                            ElmTextAll += "<span class='order-item-state theme-color pull-right'>状态：待收货</span>"
+                            ElmTextAll += "</h4>"
+                            var Mid = data['che'][i]['id']
+                            for (var y=0;y<data['che'+Mid].length;y++) {
+                                ElmTextAll += "<div class='media'>"
+                                ElmTextAll += "<a href='' class='pull-left'>"
+                                ElmTextAll += "<img src='"+data['che'+Mid][y]['url']+"' alt='' class='media-object order-item-img'>"
+                                ElmTextAll += "</a>"
+                                ElmTextAll += "<div class='media-body'>"
+                                ElmTextAll += "<div class='order-item-info'>"
+                                ElmTextAll += "<h5 class='order-item-title'>"+data['che'+Mid][y]['name']+"</h5>"
+                                ElmTextAll += "<p class='order-item-fare'>类别："+data['che'+Mid][y]['type']+"</p>"
+                                ElmTextAll += "<div class='pull-right text-right order-item-r'>"
+                                ElmTextAll += "<p class='order-item-prince'>￥"+data['che'+Mid][y]['price']+'/'+data['che'+Mid][y]['unit']+"</p>"
+                                ElmTextAll += "<p class='order-item-length'>x "+data['che'+Mid][y]['num']+"</p>"
+                                ElmTextAll += "</div>"
+                                ElmTextAll += "</div>"
+                                ElmTextAll += "</div>"
+                                ElmTextAll += "</div>"
+                            }
+                            ElmTextAll += "</div>"
+                            ElmTextAll += "<p class='text-right order-item-sum'>合计："+data['che'][i]['priceA']+"</p>"
+                            ElmTextAll += "<div class='order-item-btn pull-right'>"
+                            ElmTextAll += "<button class='btn btn-sm btn-default'>取消订单</button>"
+                            ElmTextAll += "<button class='btn btn-sm btn-primary theme-bdcolor theme-bgcolor'>付款</button>"
+                            ElmTextAll += "</div>"
+                            ElmTextAll += "</div>"
+                            ElmTextAll += "</div>"
+                           $('#order_dfh').append(ElmTextAll)
+                        }
+                    }
+            	    //显示已完成订单
+            	    if(data['fin'].length){
+                        for(var i=0;i<data['fin'].length;i++){
+                            var ElmTextAll = "<div class='order-group'>"
+                            ElmTextAll += "<div class='order-group-item clearfix'>"
+                            ElmTextAll += "<div class='order-item-box'>"
+                            ElmTextAll += "<h4 class='order-item-id'>订单号："+data['fin'][i]['code']
+                            ElmTextAll += "<span class='order-item-state theme-color pull-right'>状态：待收货</span>"
+                            ElmTextAll += "</h4>"
+                            var Mid = data['fin'][i]['id']
+                            for (var y=0;y<data['fin'+Mid].length;y++) {
+                                ElmTextAll += "<div class='media'>"
+                                ElmTextAll += "<a href='' class='pull-left'>"
+                                ElmTextAll += "<img src='"+data['fin'+Mid][y]['url']+"' alt='' class='media-object order-item-img'>"
+                                ElmTextAll += "</a>"
+                                ElmTextAll += "<div class='media-body'>"
+                                ElmTextAll += "<div class='order-item-info'>"
+                                ElmTextAll += "<h5 class='order-item-title'>"+data['fin'+Mid][y]['name']+"</h5>"
+                                ElmTextAll += "<p class='order-item-fare'>类别："+data['fin'+Mid][y]['type']+"</p>"
+                                ElmTextAll += "<div class='pull-right text-right order-item-r'>"
+                                ElmTextAll += "<p class='order-item-prince'>￥"+data['fin'+Mid][y]['price']+'/'+data['fin'+Mid][y]['unit']+"</p>"
+                                ElmTextAll += "<p class='order-item-length'>x "+data['fin'+Mid][y]['num']+"</p>"
+                                ElmTextAll += "</div>"
+                                ElmTextAll += "</div>"
+                                ElmTextAll += "</div>"
+                                ElmTextAll += "</div>"
+                            }
+                            ElmTextAll += "</div>"
+                            ElmTextAll += "<p class='text-right order-item-sum'>合计："+data['fin'][i]['priceA']+"</p>"
+                            ElmTextAll += "<div class='order-item-btn pull-right'>"
+                            ElmTextAll += "<button class='btn btn-sm btn-default'>取消订单</button>"
+                            ElmTextAll += "<button class='btn btn-sm btn-primary theme-bdcolor theme-bgcolor'>付款</button>"
+                            ElmTextAll += "</div>"
+                            ElmTextAll += "</div>"
+                            ElmTextAll += "</div>"
+                           $('#order_dsh').append(ElmTextAll)
+                        }
+                    }
+            	},
+            	error:function(s,e,t){
+            	    alert('出现错误，错误类型：'+e)
+            	}
+            });
+        </script>
+    </body>
 </html>

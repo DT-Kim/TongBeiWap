@@ -2803,7 +2803,8 @@ img {
 	width: 50%;
 	text-align: right;
 	margin-top: 5px;
-	padding-right: 2%;
+	padding-right: 5%;
+	word-break: keep-all;
 }
 
 .settle_box .total_amount dd {
@@ -2814,7 +2815,7 @@ img {
 
 .settle_box .total_amount dt p {
 	color: #f34347;
-	font-size: 0.8rem;
+	font-size: 24px;
 	float: right;
 	line-height: 20px;
 }

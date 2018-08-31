@@ -20,12 +20,12 @@
 <body>
 <header class="zyw-header">
     <div class="zyw-container white-color">
-        <div class="head-l"><i class="head-l-svg" aria-hidden="true"></i></div>
+        <div class="head-l"><a href="class.html"><i class="head-l-svg" aria-hidden="true"></i></a></div>
         <div class="head-search">
             <i class="fa fa-search" aria-hidden="true"></i>
             <input type="text" placeholder="输入您当前要搜索的商品" class="white-color">
         </div>
-        <div class="head-r"><a href="cart.html"><i class="head-r-svg" aria-hidden="true"></i><i class="head-length">8</i></a></div>
+        <div class="head-r"><a href="cart.html"><i class="head-r-svg" aria-hidden="true"></i></a></div>
     </div>
 </header>
 <footer class="zyw-footer">
@@ -44,7 +44,7 @@
                 <p class="weui-tabbar__label">分类</p>
             </a>
             <a href="cart.html" class="weui-tabbar__item">
-                <span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;">8</span>
+                <!--<span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;">8</span>-->
                 <div class="weui-tabbar__icon">
                     <img src="./img/svg/foot-4.svg" alt="">
                 </div>
@@ -61,9 +61,9 @@
 </footer>
 <section class="zyw-container">
     <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="../TongBeiPC/AboutImg/ImgAD/ADP01.jpg" alt=""></div>
-            <div class="swiper-slide"><img src="../TongBeiPC/AboutImg/ImgAD/ADP03.jpg" alt=""></div>
+        <div class="swiper-wrapper" id="PlaceAdImg">
+            <!--<div class="swiper-slide"><img src="../TongBeiPC/AboutImg/ImgAD/ADP01.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="../TongBeiPC/AboutImg/ImgAD/ADP03.jpg" alt=""></div>-->
         </div>
         <!-- 如果需要分页器 -->
         <div class="swiper-pagination"></div>
@@ -73,9 +73,9 @@
         <div class="news-cont white-bgcolor">
             <strong>最新<em>资讯</em>：</strong>
             <div class="infoBox">
-                <ul class="swiper-wrapper">
-                    <li class="swiper-slide"><a href="#"><span><i>热</i>广告词01</span></a></li>
-                    <li class="swiper-slide"><a href="#"><span>广告词02</span></a></li>
+                <ul class="swiper-wrapper" id="PlaceAdText">
+                    <!--<li class="swiper-slide"><a href="#"><span><i>热</i>广告词01</span></a></li>
+                    <li class="swiper-slide"><a href="#"><span>广告词02</span></a></li>-->
                 </ul>
             </div>
             <!--<ul>
@@ -86,50 +86,24 @@
     </div>
     <div class="index-wares">
         <div class="wares-cont">
-            <ul class="clearfix">
-                <li class="col-sm-6 col-xs-6 ware-box">
+            <ul class="clearfix" id="ProType">
+                <!--<li class="col-sm-6 col-xs-6 ware-box">
                     <a href="item.html">
                         <div class="ware-img">
-                            <img src="ImgPro/01.jpg" alt="">
+                            <img src="../TongBeiPC/ProType/01.jpg" alt="">
                         </div>
                         <h3 class="ware-title">产品一</h3>
                         <p class="ware-des">简介</p>
                     </a>
-                </li>
-                <li class="col-sm-6 col-xs-6 ware-box">
-                    <a href="item.html">
-                        <div class="ware-img">
-                            <img src="ImgPro/02.jpg" alt="">
-                        </div>
-                        <h3 class="ware-title">产品二</h3>
-                        <p class="ware-des">简介</p>
-                    </a>
-                </li>
-                <li class="col-sm-6 col-xs-6 ware-box">
-                    <a href="item.html">
-                        <div class="ware-img">
-                            <img src="ImgPro/03.jpg" alt="">
-                        </div>
-                        <h3 class="ware-title">产品三</h3>
-                        <p class="ware-des">简介</p>
-                    </a>
-                </li>
-                <li class="col-sm-6 col-xs-6 ware-box">
-                    <a href="item.html">
-                        <div class="ware-img">
-                            <img src="ImgPro/04.jpg" alt="">
-                        </div>
-                        <h3 class="ware-title">产品四</h3>
-                        <p class="ware-des">简介</p>
-                    </a>
-                </li>
+                </li>-->
             </ul>
         </div>
     </div>
-    <div class="index-wares">
+    <!--限时活动-->
+    <!--<div class="index-wares">
         <div class="wares-cont">
-            <ul class="clearfix">
-                <li class="col-sm-6 col-xs-6 ware-box">
+            <ul class="clearfix" id="ProList">-->
+                <!--<li class="col-sm-6 col-xs-6 ware-box">
                     <a href="item.html">
                         <div class="ware-img">
                             <img src="ImgPro/01.jpg" alt="">
@@ -139,40 +113,7 @@
                         <p class="ware-des">简介</p>
                         <span class="ware-prince red-color">￥8088.00</span>
                     </a>
-                </li>
-                <li class="col-sm-6 col-xs-6 ware-box">
-                    <a href="item.html">
-                        <div class="ware-img">
-                            <img src="ImgPro/01.jpg" alt="">
-                            <span class="ware-vip">限时活动</span>
-                        </div>
-                        <h3 class="ware-title">产品二</h3>
-                        <p class="ware-des">简介</p>
-                        <span class="ware-prince red-color">￥8088.00</span>
-                    </a>
-                </li>
-                <li class="col-sm-6 col-xs-6 ware-box">
-                    <a href="item.html">
-                        <div class="ware-img">
-                            <img src="ImgPro/01.jpg" alt="">
-                            <span class="ware-vip">限时活动</span>
-                        </div>
-                        <h3 class="ware-title">产品三</h3>
-                        <p class="ware-des">简介</p>
-                        <span class="ware-prince red-color">￥8088.00</span>
-                    </a>
-                </li>
-                <li class="col-sm-6 col-xs-6 ware-box">
-                    <a href="item.html">
-                        <div class="ware-img">
-                            <img src="ImgPro/01.jpg" alt="">
-                            <span class="ware-vip">限时活动</span>
-                        </div>
-                        <h3 class="ware-title">产品四</h3>
-                        <p class="ware-des">简介</p>
-                        <span class="ware-prince red-color">￥8088.00</span>
-                    </a>
-                </li>
+                </li>-->
             </ul>
         </div>
     </div>
@@ -182,41 +123,85 @@
 <script src="js/swiper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
-    // 获取页面信息
-    $.ajax({
-    	type:"post",
-    	url:"php/index.php",
-    	async:true,
-//  	dataType:'json',
-    	success:function(data){
-    	    console.log(data)
-    	},
-    	error:function(s,e,t){
-    	    alert('出现错误，错误类型:'+e)
-    	}
-    })
-    // 轮播
+    
     $(document).ready(function () {
-        // 顶部轮播图
-        var mySwiper = new Swiper ('.swiper-container', {
-            // 如果需要分页器
-            autoplay:true,
-            pagination: {
-                el: '.swiper-pagination'
+        // 获取页面信息
+        $.ajax({
+            type:"post",
+            url:"php/index.php",
+            async:true,
+            dataType:'json',
+            success:function(data){
+                for (var i=0;i<data['ad'].length;i++) {
+                    //创建轮播广告图
+                    var ADImgText = "<div class='swiper-slide'><img src='"+data['ad'][i]['url']+"'></div>"
+                    $('#PlaceAdImg').append(ADImgText)
+                    //创建轮播广告文字
+                    if(data['ad'][i]['sta'] == 1)
+                    {
+                        eleText = '<i>热</i>'+data['ad'][i]['else']
+                    }else{
+                        eleText = data['ad'][i]['else']
+                    }
+                    var ADText = "<li class='swiper-slide'><a href='#'><span>"+eleText+"</span></a></li>"
+                    $('#PlaceAdText').append(ADText)
+                }
+                //创建产品类型
+                for (var i=0;i<data['type'].length;i++) {
+                    var EleText = "<li class='col-sm-6 col-xs-6 ware-box'>"
+                    EleText += "<a href='class.html'>"
+                    EleText += "<div class='ware-img'>"
+                    EleText += "<img src='"+data['type'][i]['url']+"' alt=''>"
+                    EleText += "</div>"
+                    EleText += "<h3 class='ware-title'>"+data['type'][i]['name']+"</h3>"
+                    EleText += "<p class='ware-des'>"+data['type'][i]['else']+"</p>"
+                    EleText += "</a>"
+                    EleText += "</li>"
+                    $('#ProType').append(EleText)
+                }
+    //          //创建产品
+                for (var i=0;i<data['pro'].length;i++) {
+                    var EleText = "<li class='col-sm-6 col-xs-6 ware-box'>"
+                    EleText += "<a href='item.html'>"
+                    EleText += "<div class='ware-img'>"
+                    EleText += "<img src='"+data['pro'][i]['url']+"'>"
+                    EleText += "<span class='ware-vip'>限时活动</span>"
+                    EleText += "</div>"
+                    EleText += "<h3 class='ware-title'>"+data['pro'][i]['name']+"</h3>"
+                    EleText += "<p class='ware-des'>"+data['pro'][i]['else']+"</p>"
+                    EleText += "<span class='ware-prince red-color'>"+data['pro'][i]['price']+"</span>"
+                    EleText += "</a>"
+                    EleText += "</li>"
+                    $('#ProList').append(EleText)
+                }
+                /*
+                 * action
+                 */
+                // 顶部轮播图
+                var mySwiper = new Swiper ('.swiper-container', {
+                    // 如果需要分页器
+                    autoplay:true,
+                    pagination: {
+                        el: '.swiper-pagination'
+                    }
+                });
+                // 秒杀商品滑动
+                var swiper = new Swiper('.seckill-wares', {
+                    slidesPerView: 3.5,
+                    spaceBetween: 5,
+                    freeMode: true
+                });
+                // 新闻资讯
+                var swiper2 = new Swiper('.infoBox', {
+                    autoplay:true,
+                    delay: 5000,
+                    direction: 'vertical'
+                });
+            },
+            error:function(s,e,t){
+                alert('出现错误，错误类型:'+e)
             }
-        });
-        // 秒杀商品滑动
-        var swiper = new Swiper('.seckill-wares', {
-            slidesPerView: 3.5,
-            spaceBetween: 5,
-            freeMode: true
-        });
-        // 新闻资讯
-        var swiper2 = new Swiper('.infoBox', {
-            autoplay:true,
-            delay: 5000,
-            direction: 'vertical'
-        });
+        })
     })
 </script>
 </body>

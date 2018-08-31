@@ -44,7 +44,7 @@
                         <p class="weui-tabbar__label">分类</p>
                     </a>
                     <a href="cart.html" class="weui-tabbar__item">
-                        <span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;">8</span>
+                        <!--<span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;">8</span>-->
                         <div class="weui-tabbar__icon">
                             <img src="./img/svg/foot-4.svg" alt="">
                         </div>
@@ -65,12 +65,12 @@
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
-                                <ul>
-                                    <li> 类型1 </li>
+                                <ul id="proType">
+                                    <!--<li> 类型1 </li>
                                     <li> 类型2 </li>
                                     <li> 类型3 </li>
                                     <li> 类型4 </li>
-                                    <li> 类型5 </li>
+                                    <li> 类型5 </li>-->
                                 </ul>
                             </div>
                         </div>
@@ -80,132 +80,22 @@
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
-                                <ul>
-                                    <li>
-                                        <div class="class-title">类型1</div>
-                                        <div>
-                                            <div class="item">
-                                                <div class="item-left">
-                                                    <div class="item-img"></div>
-                                                </div>
-                                                <div class="item-right">
-                                                    <div class="title">产品1</div>
-                                                    <div class="subtitle"></div>
-                                                    <div class="price"></div>
-                                                </div>
+                                <ul id="ProList">
+                                        <!--<li>
+                                            <div class="class-title">类型1</div>
+                                            <div>
+                                                    <div class="item">
+                                                        <div class="item-left">
+                                                            <div class="item-img"></div>
+                                                        </div>
+                                                        <div class="item-right">
+                                                            <div class="title">产品1</div>
+                                                            <div class="subtitle"></div>
+                                                            <div class="price"></div>
+                                                        </div>
+                                                    </div>
                                             </div>
-                                            <div class="item">
-                                                <div class="item-left">
-                                                    <div class="item-img"></div>
-                                                </div>
-                                                <div class="item-right">
-                                                    <div class="title">产品2</div>
-                                                    <div class="subtitle"></div>
-                                                    <div class="price"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="class-title">类型2</div>
-                                        <div>
-                                            <div class="item">
-                                                <div class="item-left">
-                                                    <div class="item-img"></div>
-                                                </div>
-                                                <div class="item-right">
-                                                    <div class="title">产品1</div>
-                                                    <div class="subtitle"></div>
-                                                    <div class="price"></div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="item-left">
-                                                    <div class="item-img"></div>
-                                                </div>
-                                                <div class="item-right">
-                                                    <div class="title">产品2</div>
-                                                    <div class="subtitle"></div>
-                                                    <div class="price"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="class-title">类型3</div>
-                                        <div v-for="ite in item.list">
-                                            <div class="item">
-                                                <div class="item-left">
-                                                    <div class="item-img"></div>
-                                                </div>
-                                                <div class="item-right">
-                                                    <div class="title">产品1</div>
-                                                    <div class="subtitle"></div>
-                                                    <div class="price"></div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="item-left">
-                                                    <div class="item-img"></div>
-                                                </div>
-                                                <div class="item-right">
-                                                    <div class="title">产品2</div>
-                                                    <div class="subtitle"></div>
-                                                    <div class="price"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="class-title">类型4</div>
-                                        <div v-for="ite in item.list">
-                                            <div class="item">
-                                                <div class="item-left">
-                                                    <div class="item-img"></div>
-                                                </div>
-                                                <div class="item-right">
-                                                    <div class="title">产品1</div>
-                                                    <div class="subtitle"></div>
-                                                    <div class="price"></div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="item-left">
-                                                    <div class="item-img"></div>
-                                                </div>
-                                                <div class="item-right">
-                                                    <div class="title">产品2</div>
-                                                    <div class="subtitle"></div>
-                                                    <div class="price"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="class-title">类型5</div>
-                                        <div v-for="ite in item.list">
-                                            <div class="item">
-                                                <div class="item-left">
-                                                    <div class="item-img"></div>
-                                                </div>
-                                                <div class="item-right">
-                                                    <div class="title">产品1</div>
-                                                    <div class="subtitle"></div>
-                                                    <div class="price"></div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="item-left">
-                                                    <div class="item-img"></div>
-                                                </div>
-                                                <div class="item-right">
-                                                    <div class="title">产品2</div>
-                                                    <div class="subtitle"></div>
-                                                    <div class="price"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
+                                        </li>-->
                                 </ul>
                             </div>
                         </div>
@@ -218,51 +108,88 @@
         </section>
         <script src="js/jquery.js"></script>
         <script type="text/javascript">
+            
             $(function(){
-                $('.content').css('height',$('.right').height());
-                $('.left ul li').eq(0).addClass('active');
-                $(window).scroll(function(){
-                    if($(window).scrollTop() >= 150){
-                        $('.swiper-container-ul').css('position','fixed');
-                        $('.left').css('position','fixed');
-                        $('.right').css('margin-left',$('.left').width());
-                    }else {
-                        $('.swiper-container-ul').css('position','');
-                        $('.left').css('position','');
-                        $('.right').css('margin-left','');
-                    };
-                    //滚动到标杆位置,左侧导航加active
-                    $('.right ul li').each(function(){
-                        var target = parseInt($(this).offset().top-$(window).scrollTop()-150);
-                        var i = $(this).index();
-                        if (target<=0) {
-                            $('.left ul li').removeClass('active');
-                            $('.left ul li').eq(i).addClass('active');
-                        }
-                    });
+                $.ajax({
+                	type:"post",
+                	url:"php/class.php",
+                	async:true,
+                	dataType:'json',
+                	success:function(data){
+                	    //显示产品类型
+                	    for (var i=0;i<data['type'].length;i++) {
+                	    	var TypeText = "<li> "+data['type'][i]['name']+" </li>"
+                	    	$('#proType').append(TypeText)
+                	    	//显示产品
+                	    	var ProText = "<li>"
+                	    	ProText += "<div class='class-title'>"+data['type'][i]['name']+"</div>"
+                            ProText += "<div>"
+                            var ProTyprId = data['type'][i]['id']
+                	    	for (var y=0;y<data[ProTyprId].length;y++) {
+                                ProText += "<div class='item'>"
+                                ProText += "<div class='item-left'>"
+                                ProText += "<img class='item-img' src='"+data[ProTyprId][y]['url']+"' />"
+                                ProText += "</div>"
+                                ProText += "<div class='item-right'>"
+                                ProText += "<div class='title'>"+data[ProTyprId][y]['name']+"</div>"
+                                ProText += "<div class='subtitle'>"+data[ProTyprId][y]['else']+"</div>"
+                                ProText += "<div class='price'>¥"+data[ProTyprId][y]['price']+'/'+data[ProTyprId][y]['unit']+"</div>"
+                                ProText += "</div>"
+                                ProText += "</div>"
+                	    	}
+                	    	ProText += "</div>"
+                            ProText += "</li>"
+                	    	$('#ProList').append(ProText)
+                	    }
+                	    
+                	    //初始化
+                	    $('.content').css('height',$('.right').height());
+                        $('.left ul li').eq(0).addClass('active');
+                        $(window).scroll(function(){
+                            if($(window).scrollTop() >= 150){
+                                $('.swiper-container-ul').css('position','fixed');
+                                $('.left').css('position','fixed');
+                                $('.right').css('margin-left',$('.left').width());
+                            }else {
+                                $('.swiper-container-ul').css('position','');
+                                $('.left').css('position','');
+                                $('.right').css('margin-left','');
+                            };
+                            //滚动到标杆位置,左侧导航加active
+                            $('.right ul li').each(function(){
+                                var target = parseInt($(this).offset().top-$(window).scrollTop()-150);
+                                var i = $(this).index();
+                                if (target<=0) {
+                                    $('.left ul li').removeClass('active');
+                                    $('.left ul li').eq(i).addClass('active');
+                                }
+                            });
+                        });
+                        $('.left ul li').click(function(){
+                            var i = $(this).index('.left ul li');
+                            $('body, html').animate({scrollTop:$('.right ul li').eq(i).offset().top-40},500);
+                        });
+                        $('.swiper-container-ul-li').click(function(){
+                            var index = $(this).index();
+                            if(index == 0){
+                                $('.swiper-slide').eq(0).show();
+                                $('.swiper-container-ul-li').eq(0).addClass('actives');
+                                $('.swiper-slide').eq(1).hide();
+                                $('.swiper-container-ul-li').eq(1).removeClass('actives');
+                            }else {
+                                $('.swiper-slide').eq(0).hide();
+                                $('.swiper-container-ul-li').eq(0).removeClass('actives');
+                                $('.swiper-slide').eq(1).show();
+                                $('.swiper-container-ul-li').eq(1).addClass('actives');
+                            }
+                        });
+                	},
+                	error:function(s,e,t){
+                	    alert('出现错误，错误原因：'+e)
+                	}
                 });
-                $('.left ul li').click(function(){
-                    var i = $(this).index('.left ul li');
-                    $('body, html').animate({scrollTop:$('.right ul li').eq(i).offset().top-40},500);
-                });
-                $('.swiper-container-ul-li').click(function(){
-                    var index = $(this).index();
-                    if(index == 0){
-                        $('.swiper-slide').eq(0).show();
-                        $('.swiper-container-ul-li').eq(0).addClass('actives');
-                        $('.swiper-slide').eq(1).hide();
-                        $('.swiper-container-ul-li').eq(1).removeClass('actives');
-                    }else {
-                        $('.swiper-slide').eq(0).hide();
-                        $('.swiper-container-ul-li').eq(0).removeClass('actives');
-                        $('.swiper-slide').eq(1).show();
-                        $('.swiper-container-ul-li').eq(1).addClass('actives');
-                    }
-                });
+                
             });
-            function TestFun(textMes){
-                alert(textMes)
-            }
         </script>
     </body>
 </html>
