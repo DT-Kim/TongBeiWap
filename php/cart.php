@@ -1,6 +1,8 @@
 <?php
+    header("Access-Control-Allow-Origin: *");
+    session_start();
     require('conn.php');
-//  $useId = $_POST['useId'];
+//  $useId = $_SESSION['UseId'];
     $useId = 1;
     //获取产品类型
     $sql02 = "select * from `查询回收车` where 用户信息id='".$useId."'  group by 类型id";
@@ -30,11 +32,12 @@
         {
             while($row = $result01->fetch_assoc())
             {
+                $data[$Mid][$i]['ReturnId'] = $row['回收id'];
                 $data[$Mid][$i]['name'] = $row['产品名称'];
                 $data[$Mid][$i]['url'] = $row['展示图'];
                 $data[$Mid][$i]['num'] = $row['产品数量'];
                 $data[$Mid][$i]['price'] = $row['价格'];
-                $data[$Mid][$i]['else'] = $row['介绍'];
+                $data[$Mid][$i]['else'] = $row['内容摘要'];
                 $i++;
             }
         }

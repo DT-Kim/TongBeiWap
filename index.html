@@ -16,16 +16,23 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+    <style>
+        .select_list li .calc {width: 30%;  display: flex; justify-content: flex-end; align-items: center; flex-wrap: nowrap; margin-right: 2%;}
+        .select_list li .calc p{ width: 2.0rem; height: 2.0rem; margin:0 1%;border-radius: 1.8rem; overflow: hidden; text-align: center; line-height: 1.6rem;font-size: 1.6rem;}
+        .select_list li .calc .item_sub{ background: #ffffff url("img/03.png") no-repeat; background-size: contain;}
+        .select_list li .calc .item_add{ background: #ffffff url("img/02.png") no-repeat; background-size: contain;}
+    </style>
 </head>
 <body>
 <header class="zyw-header">
     <div class="zyw-container white-color">
         <div class="head-l"><a href="class.html"><i class="head-l-svg" aria-hidden="true"></i></a></div>
+        <!--<div class="head-l">TB</div>-->
         <div class="head-search">
             <i class="fa fa-search" aria-hidden="true"></i>
-            <input type="text" placeholder="输入您当前要搜索的商品" class="white-color">
+            <input type="text" placeholder="输入您当前要搜索的产品" class="white-color">
         </div>
-        <div class="head-r"><a href="cart.html"><i class="head-r-svg" aria-hidden="true"></i></a></div>
+        <div class="head-r"><a href="cart.html"><i class="head-r-svg" id="cart" aria-hidden="true"></i></a></div>
     </div>
 </header>
 <footer class="zyw-footer">
@@ -44,7 +51,7 @@
                 <p class="weui-tabbar__label">分类</p>
             </a>
             <a href="cart.html" class="weui-tabbar__item">
-                <!--<span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;">8</span>-->
+                <span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;">8</span>
                 <div class="weui-tabbar__icon">
                     <img src="./img/svg/foot-4.svg" alt="">
                 </div>
@@ -68,22 +75,27 @@
         <!-- 如果需要分页器 -->
         <div class="swiper-pagination"></div>
     </div>
-   
-    <div class="index-news">
+   <div class="index-class white-bgcolor" id="ProClass">
+        <!--<div class="weui-flex">
+            <div class="weui-flex__item">
+                <a href="javascript:;">
+                    <div class="index-class-img">
+                        <img src="./img/cjfl.png" alt="">
+                    </div>
+                    <p class="index-class-text">分类一</p>
+                </a>
+            </div>
+        </div>-->
+    </div>
+    <!--<div class="index-news">
         <div class="news-cont white-bgcolor">
             <strong>最新<em>资讯</em>：</strong>
             <div class="infoBox">
-                <ul class="swiper-wrapper" id="PlaceAdText">
-                    <!--<li class="swiper-slide"><a href="#"><span><i>热</i>广告词01</span></a></li>
-                    <li class="swiper-slide"><a href="#"><span>广告词02</span></a></li>-->
+                <ul class="swiper-wrapper" id="PlaceAdText" >
                 </ul>
             </div>
-            <!--<ul>
-                <li><a href=""></a></li>
-            </ul>
-            <a href="" class="news-more">更多</a>-->
         </div>
-    </div>
+    </div>-->
     <div class="index-wares">
         <div class="wares-cont">
             <ul class="clearfix" id="ProType">
@@ -100,20 +112,22 @@
         </div>
     </div>
     <!--限时活动-->
-    <!--<div class="index-wares">
+    <div class="index-wares">
         <div class="wares-cont">
-            <ul class="clearfix" id="ProList">-->
-                <!--<li class="col-sm-6 col-xs-6 ware-box">
-                    <a href="item.html">
+            <ul class="clearfix select_list" id="ProList">
+                    <!--<li class="col-sm-6 col-xs-6 ware-box">
                         <div class="ware-img">
-                            <img src="ImgPro/01.jpg" alt="">
-                            <span class="ware-vip">限时活动</span>
+                            <img src="01.jpg" alt="">
                         </div>
                         <h3 class="ware-title">产品一</h3>
                         <p class="ware-des">简介</p>
                         <span class="ware-prince red-color">￥8088.00</span>
-                    </a>
-                </li>-->
+                        <div class="calc">
+                            <p class="item_sub" onclick="num_sub(this)"></p>
+                            <p class="item_num">0</p>
+                            <p class="item_add" onclick="num_add(this)"></p>
+                        </div>
+                    </li>-->
             </ul>
         </div>
     </div>
@@ -123,8 +137,54 @@
 <script src="js/swiper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
-    
+    var count_num = 0;
+    var parice = 0;
+    var this_parice;
+    var this_num;
+    //加
+    function num_add(on_this){
+//        当前商品数量
+        this_num = $(on_this).parent().parent().children('.calc').children('.item_num');
+        var get_this_num = parseInt(this_num.text())+1;
+        this_num.html(get_this_num);
+        this_num.parent().addClass('select');
+        changeNum(on_this,get_this_num)
+    }
+    //减
+    function num_sub(on_this){
+//        当前商品数量
+        this_num = $(on_this).parent().parent().children('.calc').children('.item_num');
+        var get_this_num = parseInt(this_num.text())-1;
+        this_num.html(get_this_num);
+        if(get_this_num == 0){
+            this_num.parent().removeClass('select');
+        }
+        changeNum(on_this,get_this_num)
+    }
+    //改变数据
+    function changeNum (obj,num){
+        //获取id
+        var proId = $(obj).parent().parent().children('.calc').children('.proId');
+//      alert(proId.text())
+//      alert(num)
+        $.ajax({
+        	type:"post",
+        	url:"php/NumChange.php",
+        	async:true,
+        	data:{
+        	    proId:proId.text(),
+        	    num:num
+        	},
+        	success:function(data){
+//      	    console.log(data)
+        	},
+        	error:function(s,e,t){
+        	    alert('出现错误，错误类型'+e)
+        	}
+        });
+    }
     $(document).ready(function () {
+//      alert(getQueryString('data'))
         // 获取页面信息
         $.ajax({
             type:"post",
@@ -132,44 +192,100 @@
             async:true,
             dataType:'json',
             success:function(data){
-                for (var i=0;i<data['ad'].length;i++) {
-                    //创建轮播广告图
-                    var ADImgText = "<div class='swiper-slide'><img src='"+data['ad'][i]['url']+"'></div>"
-                    $('#PlaceAdImg').append(ADImgText)
-                    //创建轮播广告文字
-                    if(data['ad'][i]['sta'] == 1)
-                    {
-                        eleText = '<i>热</i>'+data['ad'][i]['else']
-                    }else{
-                        eleText = data['ad'][i]['else']
+                //创建轮播广告图及文字
+                if (data['ad'].length) {
+                	for (var i=0;i<data['ad'].length;i++) {
+                        //创建轮播广告图
+                        var ADImgText = "<div class='swiper-slide'><img src='"+data['ad'][i]['url']+"'></div>"
+                        $('#PlaceAdImg').append(ADImgText)
+                        //创建轮播广告文字
+    //                  if(data['ad'][i]['sta'] == 1)
+    //                  {
+    //                      eleText = '<i>热</i>'+data['ad'][i]['else']
+    //                  }else{
+    //                      eleText = data['ad'][i]['else']
+    //                  }
+    //                  var ADText = "<li class='swiper-slide'><a href='#'><span>"+eleText+"</span></a></li>"
+    //                  $('#PlaceAdText').append(ADText)
                     }
-                    var ADText = "<li class='swiper-slide'><a href='#'><span>"+eleText+"</span></a></li>"
-                    $('#PlaceAdText').append(ADText)
+                } else{
+                    //显示暂无图片
+                    var ADImgText = "<div class='swiper-slide'><img src='img/NoImg.jpg'></div>"
+                    $('#PlaceAdImg').append(ADImgText)
                 }
+                
+                //创建分类图标
+                    //判断创建多少行
+                    var RowNum = data['type'].length/4
+//                  console.log(RowNum)
+                    if(RowNum){
+                        var IconEleText = ''
+                        for (var i=0;i<RowNum;i++) {
+                        	IconEleText += "<div class='weui-flex'></div>"
+                        }
+                        //创建行节点
+                        $('#ProClass').append(IconEleText)
+                    }
+                    //创建节点
+                    var LocNum = 0;
+                    var y=0
+                    var DivEleText = ''
+                    for(var i=0;i<data['type'].length;i++){
+                        DivEleText += "<div class='weui-flex__item'>"
+                        DivEleText += "<a href='class.html'>"
+                        DivEleText += "<div class='index-class-img'>"
+                        DivEleText += "<img src='./img/cjfl.png' alt=''>"
+                        DivEleText += "</div>"
+                        DivEleText += "<p class='index-class-text'>"+data['type'][i]['name']+"</p>"
+                        DivEleText += "</a>"
+                        DivEleText += "</div>"
+                        
+                        if(LocNum == 3){
+                            //插入节点内容
+                            $('#ProClass').find('.weui-flex').eq(y).append(DivEleText)
+                            y++;
+                            LocNum = 0;
+                            //清空代码
+                            DivEleText = ''
+                        }else{
+                            LocNum ++;
+                        }
+                    }
+                    if(DivEleText)
+                    {
+                        $('#ProClass').find('.weui-flex').eq(y).append(DivEleText)
+                    }
+                
                 //创建产品类型
-                for (var i=0;i<data['type'].length;i++) {
-                    var EleText = "<li class='col-sm-6 col-xs-6 ware-box'>"
-                    EleText += "<a href='class.html'>"
-                    EleText += "<div class='ware-img'>"
-                    EleText += "<img src='"+data['type'][i]['url']+"' alt=''>"
-                    EleText += "</div>"
-                    EleText += "<h3 class='ware-title'>"+data['type'][i]['name']+"</h3>"
-                    EleText += "<p class='ware-des'>"+data['type'][i]['else']+"</p>"
-                    EleText += "</a>"
-                    EleText += "</li>"
-                    $('#ProType').append(EleText)
-                }
-    //          //创建产品
+//              for (var i=0;i<data['type'].length;i++) {
+//                  var EleText = "<li class='col-sm-6 col-xs-6 ware-box'>"
+////                  EleText += "<a href='class.html'>"
+//                  EleText += "<div class='ware-img'>"
+//                  EleText += "<img src='"+data['type'][i]['url']+"' alt=''>"
+//                  EleText += "</div>"
+//                  EleText += "<h3 class='ware-title'>"+data['type'][i]['name']+"</h3>"
+//                  EleText += "<p class='ware-des'>"+data['type'][i]['else']+"</p>"
+////                  EleText += "</a>"
+//                  EleText += "</li>"
+//                  $('#ProType').append(EleText)
+//              }
+                //创建产品
                 for (var i=0;i<data['pro'].length;i++) {
                     var EleText = "<li class='col-sm-6 col-xs-6 ware-box'>"
-                    EleText += "<a href='item.html'>"
+                    EleText += "<a href='item.html?ProId="+data['pro'][i]['id']+"'>"
                     EleText += "<div class='ware-img'>"
                     EleText += "<img src='"+data['pro'][i]['url']+"'>"
-                    EleText += "<span class='ware-vip'>限时活动</span>"
+//                  EleText += "<span class='ware-vip'>限时活动</span>"
                     EleText += "</div>"
                     EleText += "<h3 class='ware-title'>"+data['pro'][i]['name']+"</h3>"
                     EleText += "<p class='ware-des'>"+data['pro'][i]['else']+"</p>"
                     EleText += "<span class='ware-prince red-color'>"+data['pro'][i]['price']+"</span>"
+                    EleText += "<div class='calc'>"
+                    EleText += "<p class='proId' hidden='hidden'>"+data['pro'][i]['id']+"</p>"
+                    EleText += "<p class='item_sub' onclick='num_sub(this)'></p>"
+                    EleText += "<p class='item_num'>"+data['pro'][i]['num']+"</p>"
+                    EleText += "<p class='item_add' onclick='num_add(this)'></p>"
+                    EleText += "</div>"
                     EleText += "</a>"
                     EleText += "</li>"
                     $('#ProList').append(EleText)
@@ -185,12 +301,6 @@
                         el: '.swiper-pagination'
                     }
                 });
-                // 秒杀商品滑动
-                var swiper = new Swiper('.seckill-wares', {
-                    slidesPerView: 3.5,
-                    spaceBetween: 5,
-                    freeMode: true
-                });
                 // 新闻资讯
                 var swiper2 = new Swiper('.infoBox', {
                     autoplay:true,
@@ -203,6 +313,15 @@
             }
         })
     })
+    //获取url中的参数
+	function getQueryString(name) {
+        var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return unescape(r[2]);
+        }
+        return null;
+    }
 </script>
 </body>
 </html>

@@ -1,0 +1,219 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>提交订单</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="Cache-Control" content="no-siteapp" />
+        <link rel="stylesheet" href="css/amazeui.min.css"/>
+        <link rel="stylesheet" href="default/style.css"/>
+        <link rel="stylesheet" href="css/weui.min.css">
+        <!--<link rel="stylesheet" href="css/jquery-weui.min.css">-->
+        <!--<link rel="stylesheet" href="css/bootstrap.min.css" >-->
+        <!--<link rel="stylesheet" href="css/font-awesome.min.css">-->
+        <link rel="stylesheet" href="css/main.css">
+        <!--<link rel="stylesheet" href="css/class.css">-->
+        
+        <script src="js/jquery.min.js"></script>
+        <script src="js/amazeui.min.js"></script>
+        
+        <style>
+            .container{
+                margin-top: 40px;
+                margin-bottom: 55px;
+            }
+            .demo {
+                width: 320px;
+                height: 40px;
+                border: 1px solid #ccc;
+                margin: 100px 50px;
+                box-sizing: border-box;
+                /*padding: 0;*/
+            }
+            .zyw-footer .zyw-container .weui-tabbar {
+                background-color: #fff;
+                top: 0;
+                height: 56px;
+            }
+            .zyw-header, .zyw-footer {
+                position: fixed;
+                width: 100%;
+                z-index: 5;
+                left: 0;
+            }
+            .zyw-footer {
+                bottom: 0;
+                height: 56px;
+            }
+            .zyw-footer~.zyw-container {
+                border-bottom: 56px solid transparent;
+            }
+            .zyw-footer p{
+                margin: 0;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <header class="zyw-header">
+            <div class="zyw-container white-color">
+                <div class="head-l"><a href="javascript:window.history.back(-1)" target="_self"><img src="img/svg/head-return.svg" alt=""></a></div>
+                <h1>提交订单</h1>
+            </div>
+        </header>
+        <footer class="zyw-footer">
+            <div class="zyw-container white-bgcolor clearfix">
+                <div class="col-sm-12 col-xs-12">
+                    <a class="weui-tabbar__item" id="HandUpMes">
+                        <div class="weui-tabbar__icon">
+                            <img src="./img/svg/home-dfh.svg" alt="">
+                        </div>
+                        <p class="weui-tabbar__label">提交</p>
+                    </a>
+                </div>
+            </div>
+        </footer>
+        <div class="container">
+        	<div class="gray-panel">
+            	<div class="paoduct-title-panel">
+                    <h2 class="checkout-h2"><span class="am-badge am-round am-badge-warning ">1</span> 确认订单信息</h2>
+                    <div class="cart-list-panel">
+                        <ul class="am-avg-sm-1 cart-panel-ul" id="ProList">
+                                <!--<li>
+                                    <div class="imgpanel"><a href="#"><img src="default/img3.jpg" class="am-img-responsive" /></a></div>
+                                    <div class="infopanel">
+                                        <h3><a href="#">450ml柔顺丰盈护发素正品</a></h3>
+                                        <p>单位：乔治卡罗尔</p>
+                                        <p>价格：<span class="red2 bold">78.00</span> 元   </p>
+                                        <p>数量：<span class="red2 bold"> X 2 </span></p>
+                                        <p>积分：<span class="red2 bold">78.00</span></p>
+                                    </div>
+                                </li>-->
+                        </ul>
+                    </div>
+                    <div class="cart_foot">总价：<span class="red2 bold" id="total_amount">{$price}</span>元；总积分：<span class="red2 bold" id="total_jifen">{$jifen}</span></div>
+                    <div class="cart-tool">
+                        <a class="am-btn am-btn-sm am-btn-success am-radius" href="cart.html">
+                          <i class="am-icon-chevron-left"></i>
+                          返回购物车
+                        </a>
+                    </div>
+                </div>
+                <div class="paoduct-title-panel">
+                	<h2 class="checkout-h2"><span class="am-badge am-round am-badge-warning ">2</span> 确认收货地址</h2>
+                    <p><i class="am-icon-location-arrow"></i> 收货地址</p>
+                    <p class="demo" id="picCity"></p>
+                    <div class="am-form-group">
+                        <input type="text" class="am-form-field am-radius" placeholder="详细地址" id="localD">
+                    </div>
+                    <hr data-am-widget="divider" style="" class="am-divider-default am-margin-bottom-sm"/>
+                    <div class="am-form-group am-form-icon">
+                        <i class="am-icon-user"></i>
+                        <input type="text" class="am-form-field am-radius" placeholder="真实姓名" id="PeoName">
+                    </div>
+                    <div class="am-form-group am-form-icon">
+                        <i class="am-icon-phone"></i>
+                        <input type="text" class="am-form-field am-radius" placeholder="手机号码" id="PeoPhone">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/city.js"></script>
+        <script type="text/javascript">
+            $(function(){
+                $.ajax({
+                    type:"post",
+                    url:'php/CheckOut.php',
+                    async:false,
+                    dataType:'json',
+                    data:{
+                        data:getQueryString('data')
+                    },
+                    success:function(data){
+                        //显示信息
+                        var EleText = ''
+                        var TotalCode = 0
+                        var TotalPrice = 0
+                        if(data['status'] == 'success'){
+                            for(var i=0;i<data['RowNum'];i++){
+                                EleText += "<li>"
+                                EleText += "<div class='imgpanel'><a href='#'><img src='"+data[i]['Img']+"' class='am-img-responsive' /></a></div>"
+                                EleText += "<div class='infopanel'>"
+                                EleText += "<h3><a href='#'>"+data[i]['name']+"</a></h3>"
+                                EleText += "<p>单位：<span class='red2 bold'>"+data[i]['unit']+"</span></p>"
+                                EleText += "<p>单价：<span class='red2 bold'>"+data[i]['price']+"</span> 元  </p>"
+                                EleText += "<p>数量：<span class='red2 bold'>"+data[i]['num']+"</span></p>"
+                                EleText += "<p>积分：<span class='red2 bold'>"+data[i]['code']+"</span></p>"
+                                EleText += "</div>"
+                                EleText += "</li>"
+                                TotalPrice +=  (data[i]['price']*data[i]['num'])
+                                TotalCode +=  (data[i]['code']*data[i]['num'])
+                            }
+                            $("#ProList").append(EleText)
+                        }
+                        //计算总价
+                        $('#total_amount').html(TotalPrice)
+                        //计算总积分
+                        $('#total_jifen').html(TotalCode)
+                    },
+                    error:function(s,e,t){
+//                      console.log(e)
+                        alert('出现错误，错误类型'+e)
+                    }
+                })
+            })
+            //选择地区
+            var cityAll;
+            var ylc = yeluochenCity('picCity', (city) => {cityAll = city}, null);
+            //提交订单
+            $('#HandUpMes').on('click',function(){
+//              console.log(cityAll.province)
+//              console.log(cityAll.city)
+//              console.log(cityAll.district)
+                $.ajax({
+                    url:'php/CheckOutSave.php',
+                    type:'post',
+                    async:true,
+                    dataType:'json',
+                    data:{
+                        MId:getQueryString('data'),
+                        LocalP:cityAll.province,
+                        LocalC:cityAll.city,
+                        LocalA:cityAll.district,
+                        LocalD:$('#localD').val(),
+                        Name:$('#PeoName').val(),
+                        Phone:$('#PeoPhone').val(),
+                        priceAll:$('#total_amount').html(),
+                        codeAll:$('#total_jifen').html(),
+                    },
+                    success:function(data){
+                        console.log(data)
+                        if(data['status'] == 'success')
+                        {
+                            alert('下单成功')
+                            self.location = "cart.html"
+                        }
+                        else{
+                            alert('操作失败')
+                        }
+                    },
+                    error:function(s,e,t){
+                        alert('出现错误，错误类型'+e)
+                    }
+                })
+            })
+            //获取url中的参数
+            function getQueryString(name) {
+                var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) {
+                    return unescape(r[2]);
+                }
+                return null;
+            }
+        </script>
+    </body>
+</html>

@@ -1,4 +1,6 @@
 <?php 
+    header("Access-Control-Allow-Origin: *");
+    session_start();
    //获得参数 signature nonce token timestamp echostr
 	   	$timestamp = $_GET['timestamp'];
 		$nonce     = $_GET['nonce'];

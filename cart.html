@@ -23,7 +23,7 @@
             <div class="zyw-container white-color">
                 <div class="head-l"><a href="javascript:window.history.back(-1)" target="_self"><img src="img/svg/head-return.svg" alt=""></a></div>
                 <h1>回收车</h1>
-                <div class="head-r"><a href="#">编辑</a></div>
+                <div class="head-r"><a href="#" id="rem_s">编辑</a></div>
             </div>
         </header>
         <footer class="zyw-footer">
@@ -43,7 +43,7 @@
                         </dt>
                     </dl>
                     <input type="hidden" name="gcs" id="gcs"/>
-                    <a class="settle_btn" href="javascript:void(0);" id="confirm_cart">去结算</a>
+                    <a class="settle_btn" href="javascript:void(0);" id="confirm_cart">提交</a>
                     <a class="settle_btn" href="javascript:void(0);" id="confirm_cart1" onclick="big_cart_remove()">删除</a>
                 </div>
             </div>
@@ -98,69 +98,77 @@
         <script src="js/bootstrap.min.js"></script>
         <script type="text/javascript">
             //定义全局变量
-             i=0;
+            i=0;
             //金额总和
-             money=0;
+            money=0;
             //计算合计价格
-             cart_money=new Object();
+            cart_money=new Object();
             //全部商品ID
-             cart_id=new Object();
+            cart_id=new Object();
             //备份商品ID，用于全选后去掉全选又再次全选
-             cart_id_copy=new Object();
-        </script>
-        <script type="text/javascript">
+            cart_id_copy=new Object();
+            
             $.ajax({
                 type:"post",
                 url:"php/cart.php",
                 async:false,
                 dataType:'json',
                 data:{
-                    useId:1
+                    
                 },
                 success:function(data){
 //                  console.log(data)
-                    var EleText = "<div class='commodity_box'>"
-                    for (var z=0;z<data['type'].length;z++) {
-                        EleText += "<div class='commodity_list'>"
-                        EleText += "<div class='tite_tim select'>"
-                        EleText += "<em aem='1' cart_id='84'></em>"
-                        EleText += "<span>"+data['type'][z]['name']+"</span>"
-                        EleText += "<div class='clear'></div>"
-                        EleText += "</div>"
-                        EleText += "<ul class='commodity_list_term'>"
-                        var Mid = data['type'][z]['TypeId']
-                        for (var y=0;y<data[Mid].length;y++)
-                        {
-                            EleText += "<li class='select'>"
-                            EleText += "<em aem='0' cart_id='84'></em>"
-                            EleText += "<img src='"+data[Mid][y]['url']+"'/>"
-                            EleText += "<div class='div_center'>"
-                            EleText += "<h4>"+data[Mid][y]['name']+"</h4>"
-                            EleText += "<span>"+data[Mid][y]['else']+"</span>"
-                            EleText += "<p class='now_value'><i>¥</i><b class='qu_su'>"+data[Mid][y]['else']+"</b></p>"
+                    if(data['type'].length){
+                    	var EleText = "<div class='commodity_box'>"
+                        for (var z=0;z<data['type'].length;z++) {
+                            EleText += "<div class='commodity_list'>"
+                            EleText += "<div class='tite_tim select'>"
+                            EleText += "<em aem='1' cart_id='84'></em>"
+                            EleText += "<span>"+data['type'][z]['name']+"</span>"
+                            EleText += "<div class='clear'></div>"
                             EleText += "</div>"
-                            EleText += "<div class='div_right'>"
-                            EleText += "<i onclick='reducew(this)'>-</i>"
-                            EleText += "<span class='zi'>1</span>"
-                            EleText += "<input type='hidden' value='84'>"
-                            EleText += "<i onclick='plusw(this)'>+</i>"
+                            EleText += "<ul class='commodity_list_term'>"
+                            var Mid = data['type'][z]['TypeId']
+                            for (var y=0;y<data[Mid].length;y++)
+                            {
+                                EleText += "<li class='select'>"
+                                EleText += "<a href='item.html?ProId'"+data[Mid][y]['id']+">"
+                                EleText += "<em aem='0' cart_id='84'></em>"
+                                EleText += "<img src='"+data[Mid][y]['url']+"'/>"
+                                EleText += "<div class='div_center'>"
+                                EleText += "<h4>"+data[Mid][y]['name']+"</h4>"
+                                EleText += "<span>"+data[Mid][y]['else']+"</span>"
+                                EleText += "<span class='MID' hidden='hidden'>"+data[Mid][y]['ReturnId']+"</span>"
+                                EleText += "<p class='now_value'><i>¥</i><b class='qu_su'>"+data[Mid][y]['price']+"</b></p>"
+                                EleText += "</div>"
+                                EleText += "<div class='div_right'>"
+                                EleText += "<i onclick='reducew(this)'>-</i>"
+                                EleText += "<span class='zi'>"+data[Mid][y]['num']+"</span>"
+                                EleText += "<input type='hidden' value='84'>"
+                                EleText += "<i onclick='plusw(this)'>+</i>"
+                                EleText += "</div>"
+                                EleText += "</a>"
+                                EleText += "</li>"
+                            }
+                            EleText += "</ul>"
                             EleText += "</div>"
-                            EleText += "</li>"
                         }
-                        EleText += "</ul>"
+                        EleText += "</div>"
+                    }else{
+//                      alert('oo')
+                        var EleText = "<div class='item'>"
+                        EleText += "<div class='item-right'>"
+                        EleText += "<div class='subtitle'>您的购物车空空如也~</div>"
                         EleText += "</div>"
                     }
-                    EleText += "</div>"
-                    document.getElementById("ProList").innerHTML = EleText
-                    
+//                  document.getElementById("ProList").innerHTML = EleText
+                    $('#ProList').append(EleText)
                 },
                 error:function(s,e,t){
                     alert('出现错误，错误类型：'+e)
                 }
             });
             
-        </script>
-        <script>
             var noX = 0;
             /* 没选中时点击加减计算数量  */
             var allThis = $(".commodity_box .select em");
@@ -304,7 +312,6 @@
                     /* 取消所有选择  */
                     $("#total_price b").text("0");
                     /*合计价格清零*/
-        
                 }
             });
             /* 加减  */
@@ -332,9 +339,9 @@
                         reduceMod(mo, totalH, 2, noX);
                         noX = 0;
                     }
-        
                 }
-        
+                //更新数据库数据
+                UpdateMesInDataBase(obj)
                 //goods_count_adjust(gc_id,n,null);
             }
             ;
@@ -354,13 +361,35 @@
                     plusMod(mo, totalH, 2, noX);
                     noX = 0;
                 }
-        
+                //更新数据库数据
+                UpdateMesInDataBase(obj)
                 //goods_count_adjust(gc_id,n,null);
             }
             //删除
             function big_cart_remove() {
-                $(".commodity_list_term .pitch_on").parent().remove();
-                $(".commodity_list .tite_tim > em.pitch_on").parents(".commodity_box").remove();
+//              console.log($(".commodity_list_term .pitch_on").length)
+                for (var i=0;i<$(".commodity_list_term .pitch_on").length;i++) {
+//                  console.log($(".commodity_list_term .pitch_on").eq(i).parent().find('.MID').html())
+                	$.ajax({
+                    	type:"post",
+                    	url:"php/cartRemove.php",
+                    	async:true,
+//                  	dataType:'json',
+                    	data:{
+                    	    //回收id
+                    	    MId:$(".commodity_list_term .pitch_on").eq(i).parent().find('.MID').html()
+                    	},
+                    	success:function(data){
+//                  	    console.log(data)
+                    	    $(".commodity_list_term .pitch_on").parent().remove();
+                            $(".commodity_list .tite_tim > em.pitch_on").parents(".commodity_box").remove();
+                    	},
+                    	error:function(s,e,t){
+//                  	    console.log(e)
+                    	    alert('出现错误，错误类型'+e)
+                    	}
+                    });
+                }
             }
             //选择结算商品
             $(".select em").click(function() {
@@ -462,6 +491,38 @@
                 //计算选择数值
                 //number();
             });
+            //结算
+            $('#confirm_cart').on('click',function(){
+                //组成数据对象
+                var StrMes = ''
+                for (var i=0;i<$(".commodity_list_term .pitch_on").length;i++) {
+                    StrMes += $(".commodity_list_term .pitch_on").eq(i).parent().find('.MID').html()
+                    StrMes += '@'
+                }
+                StrMes = StrMes.substr(0,StrMes.length-1)
+                self.location='checkout.html?data='+StrMes;
+            })
+            //更新数据库数据【数量信息】
+            function UpdateMesInDataBase(obj){
+//              var $this = $(obj);
+//              console.log($(obj).parents('li').find('.MID').html())
+//              console.log($(obj).parents('li').find('.zi').html())
+                $.ajax({
+                    url:'php/cartUpdateData.php',
+                    async:true,
+                    type:'post',
+                    data:{
+                        MId:$(obj).parents('li').find('.MID').html(),//产品id
+                        ProNum:$(obj).parents('li').find('.zi').html()//数量
+                    },
+                    success:function(data){
+                        console.log(data)
+                    },
+                    error:function(s,e,t){
+                        console.log(e)
+                    }
+                })
+            }
         </script>
         
     </body>

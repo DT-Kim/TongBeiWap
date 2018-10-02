@@ -1,4 +1,8 @@
 <?php
+    header('Access-Control-Allow-Origin:*');
+//	header('Content-Type:application/json');
+	header('Charset=utf-8');
+	session_start();
     //curl获取信息demo
     function http_curl($url)
     {
@@ -82,6 +86,7 @@
         $scope = "snsapi_base";
         $state = "123";
         $url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$appId."&redirect_uri=".$redirect_uri."&response_type=code&scope=".$scope."&state=".$state."#wechat_redirect";
+//		return $url;
         header('location:'.$url);
     }
 
@@ -94,5 +99,30 @@
         $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appId."&secret=".$secret."&code=".$code."&grant_type=authorization_code";
         //拉取用户的openid
         $res = http_curl($url);
-		echo $res['openid'];
+		return $res['openid'];
+//		echo $res['openid'];
     }        
+	
+	//直接获取openid
+	function getOpenId()
+	{
+		$appId = "wx7c1c9c18cbe29e05";
+//      $redirect_uri = urlencode("http://www.tongbeiwang.com/TongBeiWap/index.html");
+        $redirect_uri = urlencode("http://www.tongbeiwang.com/TongBeiWap/php/getUseOpenId.php");
+        $scope = "snsapi_base";
+        $state = "123";
+        $urlDetCode = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$appId."&redirect_uri=".$redirect_uri."&response_type=code&scope=".$scope."&state=".$state."#wechat_redirect";
+		$Mes = http_curl($urlDetCode);
+		$code = $Mes['code'];
+		echo $Mes;
+		
+		//获取网页授权的access_token
+//      $appId = "wx7c1c9c18cbe29e05";
+//      $secret = "3ddebbf2d6acf51532ab14dc2ff1ac4f";
+////      $code = $_GET['code'];
+//      $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appId."&secret=".$secret."&code=".$code."&grant_type=authorization_code";
+//      //拉取用户的openid
+//      $res = http_curl($url);
+//		return $res['openid'];
+		
+	}

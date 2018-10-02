@@ -1,4 +1,5 @@
 <?php
+    header("Access-Control-Allow-Origin: *");
     include_once "APIWC/wxBizMsgCrypt.php";
     
     // 第三方发送消息给公众平台
