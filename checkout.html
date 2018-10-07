@@ -11,11 +11,7 @@
         <link rel="stylesheet" href="css/amazeui.min.css"/>
         <link rel="stylesheet" href="default/style.css"/>
         <link rel="stylesheet" href="css/weui.min.css">
-        <!--<link rel="stylesheet" href="css/jquery-weui.min.css">-->
-        <!--<link rel="stylesheet" href="css/bootstrap.min.css" >-->
-        <!--<link rel="stylesheet" href="css/font-awesome.min.css">-->
         <link rel="stylesheet" href="css/main.css">
-        <!--<link rel="stylesheet" href="css/class.css">-->
         
         <script src="js/jquery.min.js"></script>
         <script src="js/amazeui.min.js"></script>
@@ -97,26 +93,30 @@
                     <div class="cart_foot">总价：<span class="red2 bold" id="total_amount">{$price}</span>元；总积分：<span class="red2 bold" id="total_jifen">{$jifen}</span></div>
                     <div class="cart-tool">
                         <a class="am-btn am-btn-sm am-btn-success am-radius" href="cart.html">
-                          <i class="am-icon-chevron-left"></i>
-                          返回购物车
+                          <i class="am-icon-chevron-left"></i>返回回收车
                         </a>
                     </div>
                 </div>
+                <!--收货信息-->
                 <div class="paoduct-title-panel">
-                	<h2 class="checkout-h2"><span class="am-badge am-round am-badge-warning ">2</span> 确认收货地址</h2>
-                    <p><i class="am-icon-location-arrow"></i> 收货地址</p>
-                    <p class="demo" id="picCity"></p>
+                    <div class="checkout-h2">
+                        <span class="am-badge am-round am-badge-warning ">2</span> 确认收货地址
+                        <a class="am-btn am-btn-sm am-btn-warning am-radius" style="right: 0px;" href="person.html">修改收货信息</a>
+                    </div>
+                    <p><i class="am-icon-location-arrow"></i> 收货信息 </p>
+                    <!--<p class="demo" id="picCity"></p>-->
                     <div class="am-form-group">
-                        <input type="text" class="am-form-field am-radius" placeholder="详细地址" id="localD">
+                        <p class="am-form-field am-radius" id="city">省份/城市/县区</p>
+                        <p class="am-form-field am-radius" id="place">详细地址</p>
                     </div>
                     <hr data-am-widget="divider" style="" class="am-divider-default am-margin-bottom-sm"/>
                     <div class="am-form-group am-form-icon">
                         <i class="am-icon-user"></i>
-                        <input type="text" class="am-form-field am-radius" placeholder="真实姓名" id="PeoName">
+                        <p class="am-form-field am-radius" id="name">真实姓名</p>
                     </div>
                     <div class="am-form-group am-form-icon">
                         <i class="am-icon-phone"></i>
-                        <input type="text" class="am-form-field am-radius" placeholder="手机号码" id="PeoPhone">
+                        <p class="am-form-field am-radius" id="phone">手机号码</p>
                     </div>
                 </div>
             </div>
@@ -158,6 +158,13 @@
                         $('#total_amount').html(TotalPrice)
                         //计算总积分
                         $('#total_jifen').html(TotalCode)
+                        
+                        //显示用户信息
+                        $('#city').html(data['peo']['city'])
+                        $('#place').html(data['peo']['local'])
+                        $('#name').html(data['peo']['name'])
+                        $('#phone').html(data['peo']['phone'])
+                        
                     },
                     error:function(s,e,t){
 //                      console.log(e)
@@ -166,13 +173,10 @@
                 })
             })
             //选择地区
-            var cityAll;
-            var ylc = yeluochenCity('picCity', (city) => {cityAll = city}, null);
+//          var cityAll;
+//          var ylc = yeluochenCity('picCity', (city) => {cityAll = city}, null);
             //提交订单
             $('#HandUpMes').on('click',function(){
-//              console.log(cityAll.province)
-//              console.log(cityAll.city)
-//              console.log(cityAll.district)
                 $.ajax({
                     url:'php/CheckOutSave.php',
                     type:'post',

@@ -196,13 +196,12 @@
         //    设置产品列表可视区域高度
             $(".item_list").css('height',window11+'px');
         //    左侧产品类型选择
-//          $('.type_list li').click(function(){
-//              $('.type_list li').removeClass('select');
-//              $(this).addClass('select');
-//          })
+            $('.type_list li').click(function(){
+                $('.type_list li').removeClass('select');
+                $(this).addClass('select');
+            })
         //    点击添加效果
             $('.item_add').click(function (event){
-        //        alert('sdf');
                 var thisItem = $(this);
                 var flyer = thisItem.clone().css({"background":"#000", "width": "20px", "height": "20px","border-radius": "20px"});
                 flyer.fly({
@@ -309,31 +308,9 @@
                     }
                 });
             }
-            //  jQuery(function($) {
-            //    $('#fly').fly({
-            //      start:{
-            //        left: 11,  //开始位置（必填）#fly元素会被设置成position: fixed
-            //        top: 600,  //开始位置（必填）
-            //      },
-            //      end:{
-            //        left: 500, //结束位置（必填）
-            //        top: 130,  //结束位置（必填）
-            //        width: 100, //结束时高度
-            //        height: 100, //结束时高度
-            //      },
-            //      autoPlay: false, //是否直接运动,默认true
-            //      speed: 1.1, //越大越快，默认1.2
-            //      vertex_Rtop：100, //运动轨迹最高点top值，默认20
-            //      onEnd: function(){} //结束回调
-            //  });
-            //    $('#fly').play(); //autoPlay: false后，手动调用运动
-            //    $('#fly').destroy(); //移除dom
-            //  });
         </script>
         <script type="text/javascript">
-            
             $(function(){
-                
                 $.ajax({
                 	type:"post",
                 	url:"php/class.php",
@@ -345,8 +322,8 @@
                 	    	var TypeText = "<li> "+data['type'][i]['name']+" </li>"
                 	    	$('#proType').append(TypeText)
                 	    	//显示产品
-                	    	var ProText = "<li>"
-//              	    	ProText += "<div class='class-title'>"+data['type'][i]['name']+"</div>"
+                	    	var ProText = "<li class='ProLRight'>"
+                	    	ProText += "<div class='class-title' hidden='hidden'>"+data['type'][i]['name']+"</div>"
                             
                             ProText += "<hr />"
                             ProText += "<div>"
@@ -393,28 +370,26 @@
                 	    $('.content').css('height',$('.right').height());
                         $('.left ul li').eq(0).addClass('active');
                         $(window).scroll(function(){
-                            if($(window).scrollTop() >= 150){
-                                $('.swiper-container-ul').css('position','fixed');
-                                $('.left').css('position','fixed');
-                                $('.right').css('margin-left',$('.left').width());
-                            }else {
-                                $('.swiper-container-ul').css('position','');
-                                $('.left').css('position','');
-                                $('.right').css('margin-left','');
-                            };
+                            $('.swiper-container-ul').css('position','fixed');
+                            $('.left').css('position','fixed');
+                            $('.right').css('margin-left',$('.left').width());
                             //滚动到标杆位置,左侧导航加active
-                            $('.right ul li').each(function(){
+                            $('.right ul li').find('.ProLRight').each(function(){
                                 var target = parseInt($(this).offset().top-$(window).scrollTop()-150);
                                 var i = $(this).index();
+                                var y = $('.right ul').find('.ProLRight').eq(i).index('.right ul li')
                                 if (target<=0) {
                                     $('.left ul li').removeClass('active');
-                                    $('.left ul li').eq(i).addClass('active');
+                                    $('.left ul li').eq(y).addClass('active');
                                 }
                             });
                         });
                         $('.left ul li').click(function(){
                             var i = $(this).index('.left ul li');
-                            $('body, html').animate({scrollTop:$('.right ul li').eq(i).offset().top-40},500);
+                            var y = $('.right ul').find('.ProLRight').eq(i).index('.right ul li')
+                            $('body, html').animate({scrollTop:$('.right ul li').eq(y).offset().top-40},500);
+                            $('.left ul li').removeClass('active');
+                            $('.left ul li').eq(i).addClass('active');
                         });
                         $('.swiper-container-ul-li').click(function(){
                             var index = $(this).index();

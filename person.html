@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="css/amazeui.min.css"/>
+        <link rel="stylesheet" href="default/style.css"/>
+        <link rel="stylesheet" href="css/weui.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <style>
+            .demo {
+                width: 320px;
+                height: 40px;
+                border: 1px solid #ccc;
+                margin: 100px 50px;
+                box-sizing: border-box;
+                /*padding: 0;*/
+            }
+            .zyw-footer .zyw-container .weui-tabbar {
+                background-color: #fff;
+                top: 0;
+                height: 56px;
+            }
+            .zyw-header, .zyw-footer {
+                position: fixed;
+                width: 100%;
+                z-index: 5;
+                left: 0;
+            }
+            .zyw-footer {
+                bottom: 0;
+                height: 56px;
+            }
+            .zyw-footer~.zyw-container {
+                border-bottom: 56px solid transparent;
+            }
+            .zyw-footer p{
+                margin: 0;
+            }
+        </style>
+	</head>
+	<body>
+		<header class="zyw-header">
+            <div class="zyw-container white-color">
+                <div class="head-l"><a href="javascript:window.history.back(-1)" target="_self"><img src="img/svg/head-return.svg" alt=""></a></div>
+                <h1>我的资料</h1>
+                <!--<div class="head-r"><a href="#">编辑</a></div>-->
+            </div>
+        </header>
+        <footer class="zyw-footer">
+            <div class="zyw-container white-bgcolor clearfix">
+                <div class="col-sm-12 col-xs-12">
+                    <a class="weui-tabbar__item" id="HandUpMes">
+                        <div class="weui-tabbar__icon">
+                            <img src="./img/svg/home-dfh.svg" alt="">
+                        </div>
+                        <p class="weui-tabbar__label" id="mesChange">修改个人信息</p>
+                    </a>
+                </div>
+            </div>
+        </footer>
+        <section class="zyw-container">
+            <div class="paoduct-title-panel">
+                <hr data-am-widget="divider" style="" class="am-divider-default am-margin-bottom-sm"/>
+                <div class="am-form-group am-form-icon">
+                    <i class="am-icon-user"></i>
+                    <!--<p class="am-form-field am-radius">真实姓名</p>-->
+                    <input type="text" class="am-form-field am-radius" placeholder="真实姓名" id="PeoName" readonly="readonly">
+                </div>
+                <div class="am-form-group am-form-icon">
+                    <i class="am-icon-phone"></i>
+                    <!--<p class="am-form-field am-radius">手机号码</p>-->
+                    <input type="text" class="am-form-field am-radius" placeholder="手机号码" id="PeoPhone" readonly="readonly">
+                </div>
+                <hr data-am-widget="divider" style="" class="am-divider-default am-margin-bottom-sm"/>
+                <p><i class="am-icon-location-arrow"></i> 地址信息 </p>
+                <div class="am-form-group">
+                    <p class="demo" id="picCity"></p>
+                    <input type="text" class="am-form-field am-radius" placeholder="详细地址" id="localD" readonly="readonly">
+                </div>
+            </div>
+        </section>
+	</body>
+	<script src="js/jquery.min.js"></script>
+    <script src="js/amazeui.min.js"></script>
+    <script src="js/city.js"></script>
+	<script type="text/javascript">
+	    //选择地区
+        var cityAll;
+        var ylc = yeluochenCity('picCity', (city) => {cityAll = city;}, null);
+        
+        
+        
+		$('#HandUpMes').on('click',function(){
+		    //点击编辑
+		    if($('#mesChange').html() == '修改个人信息'){
+                $('input').attr("readonly",false)
+		        $('#mesChange').html('提交信息')
+		    }else{
+		        if((cityAll.province)&&(cityAll.city)&&(cityAll.district)&&($('#PeoName').val())&&($('#PeoPhone').val())&&($('#localD').val())){
+		            $.ajax({
+                        type:"post",
+                        url:"php/person.php",
+                        async:true,
+                        dataType:'json',
+                        data:{
+                            province:cityAll.province,
+                            city:cityAll.city,
+                            district:cityAll.district,
+                            PeoName:$('#PeoName').val(),
+                            PeoPhone:$('#PeoPhone').val(),
+                            localD:$('#localD').val(),
+                        },
+                        success:function(data){
+                            if(data['status'] == 'success'){
+                                $('input').attr("readonly",true)
+                                $('#mesChange').html('修改个人信息')
+                                alert('个人信息修改成功')
+                            }else{
+                                alert('信息修改过程中出现错误，请重新尝试')
+                            }
+                        },
+                        error:function(s,e,t){
+                            alert('出现错误，错误类型:')
+                        }
+                    });
+		        }
+		    }
+		    
+//          console.log(cityAll.province)
+//          console.log(cityAll.city)
+//          console.log(cityAll.district)
+			
+		})
+	</script>
+</html>

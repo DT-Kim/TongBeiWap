@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/out/zy.css" type="text/css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/index.css">
+    </head>
+</head>
+<body>
+    <header class="zyw-header">
+        <div class="zyw-container white-color">
+            <div class="head-l"><a href="home.html"><img src="img/svg/head-return.svg" alt=""></a></div>
+            <h1>积分管理</h1>
+        </div>
+    </header>
+    <section class="zyw-container">
+        <div class="jif_kuang">
+            <ul class="jif_daoh"style="margin-right:50px ;">
+                <li ><a href="exc.html">我的积分</a><i></i></li>
+                <li class="no"><a href="excstore.html">积分商城</a><i></i></li>
+            </ul>
+            <div class="swiper-container">
+                <div class="swiper-wrapper" id="PlaceAdImg">
+                    <div class="swiper-slide"><img src="../TongBeiPC/AboutImg/ImgAD/ADP03.jpg" alt=""></div>
+                </div>
+                <!-- 如果需要分页器 -->
+                <div class="swiper-pagination"></div>
+            </div>
+            <div class="shouru_mxi">
+                <h1 class="jifenshouru_biaot">积分商品列表</h1>
+                <ul class="ul_mx">
+                        <li>
+                            <a href="#">
+                                <h1><img src="../TongBeiPC/AboutImg/ProOwn/01.jpg"></h1>
+                                <div class="zhong_wenz">
+                                    <p>大杯,杯子,咖啡,饮料,桌子</p>
+                                    <span>2017年10月30日 10:42:17</span>
+                                </div>
+                            </a>
+                            <div class="mx">15</div>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <h1><img src="../TongBeiPC/AboutImg/ProOwn/01.jpg"></h1>
+                                <div class="zhong_wenz">
+                                    <p>大杯,杯子,咖啡,饮料,桌子</p>
+                                    <span>2017年10月30日 10:42:17</span>
+                                </div>
+                            </a>
+                            <div class="mx">15</div>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <h1><img src="../TongBeiPC/AboutImg/ProOwn/01.jpg"></h1>
+                                <div class="zhong_wenz">
+                                    <p>大杯,杯子,咖啡,饮料,桌子</p>
+                                    <span>2017年10月30日 10:42:17</span>
+                                </div>
+                            </a>
+                            <div class="mx">15</div>
+                        </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-weui.min.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // 获取页面信息
+//          $.ajax({
+//              type:"post",
+//              url:"php/index.php",
+//              async:true,
+//              dataType:'json',
+//              success:function(data){
+//                  //创建产品
+//                  for (var i=0;i<data['pro'].length;i++) {
+//                      var EleText = "<li class='col-sm-6 col-xs-6 ware-box'>"
+//                      EleText += "<a href='item.html?ProId="+data['pro'][i]['id']+"'>"
+//                      EleText += "<div class='ware-img'>"
+//                      EleText += "<img src='"+data['pro'][i]['url']+"'>"
+//                      EleText += "</div>"
+//                      EleText += "<h3 class='ware-title'>"+data['pro'][i]['name']+"</h3>"
+//                      EleText += "<p class='ware-des'>132</p>"
+//                      EleText += "<span class='ware-prince red-color'>"+data['pro'][i]['price']+"</span>"
+//                      EleText += "</a>"
+//                      EleText += "</li>"
+//                      
+//                      $('#ProList').append(EleText)
+//                  }
+//              },
+//              error:function(s,e,t){
+//                  alert('出现错误，错误类型:'+e)
+//              }
+//          })
+        })
+    </script>
+</body>
+</html>
