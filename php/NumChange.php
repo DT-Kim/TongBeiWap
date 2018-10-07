@@ -8,8 +8,8 @@
     $num = $_POST['num'];
 //  $num = 12;
     //获取用户信息[用户id]
-    $useId = $_SESSION['UseId'];
-//  $useId = 1;
+//  $useId = $_SESSION['UseId'];
+    $useId = 1;
     //当前时间
     $time = date('Y-m-d H:i:s');
     

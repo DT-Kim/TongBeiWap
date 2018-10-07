@@ -119,39 +119,53 @@
                 success:function(data){
 //                  console.log(data)
                     if(data['type'].length){
+                        var EleTextType = ''
+                        var EleTextDatali = ''
                     	var EleText = "<div class='commodity_box'>"
                         for (var z=0;z<data['type'].length;z++) {
-                            EleText += "<div class='commodity_list'>"
-                            EleText += "<div class='tite_tim select'>"
-                            EleText += "<em aem='1' cart_id='84'></em>"
-                            EleText += "<span>"+data['type'][z]['name']+"</span>"
-                            EleText += "<div class='clear'></div>"
-                            EleText += "</div>"
-                            EleText += "<ul class='commodity_list_term'>"
+                            EleTextType += "<div class='commodity_list'>"
+                            EleTextType += "<div class='tite_tim select'>"
+                            EleTextType += "<em aem='1' cart_id='84'></em>"
+                            EleTextType += "<span>"+data['type'][z]['name']+"</span>"
+                            EleTextType += "<div class='clear'></div>"
+                            EleTextType += "</div>"
+                            EleTextType += "<ul class='commodity_list_term'>"
                             var Mid = data['type'][z]['TypeId']
                             for (var y=0;y<data[Mid].length;y++)
                             {
-                                EleText += "<li class='select'>"
-                                EleText += "<a href='item.html?ProId'"+data[Mid][y]['id']+">"
-                                EleText += "<em aem='0' cart_id='84'></em>"
-                                EleText += "<img src='"+data[Mid][y]['url']+"'/>"
-                                EleText += "<div class='div_center'>"
-                                EleText += "<h4>"+data[Mid][y]['name']+"</h4>"
-                                EleText += "<span>"+data[Mid][y]['else']+"</span>"
-                                EleText += "<span class='MID' hidden='hidden'>"+data[Mid][y]['ReturnId']+"</span>"
-                                EleText += "<p class='now_value'><i>¥</i><b class='qu_su'>"+data[Mid][y]['price']+"</b></p>"
-                                EleText += "</div>"
-                                EleText += "<div class='div_right'>"
-                                EleText += "<i onclick='reducew(this)'>-</i>"
-                                EleText += "<span class='zi'>"+data[Mid][y]['num']+"</span>"
-                                EleText += "<input type='hidden' value='84'>"
-                                EleText += "<i onclick='plusw(this)'>+</i>"
-                                EleText += "</div>"
-                                EleText += "</a>"
-                                EleText += "</li>"
+                                if(data[Mid][y]['num'] > 0){
+                                    EleTextDatali += "<li class='select'>"
+                                    EleTextDatali += "<a href='item.html?ProId="+data[Mid][y]['id']+"'>"
+                                    EleTextDatali += "<em aem='0' cart_id='84'></em>"
+                                    EleTextDatali += "<img src='"+data[Mid][y]['url']+"'/>"
+                                    EleTextDatali += "<div class='div_center'>"
+                                    EleTextDatali += "<h4>"+data[Mid][y]['name']+"</h4>"
+                                    EleTextDatali += "<span>"+data[Mid][y]['else']+"</span>"
+                                    EleTextDatali += "<span class='MID' hidden='hidden'>"+data[Mid][y]['ReturnId']+"</span>"
+                                    EleTextDatali += "<p class='now_value'><i>¥</i><b class='qu_su'>"+data[Mid][y]['price']+"</b></p>"
+                                    EleTextDatali += "</div>"
+                                    EleTextDatali += "</a>"
+                                    EleTextDatali += "<div class='div_right'>"
+                                    EleTextDatali += "<i onclick='reducew(this)'>-</i>"
+                                    EleTextDatali += "<span class='zi'>"+data[Mid][y]['num']+"</span>"
+                                    EleTextDatali += "<input type='hidden' value='84'>"
+                                    EleTextDatali += "<i onclick='plusw(this)'>+</i>"
+                                    EleTextDatali += "</div>"
+                                    EleTextDatali += "</li>"
+                                }
                             }
-                            EleText += "</ul>"
-                            EleText += "</div>"
+                            EleTextType += EleTextDatali
+                            EleTextType += "</ul>"
+                            EleTextType += "</div>"
+                            
+                            if(EleTextDatali.length>10){
+                                EleText += EleTextType
+                                EleTextType = ''
+                                EleTextDatali = ''
+                            }else{
+                                EleTextType = ''
+                                EleTextDatali = ''
+                            }
                         }
                         EleText += "</div>"
                     }else{

@@ -20,7 +20,7 @@
             $data['ad'][$i]['sta'] = $row['热门状态'];
             $i++;
         }
-//      print_r($data) ;
+//      print_r($data);
 //      echo '<br/>';
     }
     

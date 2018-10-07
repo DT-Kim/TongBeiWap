@@ -32,12 +32,15 @@
         {
             while($row = $result01->fetch_assoc())
             {
-                $data[$Mid][$i]['ReturnId'] = $row['回收id'];
-                $data[$Mid][$i]['name'] = $row['产品名称'];
-                $data[$Mid][$i]['url'] = $row['展示图'];
-                $data[$Mid][$i]['num'] = $row['产品数量'];
-                $data[$Mid][$i]['price'] = $row['价格'];
-                $data[$Mid][$i]['else'] = $row['内容摘要'];
+//              if($row['产品数量'] > 0){
+                    $data[$Mid][$i]['ReturnId'] = $row['回收id'];
+                    $data[$Mid][$i]['id'] = $row['产品信息id'];
+                    $data[$Mid][$i]['name'] = $row['产品名称'];
+                    $data[$Mid][$i]['url'] = $row['展示图'];
+                    $data[$Mid][$i]['num'] = $row['产品数量'];
+                    $data[$Mid][$i]['price'] = $row['价格'];
+                    $data[$Mid][$i]['else'] = $row['内容摘要'];
+//              }
                 $i++;
             }
         }
