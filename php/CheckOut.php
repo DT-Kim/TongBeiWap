@@ -31,10 +31,12 @@
     //数据查询【用户个人信息】
     $sql_Peo = "SELECT * FROM 用户信息 where id = '".$useId."'";
     $result_Peo = $conn->query($sql_Peo)->fetch_assoc();
-    $data['peo']['name'] = $result_Peo['真实姓名'];
+    $data['peo']['name']  = $result_Peo['真实姓名'];
     $data['peo']['phone'] = $result_Peo['用户手机'];
-    $data['peo']['city'] = $result_Peo['省'].'/'.$result_Peo['市'].'/'.$result_Peo['县'];
     $data['peo']['local'] = $result_Peo['详细地址'];
+    $data['peo']['cityP'] = $result_Peo['省'];
+    $data['peo']['cityC'] = $result_Peo['市'];
+    $data['peo']['cityA'] = $result_Peo['县'];
     
     $data['status'] = 'error';
     if($data[0]['name']){

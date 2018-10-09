@@ -123,6 +123,9 @@
         </div>
         <script src="js/city.js"></script>
         <script type="text/javascript">
+            var cityP = ''
+            var cityC = ''
+            var cityA = ''
             $(function(){
                 $.ajax({
                     type:"post",
@@ -160,11 +163,13 @@
                         $('#total_jifen').html(TotalCode)
                         
                         //显示用户信息
-                        $('#city').html(data['peo']['city'])
+                        $('#city').html(data['peo']['cityP']+'/'+data['peo']['cityC']+'/'+data['peo']['cityA'])
                         $('#place').html(data['peo']['local'])
                         $('#name').html(data['peo']['name'])
                         $('#phone').html(data['peo']['phone'])
-                        
+                        cityP = data['peo']['cityP']
+                        cityC = data['peo']['cityC']
+                        cityA = data['peo']['cityA']
                     },
                     error:function(s,e,t){
 //                      console.log(e)
@@ -184,17 +189,11 @@
                     dataType:'json',
                     data:{
                         MId:getQueryString('data'),
-                        LocalP:cityAll.province,
-                        LocalC:cityAll.city,
-                        LocalA:cityAll.district,
-                        LocalD:$('#localD').val(),
-                        Name:$('#PeoName').val(),
-                        Phone:$('#PeoPhone').val(),
                         priceAll:$('#total_amount').html(),
                         codeAll:$('#total_jifen').html(),
                     },
                     success:function(data){
-                        console.log(data)
+//                      console.log(data)
                         if(data['status'] == 'success')
                         {
                             alert('下单成功')

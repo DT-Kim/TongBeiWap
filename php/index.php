@@ -7,8 +7,8 @@
     $result01 = $conn->query($sql01);
     $data['ad'] = array();
     
-//  $useId = $_SESSION['UseId'];
-    $useId = 1;
+    $useId = $_SESSION['UseId'];
+//  $useId = 1;
     
     if($result01->num_rows>0)
     {

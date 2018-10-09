@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	    <input id="useid" />
+	    <button id="handUp">提交</button>
+	    <script src="js/jquery.min.js"></script>
+	    <script type="text/javascript">
+	        $('#handUp').click(function(){
+//	            alert($('#useid').val())
+	            $.ajax({
+    	        	type:"post",
+    	        	url:"php/login.php",
+    	        	async:true,
+    	        	data:{
+    	        	    UseId:$('#useid').val()
+    	        	},
+    	        	success:function(data){
+    	        	    if(data = 'success'){
+    	        	        window.location.href = 'index.html'
+    	        	    }
+    	        	}
+    	        });
+	        })
+	    </script>
+	</body>
+</html>

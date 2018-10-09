@@ -7,8 +7,8 @@
     $result02 = $conn->query($sql02);
     $data['type'] = array();
     
-//  $useId = $_SESSION['UseId'];
-    $useId = 1;
+    $useId = $_SESSION['UseId'];
+//  $useId = 1;
     
     if($result02->num_rows>0)
     {
@@ -41,7 +41,6 @@
                     }else{
                         $data[$row['id']][$y]['num'] = 0;
                     }
-                    
                     
                     $y++;
                 }

@@ -289,8 +289,9 @@
             //改变数据
             function changeNum (obj,num){
                 //获取id
-                var proId = $(obj).parent().parent().children('.item_content').children('.proId');
-//              alert(proId.text())
+                var proId = $(obj).parent().parent().children('.item_content').find('.proId');
+//              console.log(proId.html())
+//              console.log(proId.text())
 //              alert(num)
                 $.ajax({
                     type:"post",
@@ -301,7 +302,7 @@
                         num:num
                     },
                     success:function(data){
-        //              console.log(data)
+//                      console.log(data)
                     },
                     error:function(s,e,t){
                         alert('出现错误，错误类型'+e)
@@ -341,7 +342,7 @@
                                     ProText += "<p class='item_activity'>"+data[ProTyprId][y]['else']+"</p>"
 //                                  ProText += "<p class='item_price'><span>8.01</span><s>8.09</s></p>"
                                     ProText += "<p class='item_price'><span>"+data[ProTyprId][y]['price']+'/'+data[ProTyprId][y]['unit']+"</span></p>"
-                                    ProText += "<p class='proId' hidden='hidden'>"+data[ProTyprId][y]['ProId']+"</p>"
+                                    ProText += "<p class='proId'>"+data[ProTyprId][y]['ProId']+"</p>" //hidden='hidden'
                                     ProText += "</a>"
                                     ProText += "</div>"
                                     
