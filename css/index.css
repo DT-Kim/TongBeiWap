@@ -196,7 +196,7 @@ ul, ol, li{list-style-type: none;}
 }
 .index-wares .wares-cont .ware-box .ware-img{
     position: relative;
-    padding: 20px;
+    padding: 2px;
 }
 .index-wares .wares-cont .ware-box .ware-img img{
     width: 100%;
@@ -211,8 +211,8 @@ ul, ol, li{list-style-type: none;}
     left: 0;
 }
 .index-wares .wares-cont .ware-box .ware-title{
-    font-size: 1.2rem;
-    line-height: 25px;
+    font-size: 2.2rem;
+    line-height: 30px;
     margin: 0;
     word-break: break-all;
     white-space: nowrap;
@@ -230,7 +230,7 @@ ul, ol, li{list-style-type: none;}
     text-overflow: ellipsis;
 }
 .index-wares .wares-cont .ware-box .ware-prince{
-    font-size: 1.1rem;
+    font-size: 2.0rem;
 }
 
 

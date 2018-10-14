@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>TongBei 订单</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/weui.min.css">
+        <link rel="stylesheet" href="css/jquery-weui.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css" >
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/order.css">
+        <link rel="stylesheet" href="css/theme-color.css">
+        <link rel="stylesheet" href="css/cart.css">
+        <link rel="stylesheet" href="css/aui.css">
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <header class="zyw-header">
+            <div class="zyw-container white-color">
+                <div class="head-l"><a href="javascript:window.history.back(-1)" target="_self"><img src="img/svg/head-return.svg" alt=""></a></div>
+                <h1>我的订单</h1>
+                <!--<div class="head-r"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>-->
+            </div>
+        </header>
+        <section class="zyw-container">
+            <div class="weui-tab">
+                <div class="weui-navbar">
+                    <a class="weui-navbar__item weui-bar__item--on" href="#order_all">全部</a>
+                    <a class="weui-navbar__item" href="#order_dfk">待收货</a>
+                    <a class="weui-navbar__item" href="#order_dfh">待核实</a>
+                    <a class="weui-navbar__item" href="#order_dsh">已完成</a>
+                </div>
+                <div class="weui-tab__bd">
+                    <!--全部-->
+                    <div id="order_all" class="weui-tab__bd-item weui-tab__bd-item--active"></div>
+                    <!--待收货-->
+                    <div id="order_dfk" class="weui-tab__bd-item"></div>
+                    <!--待审核-->
+                    <div id="order_dfh" class="weui-tab__bd-item"></div>
+                    <!--已完成-->
+                    <div id="order_dsh" class="weui-tab__bd-item"></div>
+                </div>
+            </div>
+        </section>
+        <footer class="zyw-footer">
+            <div class="zyw-container white-bgcolor clearfix">
+                <div class="col-sm-6 col-xs-6">
+                    <a class="weui-tabbar__item" id="HandUpMes" >
+                        <div class="weui-tabbar__icon">
+                            <img src="./img/svg/order_ok.png" alt="">
+                        </div>
+                        <p class="weui-tabbar__label">确认订单</p>
+                    </a>
+                </div>
+                <div class="col-sm-6 col-xs-6">
+                    <a class="weui-tabbar__item" id="ModifyMes">
+                        <div class="weui-tabbar__icon">
+                            <img src="./img/svg/home-dfh.svg" alt="">
+                        </div>
+                        <p class="weui-tabbar__label">修改订单</p>
+                    </a>
+                </div>
+            </div>
+        </footer>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery-weui.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            $.ajax({
+            	type:"post",
+            	url:"php/order.php",
+            	async:true,
+            	dataType:'json',
+            	success:function(data){
+            	    //显示全部订单
+            	    if(data['all'].length){
+            	        for(var i=0;i<data['all'].length;i++){
+            	            var ElmTextAll = "<div class='order-group'>"
+            	            ElmTextAll += "<div class='order-group-item clearfix'>"
+            	            ElmTextAll += "<div class='order-item-box'>"
+            	            ElmTextAll += "<div class='commodity_list'style='margin:0'>"
+                            ElmTextAll += "<div class='tite_tim select'style='margin:0'>"
+                            ElmTextAll += "<em style='margin-top:7px' class=''></em>"
+            	            ElmTextAll += "<h4 class='order-item-id'>订单号："+data['all'][i]['code']
+            	            ElmTextAll += "<span class='Orderid' hidden='hidden'>"+data['all'][i]['id']+"</span>"
+            	            ElmTextAll += "<span class='order-item-state theme-color pull-right'>状态："+data['all'][i]['type']+"</span>"
+            	            ElmTextAll += "</h4>"
+            	            var Mid = data['all'][i]['id']
+            	            for (var y=0;y<data['all'+Mid].length;y++) {
+            	            	ElmTextAll += "<div class='media'>"
+                	            ElmTextAll += "<a href='' class='pull-left'>"
+                	            ElmTextAll += "<img src='"+data['all'+Mid][y]['url']+"' alt='' class='media-object order-item-img'>"
+                	            ElmTextAll += "</a>"
+                	            ElmTextAll += "<div class='media-body'>"
+                	            ElmTextAll += "<div class='order-item-info'>"
+                	            ElmTextAll += "<h5 class='order-item-title'>"+data['all'+Mid][y]['name']+"</h5>"
+                	            ElmTextAll += "<p class='order-item-fare'>类别："+data['all'+Mid][y]['type']+"</p>"
+                	            ElmTextAll += "<div class='pull-right text-right order-item-r'>"
+                	            ElmTextAll += "<p class='order-item-prince'>￥"+data['all'+Mid][y]['price']+'/'+data['all'+Mid][y]['unit']+"</p>"
+                	            ElmTextAll += "<p class='order-item-length'>x "+data['all'+Mid][y]['num']+"</p>"
+                	            ElmTextAll += "</div>"
+                	            ElmTextAll += "</div>"
+                	            ElmTextAll += "</div>"
+                	            ElmTextAll += "</div>"
+            	            }
+//          	            ElmTextAll += "</div>"
+            	            ElmTextAll += "<p class='text-right order-item-sum'>合计："+data['all'][i]['priceA']+"</p>"
+//          	            ElmTextAll += "<div class='order-item-btn pull-right'>"
+//          	            ElmTextAll += "<button class='btn btn-sm btn-default'>取消订单</button>"
+//          	            ElmTextAll += "<button class='btn btn-sm btn-primary theme-bdcolor theme-bgcolor'>付款</button>"
+            	            ElmTextAll += "</div>"
+            	            ElmTextAll += "</div>"
+            	            ElmTextAll += "</div>"
+            	            ElmTextAll += "</div>"
+                            ElmTextAll += "</div>"
+            	           $('#order_all').append(ElmTextAll)
+                	    }
+            	       
+            	    }
+            	    //显示待收货订单(已改)
+            	    if(data['get'].length){
+                        for(var i=0;i<data['get'].length;i++){
+                            var ElmTextAll = "<div class='order-group'>"
+                            ElmTextAll += "<div class='order-group-item clearfix'>"
+                            ElmTextAll += "<div class='order-item-box' >"
+                            ElmTextAll += "<div class='commodity_list'style='margin:0'>"
+                            ElmTextAll += "<div class='tite_tim select'style='margin:0'>"
+                            ElmTextAll += "<em style='margin-top:7px' class=''></em>"
+                            ElmTextAll += "<h4 class='order-item-id'>订单号："+data['get'][i]['code']
+                            ElmTextAll += "<span class='Orderid' hidden='hidden'>"+data['get'][i]['id']+"</span>"
+                            ElmTextAll += "<span class='order-item-state theme-color pull-right'>状态：待收货</span>"
+                            ElmTextAll += "</h4>"
+//                          EleTextType += "<span>"+data['type'][z]['name']+"</span>"
+                            ElmTextAll += "<div class='clear'></div>"
+                            
+                            
+                            var Mid = data['get'][i]['id']
+                            for (var y=0;y<data['get'+Mid].length;y++) {
+                                ElmTextAll += "<div class='media'>"
+                                ElmTextAll += "<a href='' class='pull-left'>"
+                                ElmTextAll += "<img src='"+data['get'+Mid][y]['url']+"' alt='' class='media-object order-item-img'>"
+                                ElmTextAll += "</a>"
+                                ElmTextAll += "<div class='media-body'>"
+                                ElmTextAll += "<div class='order-item-info'>"
+                                ElmTextAll += "<h5 class='order-item-title'>"+data['get'+Mid][y]['name']+"</h5>"
+                                ElmTextAll += "<p class='order-item-fare'>类别："+data['get'+Mid][y]['type']+"</p>"
+                                ElmTextAll += "<div class='pull-right text-right order-item-r'>"
+                                ElmTextAll += "<p class='order-item-prince'>￥"+data['get'+Mid][y]['price']+'/'+data['get'+Mid][y]['unit']+"</p>"
+                                ElmTextAll += "<p class='order-item-length'>x "+data['get'+Mid][y]['num']+"</p>"
+                                ElmTextAll += "</div>"
+                                ElmTextAll += "</div>"
+                                ElmTextAll += "</div>"
+                                ElmTextAll += "</div>"
+                            }
+//                          ElmTextAll += "</div>"
+                            ElmTextAll += "<p class='text-right order-item-sum'>合计："+data['get'][i]['priceA']+"</p>"
+//                          ElmTextAll += "<div class='order-item-btn pull-right'>"
+//                          ElmTextAll += "<button class='btn btn-sm btn-default'>取消订单</button>"
+//                          ElmTextAll += "<button class='btn btn-sm btn-primary theme-bdcolor theme-bgcolor'>付款</button>"
+							ElmTextAll += "</div>"
+							ElmTextAll += "</div>"
+                            ElmTextAll += "</div>"
+                            ElmTextAll += "</div>"
+                            ElmTextAll += "</div>"
+                           $('#order_dfk').append(ElmTextAll)
+                        }    
+                    }
+            	    		$(".select em").click(function() {
+			                    if ($(this).hasClass("pitch_on")) {
+			                        $(this).removeClass("pitch_on");
+			                    } 
+			                    else{
+			                    	$(this).addClass("pitch_on");
+			                        $('#ModifyMes').on('click',function(){
+						                //组成数据对象
+						                var StrMes = ''
+						                for (var i=0;i<$(".commodity_list .pitch_on").length;i++) {
+						                    StrMes += $(".commodity_list .pitch_on").eq(i).parent().find('.Orderid').html()
+						                    StrMes += '@'
+						                }
+						                StrMes = StrMes.substr(0,StrMes.length-1)
+//						                alert(StrMes)
+						                self.location='wly_order_modify.html?data='+StrMes;
+						            })
+			                         $('#HandUpMes').click(function(){
+			                        	if($(".commodity_list .pitch_on").length!=0){
+			                        		var StrMes = ''
+			                        	    for (var i=0;i<$(".commodity_list .pitch_on").length;i++) {
+//			                        	    	var static=$(".commodity_list .pitch_on").eq(i).parent().find('.order-item-state').html()
+//			                        	    	alert(static)
+			                        	    	StrMes += $(".commodity_list .pitch_on").eq(i).parent().find('.Orderid').html()
+						                    	StrMes += '@'
+						                	}
+						                	StrMes = StrMes.substr(0,StrMes.length-1)
+//						                	alert(StrMes)
+						                	 $.ajax({
+							                    type:"post",
+							                    url:'php/wly_Checkok.php',
+							                    async:false,
+							                    dataType:'json',
+							                    data:{
+							                        data:StrMes,
+							                    },
+							                    success:function(data){
+//							                    	alert(data['static']);
+													
+								                    for(var i=0;i<data['RowNum'];i++){
+								                    	var state=data[i]['static'];
+								                    	var num=data[i]['number'];
+	//							                    	alert(num)
+								                    	if(state=='待收货'){
+	//							                    		alert(num)
+								                    		state="待核实"
+								                    		$.ajax({
+								                    			type:"POST",
+								                    			url:"php/wly_checkstate.php",
+								                    			async:false,
+								                    			dataType:'json',
+								                    			data:{
+								                    				state:state,
+								                    				id:num,
+								                    				flag:'get',
+								                    			},
+								                    			success:function(data){
+								                    				location.reload();
+								                    			},
+								                    			error:function(s,e,t){
+								                    				alert('页面出错')
+								                    			}
+								                    		});
+								                    	}
+								                    	 else if(state=='待核实'){
+								                    		state="已完成"
+	//							                    		alert(state)
+								                    		$.ajax({
+								                    			type:"POST",
+								                    			url:"php/wly_checkstate.php",
+								                    			async:false,
+								                    			dataType:'json',
+								                    			data:{
+								                    				state:state,
+								                    				id:num,
+								                    				flag:'che',
+								                    			},
+								                    			success:function(data){
+								                    				location.reload();
+								                    			},
+								                    			error:function(s,e,t){
+								                    				alert('页面出错')
+								                    			}
+								                    		});
+								                    	}
+								                    	else{
+								                    	 	location.reload();
+								                    	 }
+				                        	       	}
+								                }
+								            })
+	//			                        		console.log('hello')
+				                        	}else{
+				                        		alert('请选择')
+				                        	}
+			                        	});
+			                    	}
+//			                    console.log($(this).attr("class"));
+			           		    });
+            	    //显示待核实订单
+            	    if(data['che'].length){
+                        for(var i=0;i<data['che'].length;i++){
+                            var ElmTextAll = "<div class='order-group'>"
+                            ElmTextAll += "<div class='order-group-item clearfix'>"
+                            ElmTextAll += "<div class='order-item-box'>"
+                            ElmTextAll += "<div class='commodity_list'style='margin:0'>"
+                            ElmTextAll += "<div class='tite_tim select'style='margin:0'>"
+                            ElmTextAll += "<em style='margin-top:7px' class=''></em>"
+                            ElmTextAll += "<h4 class='order-item-id'>订单号："+data['che'][i]['code']
+                            ElmTextAll += "<span class='Orderid' hidden='hidden'>"+data['che'][i]['id']+"</span>"
+                            ElmTextAll += "<span class='order-item-state theme-color pull-right'>状态：待核实</span>"
+                            ElmTextAll += "</h4>"
+                            var Mid = data['che'][i]['id']
+                            for (var y=0;y<data['che'+Mid].length;y++) {
+                                ElmTextAll += "<div class='media'>"
+                                ElmTextAll += "<a href='' class='pull-left'>"
+                                ElmTextAll += "<img src='"+data['che'+Mid][y]['url']+"' alt='' class='media-object order-item-img'>"
+                                ElmTextAll += "</a>"
+                                ElmTextAll += "<div class='media-body'>"
+                                ElmTextAll += "<div class='order-item-info'>"
+                                ElmTextAll += "<h5 class='order-item-title'>"+data['che'+Mid][y]['name']+"</h5>"
+                                ElmTextAll += "<p class='order-item-fare'>类别："+data['che'+Mid][y]['type']+"</p>"
+                                ElmTextAll += "<div class='pull-right text-right order-item-r'>"
+                                ElmTextAll += "<p class='order-item-prince'>￥"+data['che'+Mid][y]['price']+'/'+data['che'+Mid][y]['unit']+"</p>"
+                                ElmTextAll += "<p class='order-item-length'>x "+data['che'+Mid][y]['num']+"</p>"
+                                ElmTextAll += "</div>"
+                                ElmTextAll += "</div>"
+                                ElmTextAll += "</div>"
+                                ElmTextAll += "</div>"
+                            }
+//                          ElmTextAll += "</div>"
+                            ElmTextAll += "<p class='text-right order-item-sum'>合计："+data['che'][i]['priceA']+"</p>"
+//                          ElmTextAll += "<div class='order-item-btn pull-right'>"
+//                          ElmTextAll += "<button class='btn btn-sm btn-default'>取消订单</button>"
+//                          ElmTextAll += "<button class='btn btn-sm btn-primary theme-bdcolor theme-bgcolor'>付款</button>"
+//                          ElmTextAll += "</div>"
+                            ElmTextAll += "</div>"
+                            ElmTextAll += "</div>"
+                            ElmTextAll += "</div>"
+                            ElmTextAll += "</div>"
+                           $('#order_dfh').append(ElmTextAll)
+                        }
+                        
+                    }
+            	    //显示已完成订单
+            	    if(data['fin'].length){
+                        for(var i=0;i<data['fin'].length;i++){
+                            var ElmTextAll = "<div class='order-group'>"
+                            ElmTextAll += "<div class='order-group-item clearfix'>"
+                            ElmTextAll += "<div class='order-item-box'>"
+                            ElmTextAll += "<div class='commodity_list'style='margin:0'>"
+                            ElmTextAll += "<div class='tite_tim select'style='margin:0'>"
+                            ElmTextAll += "<em style='margin-top:7px' class=''></em>"
+                            ElmTextAll += "<h4 class='order-item-id'>订单号："+data['fin'][i]['code']
+                            ElmTextAll += "<span class='Orderid' hidden='hidden'>"+data['fin'][i]['id']+"</span>"
+                            ElmTextAll += "<span class='order-item-state theme-color pull-right'>状态：已完成</span>"
+                            ElmTextAll += "</h4>"
+                            var Mid = data['fin'][i]['id']
+                            for (var y=0;y<data['fin'+Mid].length;y++) {
+                                ElmTextAll += "<div class='media'>"
+                                ElmTextAll += "<a href='' class='pull-left'>"
+                                ElmTextAll += "<img src='"+data['fin'+Mid][y]['url']+"' alt='' class='media-object order-item-img'>"
+                                ElmTextAll += "</a>"
+                                ElmTextAll += "<div class='media-body'>"
+                                ElmTextAll += "<div class='order-item-info'>"
+                                ElmTextAll += "<h5 class='order-item-title'>"+data['fin'+Mid][y]['name']+"</h5>"
+                                ElmTextAll += "<p class='order-item-fare'>类别："+data['fin'+Mid][y]['type']+"</p>"
+                                ElmTextAll += "<div class='pull-right text-right order-item-r'>"
+                                ElmTextAll += "<p class='order-item-prince'>￥"+data['fin'+Mid][y]['price']+'/'+data['fin'+Mid][y]['unit']+"</p>"
+                                ElmTextAll += "<p class='order-item-length'>x "+data['fin'+Mid][y]['num']+"</p>"
+                                ElmTextAll += "</div>"
+                                ElmTextAll += "</div>"
+                                ElmTextAll += "</div>"
+                                ElmTextAll += "</div>"
+                            }
+//                          ElmTextAll += "</div>"
+                            ElmTextAll += "<p class='text-right order-item-sum'>合计："+data['fin'][i]['priceA']+"</p>"
+//                          ElmTextAll += "<div class='order-item-btn pull-right'>"
+//                          ElmTextAll += "<button class='btn btn-sm btn-default'>取消订单</button>"
+//                          ElmTextAll += "<button class='btn btn-sm btn-primary theme-bdcolor theme-bgcolor'>付款</button>"
+//                          ElmTextAll += "</div>"
+                            ElmTextAll += "</div>"
+                            ElmTextAll += "</div>"
+                            ElmTextAll += "</div>"
+                            ElmTextAll += "</div>"
+                           $('#order_dsh').append(ElmTextAll)
+                        }
+                    }
+            	},
+            	error:function(s,e,t){
+            	    alert('出现错误，错误类型：'+e)
+            	}
+            });
+            function getQueryString(name) {
+                var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) {
+                    return unescape(r[2]);
+                }
+                return null;
+                
+            }
+            
+        </script>
+    </body>
+</html>

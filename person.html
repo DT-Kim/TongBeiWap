@@ -65,13 +65,15 @@
                 <hr data-am-widget="divider" style="" class="am-divider-default am-margin-bottom-sm"/>
                 <div class="am-form-group am-form-icon">
                     <i class="am-icon-user"></i>
-                    <!--<p class="am-form-field am-radius">真实姓名</p>-->
                     <input type="text" class="am-form-field am-radius" placeholder="真实姓名" id="PeoName" readonly="readonly">
                 </div>
                 <div class="am-form-group am-form-icon">
                     <i class="am-icon-phone"></i>
-                    <!--<p class="am-form-field am-radius">手机号码</p>-->
                     <input type="text" class="am-form-field am-radius" placeholder="手机号码" id="PeoPhone" readonly="readonly">
+                </div>
+                <div class="am-form-group am-form-icon">
+                    <i class="am-icon-phone"></i>
+                    <input type="text" class="am-form-field am-radius" placeholder="银行账号" id="PeoPhone" readonly="readonly">
                 </div>
                 <hr data-am-widget="divider" style="" class="am-divider-default am-margin-bottom-sm"/>
                 <p><i class="am-icon-location-arrow"></i> 地址信息 </p>
@@ -89,8 +91,6 @@
 	    //选择地区
         var cityAll;
         var ylc = yeluochenCity('picCity', (city) => {cityAll = city;}, null);
-        
-        
         
 		$('#HandUpMes').on('click',function(){
 		    //点击编辑

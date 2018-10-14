@@ -12,10 +12,17 @@
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/cart.css">
         <link rel="stylesheet" href="css/theme-color.css">
+        <link rel="stylesheet" href="css/item.css">
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
+        <style>
+            #ProList {
+                margin-bottom: 120px;
+            }
+        </style>
+        
     </head>
     <body>
         <form method="post" name="cart_form" target="_self" id="cart_form" action="">
@@ -25,9 +32,9 @@
                 <h1>回收车</h1>
                 <div class="head-r"><a href="#" id="rem_s">编辑</a></div>
             </div>
-        </header>
-        <footer class="zyw-footer">
-            <div class="zyw-container white-bgcolor">
+        </header><!--zyw-footer-->
+        <div class="zyw-container">
+            <div class=" white-bgcolor">
                 <div class="settle_box">
                     <dl class="all_check select">
                         <dt>
@@ -47,8 +54,39 @@
                     <a class="settle_btn" href="javascript:void(0);" id="confirm_cart1" onclick="big_cart_remove()">删除</a>
                 </div>
             </div>
-        </footer>
-        <section class="zyw-container">
+			</div>
+			<footer class="zyw-footer">
+			    <div class="zyw-container white-bgcolor clearfix">
+			        <div class="weui-tabbar">
+			            <a href="index.html" class="weui-tabbar__item">
+			                <div class="weui-tabbar__icon">
+			                    <img src="./img/svg/foot-1.svg" alt="">
+			                </div>
+			                <p class="weui-tabbar__label">首页</p>
+			            </a>
+			            <a href="class.html" class="weui-tabbar__item">
+			                <div class="weui-tabbar__icon">
+			                    <img src="./img/svg/foot-2.svg" alt="">
+			                </div>
+			                <p class="weui-tabbar__label">分类</p>
+			            </a>
+			            <a href="cart.html" class="weui-tabbar__item">
+			                <!--<span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;" id="count_num">8</span>-->
+			                <div class="weui-tabbar__icon">
+			                    <img src="./img/svg/foot-4-1.svg" alt="">
+			                </div>
+			                <p class="weui-tabbar__label">回收车</p>
+			            </a>
+			            <a href="home.html" class="weui-tabbar__item">
+			                <div class="weui-tabbar__icon">
+			                    <img src="./img/svg/foot-5.svg" alt="">
+			                </div>
+			                <p class="weui-tabbar__label">个人中心</p>
+			            </a>
+			        </div>
+			    </div>
+			</footer>			
+        <section class=""><!--zyw-container-->
                 <!--list-->
                 <div class="commodity_list_box" id="ProList">
                     <div class="cart_top">
@@ -135,7 +173,7 @@
                             {
                                 if(data[Mid][y]['num'] > 0){
                                     EleTextDatali += "<li class='select'>"
-                                    EleTextDatali += "<a href='item.html?ProId="+data[Mid][y]['id']+"'>"
+//                                  EleTextDatali += "<a href='item.html?ProId="+data[Mid][y]['id']+"'>"
                                     EleTextDatali += "<em aem='0' cart_id='84'></em>"
                                     EleTextDatali += "<img src='"+data[Mid][y]['url']+"'/>"
                                     EleTextDatali += "<div class='div_center'>"

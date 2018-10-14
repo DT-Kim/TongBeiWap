@@ -42,7 +42,10 @@ div#shopping_cart { position: fixed; bottom: 7px; right: 2%; background: #aacc36
 .finish_box p { color: #999; font-size: 1.2rem; }
 .finish_box a { color: #aacc36; font-size: 1.2rem; }
 
-
+/*.pyi{
+	 position:relative;
+	 top:50px;
+}*/
 .commodity_list .commodity_list_term li:before{
     content: " ";
     position: absolute;

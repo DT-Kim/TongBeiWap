@@ -97,7 +97,7 @@
             </div>
             <div class="home-cont weui-cells mb-625">
                 
-                <a class="weui-cell weui-cell_access" href="javascript:;">
+                <a class="weui-cell weui-cell_access" id="check">
                     <div class="weui-cell__bd">
                         <p class="choose-text"><img src="img/svg/home-5.svg" alt=""> 物流员入口 </p>
                     </div>
@@ -109,5 +109,30 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery-weui.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+        	$("#check").on('click',function(){
+        		$.ajax({
+        			type:"post",
+        			url:"php/wly_check.php",
+        			async:true,
+        			dataType:'json',
+        			data:{
+        				
+        			},
+        			success:function(data){
+        				if(data['status'] == 'error'){
+        					alert('您不是物流员，无法进入')
+        				}
+        				if(data['status'] == 'success'){
+        					window.location.href = 'wly_order.html'
+        				}
+        			},
+        			error:function(){
+        				alert('页面错误，请找管理员 ')
+        			}
+        			
+        		});
+        	})
+        </script>
     </body>
 </html>

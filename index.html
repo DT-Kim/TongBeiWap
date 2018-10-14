@@ -17,10 +17,14 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
     <style>
-        .select_list li .calc {width: 30%;  display: flex; justify-content: flex-end; align-items: center; flex-wrap: nowrap; margin-right: 2%;}
-        .select_list li .calc p{ width: 2.0rem; height: 2.0rem; margin:0 1%;border-radius: 1.8rem; overflow: hidden; text-align: center; line-height: 1.6rem;font-size: 1.6rem;}
-        .select_list li .calc .item_sub{ background: #ffffff url("img/03.png") no-repeat; background-size: contain;}
-        .select_list li .calc .item_add{ background: #ffffff url("img/02.png") no-repeat; background-size: contain;}
+		.div_right {display:flex; bottom: 10px; right: 4%; border: solid 1px #e6e6e6; border-radius: 4px; width: 82px; overflow: hidden; text-align: center; line-height: 30px; }
+		.div_right i { float: left; width: 33%; color: #333; font-style: normal;}
+		.div_right span { float: left; width: 33%; border-left: solid 1px #e6e6e6; border-right: solid 1px #e6e6e6; color: #333; }
+
+        /*.select_list li .calc {display:flex;width: 100%; justify-content: flex-end; align-items: center; flex-wrap: nowrap; margin-right: 0px;}*/
+        /*.select_list li .calc p{ width: 2rem; height: 2.0rem; margin:1px 2%;border-radius: 1.8rem; overflow: hidden; text-align: center; line-height: 1.6rem;font-size: 1.6rem;}*/
+        /*.select_list li .calc .item_sub{  no-repeat; background-size: contain; }*/
+        /*.select_list li .calc .item_add{  no-repeat; background-size: contain; }*/
     </style>
 </head>
 <body>
@@ -35,6 +39,7 @@
         <div class="head-r"><a href="cart.html"><i class="head-r-svg" id="cart" aria-hidden="true"></i></a></div>
     </div>
 </header>
+
 <footer class="zyw-footer">
     <div class="zyw-container white-bgcolor clearfix">
         <div class="weui-tabbar">
@@ -124,7 +129,7 @@
                         <span class="ware-prince red-color">￥8088.00</span>
                         <div class="calc">
                             <p class="item_sub" onclick="num_sub(this)"></p>
-                            <p class="item_num">0</p>
+                            <p class="item_num">10</p>
                             <p class="item_add" onclick="num_add(this)"></p>
                         </div>
                     </li>-->
@@ -155,7 +160,8 @@
     //减
     function num_sub(on_this){
 //        当前商品数量
-        count_num--;
+	if(parseInt(this_num.text())>0){
+		count_num--;
         $('#count_num').html(count_num);
         this_num = $(on_this).parent().parent().children('.calc').children('.item_num');
         var get_this_num = parseInt(this_num.text())-1;
@@ -163,7 +169,8 @@
         if(get_this_num == 0){
             this_num.parent().removeClass('select');
         }
-        changeNum(on_this,get_this_num)
+        changeNum(on_this,get_this_num);
+		}
     }
     //改变数据
     function changeNum (obj,num){
@@ -232,8 +239,8 @@
                     }
                     //创建节点
                     var LocNum = 0;
-                    var y=0
-                    var DivEleText = ''
+                    var y=0;
+                    var DivEleText = '';
                     for(var i=0;i<data['type'].length;i++){
                         DivEleText += "<div class='weui-flex__item'>"
                         DivEleText += "<a href='class.html'>"
@@ -283,13 +290,17 @@
                     EleText += "</div>"
                     EleText += "<h3 class='ware-title'>"+data['pro'][i]['name']+"</h3>"
                     EleText += "<p class='ware-des'>"+data['pro'][i]['else']+"</p>"
-                    EleText += "<span class='ware-prince red-color'>"+data['pro'][i]['price']+"</span>"
+                    EleText += "<span class='ware-prince red-color'>"+data['pro'][i]['price']+"</span>" 
                     EleText += "</a>"
-                    EleText += "<div class='calc'>"
+                    EleText += "<div class='calc select div_right'>"                   
                     EleText += "<p class='proId' hidden='hidden'>"+data['pro'][i]['id']+"</p>"
-                    EleText += "<p class='item_sub' onclick='num_sub(this)'></p>"
-                    EleText += "<p class='item_num'>"+data['pro'][i]['num']+"</p>"
-                    EleText += "<p class='item_add' onclick='num_add(this)'></p>"
+                    EleText += "<i onclick='num_sub(this)' class='item_sub'>-</i>" 
+                    EleText += "<span class='item_num'>"+data['pro'][i]['num']+"</span>"
+                    EleText += "<input type='hidden' value='84'>"
+                    EleText += "<i class='item_add' onclick='num_add(this)'>+</i>"                    
+//                  EleText += "<p class='item_sub' onclick='num_sub(this)'></p>"
+//                  EleText += "<p class='item_num'>"+data['pro'][i]['num']+"</p>"
+//                  EleText += "<p class='item_add' onclick='num_add(this)'></p>"
                     EleText += "</div>"
                     EleText += "</li>"
                     
