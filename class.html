@@ -95,7 +95,7 @@
                 <div class="head-l"><a href="javascript:window.history.back(-1)" target="_self"><img src="img/svg/head-return.svg" alt=""></a></div>
                 <div class="head-search">
                     <i class="fa fa-search" aria-hidden="true"></i>
-                    <input type="text" placeholder="输入您当前要搜索的产品" class="white-color">
+                    <input type="text" placeholder="输入您当前要搜索的产品" class="white-color" onclick="search();";>
                 </div>
                 <!--<div class="head-r"><a href="">取消</a></div>-->
             </div>
@@ -225,6 +225,9 @@
         <script src="js/jquery.fly.min.js"></script>
         
         <script>
+        	function search(){
+				window.location.href="search.html";
+			}
             count_num = 0
             var header = $(".header").height();
             var footer = $(".footer").height();
@@ -289,7 +292,7 @@
 //          var count_num = 0;
             var parice = 0;
             var this_parice;
-            var this_num;
+            var this_num;           
             function num_add(on_this){
         //        总数和总价格
                 count_num++;
@@ -307,6 +310,7 @@
                 changeNum(on_this,get_this_num)
             }
             function num_sub(on_this){
+            	this_num = $(on_this).parent().parent().children('.calc').children('.item_num');
             	if(parseInt(this_num.text())>0){
         //        总数和总价格
                 count_num--;

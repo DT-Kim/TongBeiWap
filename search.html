@@ -24,7 +24,7 @@
             <i class="fa fa-search" aria-hidden="true"></i>
             <input type="text" placeholder="输入您当前要搜索的商品" class="white-color" autofocus="autofocus">
         </div>
-        <div class="head-r"><a href="">搜索</a></div>
+        <div class="head-r" id="submit">搜索</div>
     </div>
 </header>
 <section class="zyw-container">
@@ -51,5 +51,32 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery-weui.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$("#submit").click(function(){
+			$.ajax({
+	                cache: true,
+	                type: "POST",
+	                url:'php/search.php',
+	                dataType:'json',
+	                data:{
+	                	fname:$('.head-search input').val()
+	                },// 你的formid
+	                async: false,
+	                success: function(data) {
+	                	if(data['status'] == 'error'){
+							alert("没有此商品");
+							return 0;
+	                	}
+						/*
+						 *显示搜索到的结果
+						 * */
+	                },
+	                error: function(s,e,t) {
+	                    alert(e);
+						console.log(e)
+	                }
+	            });
+		});  
+	</script>
 </body>
 </html>
