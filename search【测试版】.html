@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Bootstrap 模板</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/weui.min.css">
+    <link rel="stylesheet" href="css/jquery-weui.min.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/class.css">
+    <link rel="stylesheet" href="css/theme-color.css">
+    <link rel="stylesheet" href="css/search.css">
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<header class="zyw-header">
+    <div class="zyw-container white-color">
+        <div class="head-l"><a href="javascript:window.history.back(-1)" target="_self"><img src="img/svg/head-return.svg" alt=""></a></div>
+        <div class="head-search">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <input type="text" placeholder="输入您当前要搜索的商品" class="white-color" autofocus="autofocus">
+        </div>
+        <div class="head-r" id="submit">搜索</div>
+    </div>
+</header>
+<!--搜索到的结果显示-->
+<div class="index-wares">
+    <div class="wares-cont">
+        <ul class="clearfix select_list" id="ProList">
+                <!--<li class="col-sm-6 col-xs-6 ware-box">
+                    <div class="ware-img">
+                        <img src="../TongBeiPC/AboutImg/ProOwn/9f91d2446c586cad45b95904413def2a.jpg">
+                    </div>
+                    <h3 class="ware-title">产品一</h3>
+                    <p class="ware-des">简介</p>
+                    <span class="ware-prince red-color">￥8088.00</span>
+                    <div class="calc">
+                        <p class="item_sub" onclick="num_sub(this)">-</p>
+                        <p class="item_num">10</p>
+                        <p class="item_add" onclick="num_add(this)">+</p>
+                    </div>
+                </li>-->
+        </ul>
+    </div>
+</div>
+<!--<section class="zyw-container">
+    <div class="search-hot">
+        <h4 class="search-hd">热门搜索</h4>
+        <ul class="search-hot-bd clearfix">
+            <li><a href="">iPhone X</a></li>
+            <li><a href="">ThinkPad 家庭版 2017</a></li>
+            <li><a href="">ThinkPad i5</a></li>
+            <li><a href=""></a>加湿器</li>
+            <li><a href=""></a>iPhone6s 手机壳</li>
+            <li><a href=""></a>罗技鼠标键盘套装</li>
+        </ul>
+    </div>
+    <div class="search-history">
+        <h4 class="search-hd">历史搜索</h4>
+        <ul class="search-history-bd white-bgcolor">
+            <li><a href=""><i class="fa fa-clock-o theme-color" aria-hidden="true"></i> 女装连衣裙冬季长袖</a></li>
+            <li><a href=""><i class="fa fa-clock-o theme-color" aria-hidden="true"></i> 卸妆水</a></li>
+            <li><a href=""><i class="fa fa-clock-o theme-color" aria-hidden="true"></i> 三只松鼠夏威夷果</a></li>
+        </ul>
+    </div>
+</section>-->
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-weui.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	var count_num = 0;
+    var parice = 0;
+    var this_parice;
+    var this_num;
+    //加
+    function num_add(on_this){
+//        当前商品数量
+        count_num++;
+        $('#count_num').html(count_num);
+        this_num = $(on_this).parent().parent().children('.calc').children('.item_num');
+        var get_this_num = parseInt(this_num.text())+1;
+        this_num.html(get_this_num);
+        this_num.parent().addClass('select');
+        changeNum(on_this,get_this_num)
+    }
+    //减
+    function num_sub(on_this){
+	this_num = $(on_this).parent().parent().children('.calc').children('.item_num');
+	if(parseInt(this_num.text())>0){
+		//        当前商品数量
+		count_num--;
+        $('#count_num').html(count_num);
+        this_num = $(on_this).parent().parent().children('.calc').children('.item_num');
+        var get_this_num = parseInt(this_num.text())-1;
+        this_num.html(get_this_num);
+        if(get_this_num == 0){
+            this_num.parent().removeClass('select');
+        }
+        changeNum(on_this,get_this_num);
+		}
+    }
+    //改变数据
+    function changeNum (obj,num){
+        //获取id
+        var proId = $(obj).parent().parent().children('.calc').children('.proId');
+//      alert(proId.text())
+//      alert(num)
+        $.ajax({
+        	type:"post",
+        	url:"php/NumChange.php",
+        	async:true,
+        	data:{
+        	    proId:proId.text(),
+        	    num:num
+        	},
+        	success:function(data){
+//      	    console.log(data)
+        	},
+        	error:function(s,e,t){
+        	    alert('出现错误，错误类型'+e)
+        	}
+        });
+    }
+	$("#submit").click(function(){
+			$.ajax({
+	                cache: true,
+	                type: "POST",
+	                url:'php/search.php',
+	                dataType:'json',
+	                data:{
+	                	fname:$('.head-search input').val()
+	                },// 你的formid
+	                async: false,
+	                success: function(data) {
+	                	if(data.length == 0){
+							alert("没有此商品");
+							return 0;
+	                	}
+						for (var i=0;i<data.length;i++) {
+			                var EleText = "<li class='col-sm-6 col-xs-6 ware-box'>"
+			                EleText += "<a href='item.html?ProId="+data[i]['id']+"'>"
+			                EleText += "<div class='ware-img'>"
+			                EleText += "<img src='"+data[i]['url']+"'>"
+			                EleText += "</div>"
+			                EleText += "<h3 class='ware-title'>"+data[i]['name']+"</h3>"
+			                EleText += "<p class='ware-des'>"+data[i]['else']+"</p>"
+			                EleText += "<span class='ware-prince red-color'>"+data[i]['price']+"</span>" 
+			                EleText += "</a>"
+			                EleText += "<div class='calc select div_right'>"                   
+			                EleText += "<p class='proId' hidden='hidden'>"+data[i]['id']+"</p>"
+			                EleText += "<i onclick='num_sub(this)' class='item_sub'>-</i>" 
+			                EleText += "<span class='item_num'>"+data[i]['num']+"</span>"
+			                EleText += "<input type='hidden' value='84'>"
+			                EleText += "<i class='item_add' onclick='num_add(this)'>+</i>"                    
+			                EleText += "</div>"
+			                EleText += "</li>"			               			                
+			                $('#ProList').append(EleText)
+			                
+			            }
+	                },
+	                error: function(s,e,t) {
+	                    alert('e');
+						console.log(e)
+	                }
+	            });
+		});  
+	</script>
+</body>
+</html>
