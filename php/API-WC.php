@@ -2,7 +2,7 @@
     header('Access-Control-Allow-Origin:*');
 //	header('Content-Type:application/json');
 	header('Charset=utf-8');
-	session_start();
+//	session_start();
     //curl获取信息demo
     function http_curl($url)
     {

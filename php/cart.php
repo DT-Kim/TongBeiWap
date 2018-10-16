@@ -2,8 +2,8 @@
     header("Access-Control-Allow-Origin: *");
     session_start();
     require('conn.php');
-//  $useId = $_SESSION['UseId'];
-    $useId = 1;
+    $useId = $_SESSION['UseId'];
+//  $useId = 1;
     //获取产品类型
     $sql02 = "select * from `查询回收车` where 用户信息id='".$useId."'  group by 类型id";
     $result02 = $conn->query($sql02);

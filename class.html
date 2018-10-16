@@ -370,7 +370,7 @@
                 	    	var ProText = "<li class='ProLRight'>"
                 	    	ProText += "<div class='class-title' hidden='hidden'>"+data['type'][i]['name']+"</div>"
                             
-                            ProText += "<hr />"
+//                          ProText += "<hr />"
                             ProText += "<div>"
                             ProText += "<ul class='item_list'>"
                             var ProTyprId = data['type'][i]['id']
@@ -386,7 +386,7 @@
                                     ProText += "<p class='item_activity'>"+data[ProTyprId][y]['else']+"</p>"
 //                                  ProText += "<p class='item_price'><span>8.01</span><s>8.09</s></p>"
                                     ProText += "<p class='item_price'><span>"+data[ProTyprId][y]['price']+'/'+data[ProTyprId][y]['unit']+"</span></p>"
-                                    ProText += "<p class='proId'>"+data[ProTyprId][y]['ProId']+"</p>" //hidden='hidden'
+                                    ProText += "<p class='proId' hidden='hidden'>"+data[ProTyprId][y]['ProId']+"</p>" //hidden='hidden'
                                     ProText += "</a>"
                                     ProText += "</div>"
                                     

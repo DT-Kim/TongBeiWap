@@ -2,7 +2,7 @@
  header("Access-Control-Allow-Origin: * ");
     session_start();
     $MId = $_POST['data'];
-    $MId = '25@26';
+//  $MId = '25@26';
 //  $useId = $_SESSION['UseId'];
     $useId = 1;
     //数据处理

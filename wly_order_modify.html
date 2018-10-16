@@ -142,12 +142,14 @@
                     success:function(data){
                         //显示信息
                         var EleText = ''
+                        var EleText1 = ''
                         var TotalCode = 0
                         var TotalPrice = 0
                         if(data['status'] == 'success'){
 //                      	alert(data[0]['get'][1]['name'])
                             for(var i=0;i<data['Row'];i++){
                             for(var a=0;a<data[i]['RowNum'];a++){
+                            	EleText1 = "<span>订单号："+data[i]['get'][a]['ordernum']+"</span>"
                                 EleText += "<li>"
                                 EleText += "<div class='imgpanel'><a href='#'><img src='"+data[i]['get'][a]['Img']+"' class='am-img-responsive' /></a></div>"
                                 EleText += "<div class='infopanel'>"
@@ -160,8 +162,12 @@
                                 EleText += "</li>"
                                 TotalPrice +=  (data[i]['get'][a]['price']*data[i]['get'][a]['num'])
                                 TotalCode +=  (data[i]['get'][a]['code']*data[i]['get'][a]['num'])
+
+                                $('#textarea').html(data[i]['get'][a]['remark'])
                             }}
+                            $("#ProList").append(EleText1)
                             $("#ProList").append(EleText)
+                            
                         }
                         //计算总价
                         $('#total_amount').html(TotalPrice)
@@ -204,7 +210,8 @@
                         if(data['status'] == 'success')
                         {
                             alert('提交成功')
-                            
+
+                            self.location='wly_order.html'
                         }
                         else{
                             alert('操作失败')

@@ -11,14 +11,14 @@
 			$data[$i] = $row[0];
 			$i++;
 		}
-	}		
+	}
 	
-	//判断是否有值                     
+	//判断是否有值
 	$data['status'] = 'error';
-	if(i){
+	if($i){
 		$data['status'] = 'success';
 	}
 
 	$json = json_encode($data);
-	echo $json; 
+	echo $json;
 ?>

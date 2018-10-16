@@ -3,7 +3,7 @@
     session_start();
     //显示订单信息
     $MId = $_POST['data'];
-//  $MId = '25@26';
+//  $MId = '25';
 //  $useId = $_SESSION['UseId'];
     $useId = 1;
     //数据处理
@@ -29,13 +29,15 @@
          $a = 0;
         while($row = $result->fetch_assoc())
         {
-        
+        $data[$i]['get'][$a]['ordernum'] = $row['订单号'];
         $data[$i]['get'][$a]['name'] = $row['产品名称'];
         $data[$i]['get'][$a]['price'] = $row['价格'];
         $data[$i]['get'][$a]['unit'] = $row['单位'];
         $data[$i]['get'][$a]['num'] =$row['产品数量'];
         $data[$i]['get'][$a]['code'] = $row['积分总数'];
         $data[$i]['get'][$a]['Img'] = $row['展示图'];
+        $data[$i]['get'][$a]['remark'] = $row['备注'];
+
             $a++; 
        }
 //      $data['RowNum'] =0; 

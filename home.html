@@ -121,7 +121,7 @@
         			},
         			success:function(data){
         				if(data['status'] == 'error'){
-        					alert('您不是物流员，无法进入')
+        					alert('不好意思，您无权限')
         				}
         				if(data['status'] == 'success'){
         					window.location.href = 'wly_order.html'
@@ -129,7 +129,7 @@
         			},
         			error:function(){
         				alert('页面错误，请找管理员 ')
-        			}
+        			}	
         			
         		});
         	})
