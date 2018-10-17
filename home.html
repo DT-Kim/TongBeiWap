@@ -116,21 +116,17 @@
         			url:"php/wly_check.php",
         			async:true,
         			dataType:'json',
-        			data:{
-        				
-        			},
         			success:function(data){
         				if(data['status'] == 'error'){
-        					alert('不好意思，您无权限')
+        					alert('不好意思，您不是物流员哦')
         				}
         				if(data['status'] == 'success'){
         					window.location.href = 'wly_order.html'
         				}
         			},
-        			error:function(){
+        			error:function(s,e,t){
         				alert('页面错误，请找管理员 ')
-        			}	
-        			
+        			}
         		});
         	})
         </script>

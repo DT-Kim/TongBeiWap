@@ -73,7 +73,7 @@
                 </div>
                 <div class="am-form-group am-form-icon">
                     <i class="am-icon-bank"></i>
-                    <input type="text" class="am-form-field am-radius" placeholder="银行账号" id="PeoPhone" readonly="readonly">
+                    <input type="text" class="am-form-field am-radius" placeholder="银行账号" id="PeoBank" readonly="readonly">
                 </div>
                 <hr data-am-widget="divider" style="" class="am-divider-default am-margin-bottom-sm"/>
                 <p><i class="am-icon-location-arrow"></i> 地址信息 </p>
@@ -88,6 +88,29 @@
     <script src="js/amazeui.min.js"></script>
     <script src="js/city.js"></script>
 	<script type="text/javascript">
+	    $.ajax({
+	    	type:"post",
+	    	url:"php/personShow.php",
+	    	async:true,
+	    	dataType:'json',
+	    	success:function(data){
+	    	    if(data['status'] == 'success'){
+//	    	        alert(data['picCity'])
+    	    	    $('#PeoName').attr('value',data['PeoName'])
+                    $('#PeoPhone').attr('value',data['PeoPhone'])
+                    $('#PeoBank').attr('value',data['PeoBank'])
+                    $('#picCity').text(data['picCity'])
+                    $('#localD').attr('value',data['localD'])
+	    	    }else{
+	    	        alert('出现错误，错误类型：数据获取错误')
+	    	    }
+	    	    
+	    	},
+	    	error:function(s,e,t){
+	    	    alert('出现错误，错误类型：'+e)
+	    	}
+	    });
+	    
 	    //选择地区
         var cityAll;
         var ylc = yeluochenCity('picCity', (city) => {cityAll = city;}, null);

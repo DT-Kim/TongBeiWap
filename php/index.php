@@ -18,6 +18,7 @@
             $data['ad'][$i]['url'] = $row['图片地址'];
             $data['ad'][$i]['else'] = $row['广告说明'];
             $data['ad'][$i]['sta'] = $row['热门状态'];
+            
             $i++;
         }
 //      print_r($data);
@@ -36,6 +37,7 @@
             $data['type'][$i]['name'] = $row['类型名'];
             $data['type'][$i]['else'] = $row['类型介绍'];
             $data['type'][$i]['url'] = $row['图片地址'];
+            $data['type'][$i]['logo'] = $row['图标地址'];
             $i++;
         }
 //      print_r($data);

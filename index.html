@@ -25,6 +25,14 @@
         /*.select_list li .calc p{ width: 2rem; height: 2.0rem; margin:1px 2%;border-radius: 1.8rem; overflow: hidden; text-align: center; line-height: 1.6rem;font-size: 1.6rem;}*/
         /*.select_list li .calc .item_sub{  no-repeat; background-size: contain; }*/
         /*.select_list li .calc .item_add{  no-repeat; background-size: contain; }*/
+       
+       .adsPlace {
+           height: 173px;
+       }
+       .typeLogo{
+           width: 48px;
+           height: 48px;
+       }
     </style>
 </head>
 <body>
@@ -211,7 +219,7 @@
                 if (data['ad'].length) {
                 	for (var i=0;i<data['ad'].length;i++) {
                         //创建轮播广告图
-                        var ADImgText = "<div class='swiper-slide'><img src='"+data['ad'][i]['url']+"'></div>"
+                        var ADImgText = "<div class='swiper-slide'><img src='"+data['ad'][i]['url']+"' class='adsPlace'></div>"
                         $('#PlaceAdImg').append(ADImgText)
                         //创建轮播广告文字
     //                  if(data['ad'][i]['sta'] == 1)
@@ -245,27 +253,65 @@
                     var LocNum = 0;
                     var y=0;
                     var DivEleText = '';
-                    for(var i=0;i<data['type'].length;i++){
+                    //如果数量小于8
+                    if(data['type'].length < 8){
+                        for(var i=0;i<data['type'].length;i++){
+                            DivEleText += "<div class='weui-flex__item'>"
+                            DivEleText += "<a href='class.html'>"
+                            DivEleText += "<div class='index-class-img'>"
+                            DivEleText += "<img src='"+data['type'][i]['logo']+"' class='typeLogo'>"
+    //                      DivEleText += "<img src='./img/cjfl.png' alt=''>"
+                            DivEleText += "</div>"
+                            DivEleText += "<p class='index-class-text'>"+data['type'][i]['name']+"</p>"
+                            DivEleText += "</a>"
+                            DivEleText += "</div>"
+                            
+                            if(LocNum == 3){
+                                //插入节点内容
+                                $('#ProClass').find('.weui-flex').eq(y).append(DivEleText)
+                                y++;
+                                LocNum = 0;
+                                //清空代码
+                                DivEleText = ''
+                            }else{
+                                LocNum ++;
+                            }
+                        }
+                    }else{
+                    //如果数量大于8
+                        for(var i=0;i<7;i++){
+                            DivEleText += "<div class='weui-flex__item'>"
+                            DivEleText += "<a href='class.html'>"
+                            DivEleText += "<div class='index-class-img'>"
+                            DivEleText += "<img src='"+data['type'][i]['logo']+"' class='typeLogo'>"
+    //                      DivEleText += "<img src='./img/cjfl.png' alt=''>"
+                            DivEleText += "</div>"
+                            DivEleText += "<p class='index-class-text'>"+data['type'][i]['name']+"</p>"
+                            DivEleText += "</a>"
+                            DivEleText += "</div>"
+                            
+                            if(LocNum == 3){
+                                //插入节点内容
+                                $('#ProClass').find('.weui-flex').eq(y).append(DivEleText)
+                                y++;
+                                LocNum = 0;
+                                //清空代码
+                                DivEleText = ''
+                            }else{
+                                LocNum ++;
+                            }
+                        }
                         DivEleText += "<div class='weui-flex__item'>"
                         DivEleText += "<a href='class.html'>"
                         DivEleText += "<div class='index-class-img'>"
+//                      DivEleText += "<img src='"+data['type'][i]['logo']+"' class='typeLogo'>"
                         DivEleText += "<img src='./img/cjfl.png' alt=''>"
                         DivEleText += "</div>"
-                        DivEleText += "<p class='index-class-text'>"+data['type'][i]['name']+"</p>"
+                        DivEleText += "<p class='index-class-text'>查看全部</p>"
                         DivEleText += "</a>"
                         DivEleText += "</div>"
-                        
-                        if(LocNum == 3){
-                            //插入节点内容
-                            $('#ProClass').find('.weui-flex').eq(y).append(DivEleText)
-                            y++;
-                            LocNum = 0;
-                            //清空代码
-                            DivEleText = ''
-                        }else{
-                            LocNum ++;
-                        }
                     }
+                    
                     if(DivEleText)
                     {
                         $('#ProClass').find('.weui-flex').eq(y).append(DivEleText)
