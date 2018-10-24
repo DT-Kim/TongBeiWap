@@ -5,7 +5,6 @@
         <title>TongBei 回收车</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/weui.min.css">
-        <link rel="stylesheet" href="css/amazeui.min.css"/>
         <link rel="stylesheet" href="css/jquery-weui.min.css">
         <link rel="stylesheet" href="css/bootstrap.min.css" >
         <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -55,38 +54,38 @@
                     <a class="settle_btn" href="javascript:void(0);" id="confirm_cart1" onclick="big_cart_remove()">删除</a>
                 </div>
             </div>
-            </div>
-            <footer class="zyw-footer">
-                <div class="zyw-container white-bgcolor clearfix">
-                    <div class="weui-tabbar">
-                        <a href="index.html" class="weui-tabbar__item">
-                            <div class="weui-tabbar__icon">
-                                <img src="./img/svg/foot-1.svg" alt="">
-                            </div>
-                            <p class="weui-tabbar__label">首页</p>
-                        </a>
-                        <a href="class.html" class="weui-tabbar__item">
-                            <div class="weui-tabbar__icon">
-                                <img src="./img/svg/foot-2.svg" alt="">
-                            </div>
-                            <p class="weui-tabbar__label">分类</p>
-                        </a>
-                        <a href="cart.html" class="weui-tabbar__item">
-                            <!--<span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;" id="count_num">8</span>-->
-                            <div class="weui-tabbar__icon">
-                                <img src="./img/svg/foot-4-1.svg" alt="">
-                            </div>
-                            <p class="weui-tabbar__label">回收车</p>
-                        </a>
-                        <a href="home.html" class="weui-tabbar__item">
-                            <div class="weui-tabbar__icon">
-                                <img src="./img/svg/foot-5.svg" alt="">
-                            </div>
-                            <p class="weui-tabbar__label">个人中心</p>
-                        </a>
-                    </div>
-                </div>
-            </footer>           
+			</div>
+			<footer class="zyw-footer">
+			    <div class="zyw-container white-bgcolor clearfix">
+			        <div class="weui-tabbar">
+			            <a href="index.html" class="weui-tabbar__item">
+			                <div class="weui-tabbar__icon">
+			                    <img src="./img/svg/foot-1.svg" alt="">
+			                </div>
+			                <p class="weui-tabbar__label">首页</p>
+			            </a>
+			            <a href="class.html" class="weui-tabbar__item">
+			                <div class="weui-tabbar__icon">
+			                    <img src="./img/svg/foot-2.svg" alt="">
+			                </div>
+			                <p class="weui-tabbar__label">分类</p>
+			            </a>
+			            <a href="cart.html" class="weui-tabbar__item">
+			                <!--<span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;" id="count_num">8</span>-->
+			                <div class="weui-tabbar__icon">
+			                    <img src="./img/svg/foot-4-1.svg" alt="">
+			                </div>
+			                <p class="weui-tabbar__label">回收车</p>
+			            </a>
+			            <a href="home.html" class="weui-tabbar__item">
+			                <div class="weui-tabbar__icon">
+			                    <img src="./img/svg/foot-5.svg" alt="">
+			                </div>
+			                <p class="weui-tabbar__label">个人中心</p>
+			            </a>
+			        </div>
+			    </div>
+			</footer>			
         <section class=""><!--zyw-container-->
                 <!--list-->
                 <div class="commodity_list_box" id="ProList">
@@ -160,7 +159,7 @@
                     if(data['type'].length){
                         var EleTextType = ''
                         var EleTextDatali = ''
-                        var EleText = "<div class='commodity_box'>"
+                    	var EleText = "<div class='commodity_box'>"
                         for (var z=0;z<data['type'].length;z++) {
                             EleTextType += "<div class='commodity_list'>"
                             EleTextType += "<div class='tite_tim select'>"
@@ -185,12 +184,10 @@
                                     EleTextDatali += "</div>"
                                     EleTextDatali += "</a>"
                                     EleTextDatali += "<div class='div_right'>"
-//                                  EleTextDatali += "<i style='width:33%;' onclick='reducew(this)'>-</i>"
-//                                  EleTextDatali += "<span class='zi'>"+data[Mid][y]['num']+"</span>"
-                                    EleTextDatali += "<input style='width:70%;float:left;height:30px;' class='zi' value='"+data[Mid][y]['num']+"' />"
+                                    EleTextDatali += "<i onclick='reducew(this)'>-</i>"
+                                    EleTextDatali += "<span class='zi'>"+data[Mid][y]['num']+"</span>"
                                     EleTextDatali += "<input type='hidden' value='84'>"
-                                    
-                                    EleTextDatali += "<i class='am-icon-shopping-cart' style='width:29%;background-color:#bfe1c1;' onclick='addCart(this)'></i>"
+                                    EleTextDatali += "<i onclick='plusw(this)'>+</i>"
                                     EleTextDatali += "</div>"
                                     EleTextDatali += "</li>"
                                 }
@@ -233,8 +230,7 @@
             function reduceMod(e, totalH, mod, noX) {
                 var tn = e.siblings().find(".qu_su").text();
                 /* 当前选中商品  */
-//              var tn1 = e.siblings().find(".zi").text();
-                var tn1 = e.siblings().find(".zi").val();
+                var tn1 = e.siblings().find(".zi").text();
                 /* 商品数量  */
                 if (mod != 2) {
                     var Total = parseFloat(totalH) - (tn * tn1);
@@ -251,8 +247,7 @@
             function plusMod(e, totalH, mod) {
                 var tn = e.siblings().find(".qu_su").text();
                 /* 当前选中商品  */
-//              var tn1 = e.siblings().find(".zi").text();
-                var tn1 = e.siblings().find(".zi").val();
+                var tn1 = e.siblings().find(".zi").text();
                 /* 商品数量  */
                 if (mod != 2) {
                     var Total = parseFloat(totalH) + (tn * tn1);
@@ -274,8 +269,7 @@
                 /* 该商品全部金额  */
                 for (var i = 0; i < qu.length; i++) {
                     var n = qu.eq(i).text();
-//                  var n1 = quj.eq(i).text();
-                    var n1 = quj.eq(i).val();
+                    var n1 = quj.eq(i).text();
                     /*合计价格*/
                     if (erTotal) {
                         Total = parseFloat(totalH) + (parseFloat(n) * parseFloat(n1));
@@ -300,8 +294,7 @@
                 /* 该商品全部金额  */
                 for (var i = 0; i < qu.length; i++) {
                     var n = qu.eq(i).text();
-//                  var n1 = quj.eq(i).text();
-                    var n1 = quj.eq(i).val();
+                    var n1 = quj.eq(i).text();
                     /*合计价格*/
                     if (erTotal) {
                         Total = parseFloat(totalH) - (parseFloat(n) * parseFloat(n1));
@@ -328,8 +321,7 @@
                 var TotalJe = 0;
                 for (var i = 0; i < je.length; i++) {
                     var n = je.eq(i).text();
-//                  var n1 = je1.eq(i).text();
-                    var n1 = je1.eq(i).val();
+                    var n1 = je1.eq(i).text();
                     TotalJe = TotalJe + (parseFloat(n) * parseFloat(n1));
                 }
                 $("#total_price b").text(TotalJe.toFixed(2));
@@ -430,24 +422,24 @@
 //              console.log($(".commodity_list_term .pitch_on").length)
                 for (var i=0;i<$(".commodity_list_term .pitch_on").length;i++) {
 //                  console.log($(".commodity_list_term .pitch_on").eq(i).parent().find('.MID').html())
-                    $.ajax({
-                        type:"post",
-                        url:"php/cartRemove.php",
-                        async:true,
-                        dataType:'json',
-                        data:{
-                            //回收id
-                            MId:$(".commodity_list_term .pitch_on").eq(i).parent().find('.MID').html()
-                        },
-                        success:function(data){
-//                          console.log(data)
-                            $(".commodity_list_term .pitch_on").parent().remove();
+                	$.ajax({
+                    	type:"post",
+                    	url:"php/cartRemove.php",
+                    	async:true,
+//                  	dataType:'json',
+                    	data:{
+                    	    //回收id
+                    	    MId:$(".commodity_list_term .pitch_on").eq(i).parent().find('.MID').html()
+                    	},
+                    	success:function(data){
+//                  	    console.log(data)
+                    	    $(".commodity_list_term .pitch_on").parent().remove();
                             $(".commodity_list .tite_tim > em.pitch_on").parents(".commodity_box").remove();
-                        },
-                        error:function(s,e,t){
-//                          console.log(e)
-                            alert('出现错误，错误类型'+e)
-                        }
+                    	},
+                    	error:function(s,e,t){
+//                  	    console.log(e)
+                    	    alert('出现错误，错误类型'+e)
+                    	}
                     });
                 }
             }
@@ -555,43 +547,33 @@
             $('#confirm_cart').on('click',function(){
                 //组成数据对象
                 var StrMes = ''
-//              console.log($(".commodity_list_term .pitch_on").length)
                 for (var i=0;i<$(".commodity_list_term .pitch_on").length;i++) {
                     StrMes += $(".commodity_list_term .pitch_on").eq(i).parent().find('.MID').html()
                     StrMes += '@'
-//                  console.log(StrMes)                
                 }
                 StrMes = StrMes.substr(0,StrMes.length-1)
-//              alert(StrMes)
                 self.location='checkout.html?data='+StrMes;
             })
             //更新数据库数据【数量信息】
             function UpdateMesInDataBase(obj){
 //              var $this = $(obj);
-//              alert($(obj).parents('li').find('.MID').html())
 //              console.log($(obj).parents('li').find('.MID').html())
-//              alert($(obj).parents('li').find('.zi').val())
-//              console.log($(obj).parents('li').find('.zi').val())
+//              console.log($(obj).parents('li').find('.zi').html())
                 $.ajax({
                     url:'php/cartUpdateData.php',
                     async:true,
                     type:'post',
                     data:{
                         MId:$(obj).parents('li').find('.MID').html(),//产品id
-                        ProNum:$(obj).parents('li').find('.zi').val()//数量
+                        ProNum:$(obj).parents('li').find('.zi').html()//数量
                     },
                     success:function(data){
-                        console.log('ok')
+                        console.log(data)
                     },
                     error:function(s,e,t){
                         console.log(e)
                     }
                 })
-            }
-            function addCart(obj){
-//              alert('oko')
-                //更新数据库数据
-                UpdateMesInDataBase(obj)
             }
         </script>
         

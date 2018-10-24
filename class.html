@@ -379,14 +379,17 @@
                                 for (var y=0;y<data[ProTyprId].length;y++) {
                                     ProText += "<li>"
                                     
-                                    ProText += "<div class='item_img'><img src='"+data[ProTyprId][y]['url']+"'></div>"
+                                    ProText += "<div class='item_img'>"
+                                    ProText += "<a href='item.html?ProId="+data[ProTyprId][y]['ProId']+"'>"
+                                    ProText += "<img src='"+data[ProTyprId][y]['url']+"'>"
+                                    ProText += "</a></div>"
                                     ProText += "<div class='item_content'>"
                                     ProText += "<a href='item.html?ProId="+data[ProTyprId][y]['ProId']+"'>"
                                     ProText += "<p class='item_title title'>"+data[ProTyprId][y]['name']+"</p>"
                                     ProText += "<p class='item_activity'>"+data[ProTyprId][y]['else']+"</p>"
 //                                  ProText += "<p class='item_price'><span>8.01</span><s>8.09</s></p>"
                                     ProText += "<p class='item_price'><span>"+data[ProTyprId][y]['price']+'/'+data[ProTyprId][y]['unit']+"</span></p>"
-                                    ProText += "<p class='proId' hidden='hidden'>"+data[ProTyprId][y]['ProId']+"</p>" //hidden='hidden'
+                                    ProText += "<p class='proId' hidden='hidden'>"+data[ProTyprId][y]['ProId']+"</p>"
                                     ProText += "</a>"
                                     ProText += "</div>"
                                     
