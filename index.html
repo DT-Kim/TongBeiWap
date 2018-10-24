@@ -5,6 +5,7 @@
     <title>TongBei 首页</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/weui.min.css">
+    <link rel="stylesheet" href="font_else/iconfont.css" />
     <link rel="stylesheet" href="css/jquery-weui.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css" >
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -18,8 +19,8 @@
     <![endif]-->
     <style>
 		.div_right {display:flex; bottom: 10px; right: 4%; border: solid 1px #e6e6e6; border-radius: 4px; width: 82px; overflow: hidden; text-align: center; line-height: 30px; }
-		.div_right i { float: left; width: 33%; color: #333; font-style: normal;}
-		.div_right span { float: left; width: 33%; border-left: solid 1px #e6e6e6; border-right: solid 1px #e6e6e6; color: #333; }
+		/*.div_right i { float: left; width: 33%; color: #333; font-style: normal;}
+		.div_right span { float: left; width: 33%; border-left: solid 1px #e6e6e6; border-right: solid 1px #e6e6e6; color: #333; }*/
 
         /*.select_list li .calc {display:flex;width: 100%; justify-content: flex-end; align-items: center; flex-wrap: nowrap; margin-right: 0px;}*/
         /*.select_list li .calc p{ width: 2rem; height: 2.0rem; margin:1px 2%;border-radius: 1.8rem; overflow: hidden; text-align: center; line-height: 1.6rem;font-size: 1.6rem;}*/
@@ -64,7 +65,7 @@
                 <p class="weui-tabbar__label">分类</p>
             </a>
             <a href="cart.html" class="weui-tabbar__item">
-                <span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;" id="count_num">8</span>
+                <span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;" id="count_num"></span>
                 <div class="weui-tabbar__icon">
                     <img src="./img/svg/foot-4.svg" alt="">
                 </div>
@@ -157,48 +158,50 @@
     var parice = 0;
     var this_parice;
     var this_num;
+    var this_num_Old;
     //加
-    function num_add(on_this){
-//        当前商品数量
-        count_num++;
-        $('#count_num').html(count_num);
-        this_num = $(on_this).parent().parent().children('.calc').children('.item_num');
-        var get_this_num = parseInt(this_num.text())+1;
-        this_num.html(get_this_num);
-        this_num.parent().addClass('select');
-        changeNum(on_this,get_this_num)
+//  function num_add(on_this){
+////        当前商品数量
+//      count_num++;
+//      $('#count_num').html(count_num);
+//      this_num = $(on_this).parent().parent().children('.calc').children('.item_num');
+//      var get_this_num = parseInt(this_num.text())+1;
+//      this_num.html(get_this_num);
+//      this_num.parent().addClass('select');
+//      changeNum(on_this,get_this_num)
+//  }
+    //获取数据
+    function getCart (on_this){
+        //获取原购物车数量
+        count_num = $('#count_num').html();
+        //获取原此输入框数量
+        this_num_Obj = $(on_this).parent().parent().children('.calc').children('.item_num');
+        this_num_Old = parseInt(this_num_Obj.val());
+//      alert(parseInt(this_num_Old.val()))
     }
-    //减
-    function num_sub(on_this){
-	this_num = $(on_this).parent().parent().children('.calc').children('.item_num');
-	if(parseInt(this_num.text())>0){
-		//        当前商品数量
-		count_num--;
-        $('#count_num').html(count_num);
-        this_num = $(on_this).parent().parent().children('.calc').children('.item_num');
-        var get_this_num = parseInt(this_num.text())-1;
-        this_num.html(get_this_num);
-        if(get_this_num == 0){
-            this_num.parent().removeClass('select');
-        }
-        changeNum(on_this,get_this_num);
-		}
-    }
+    
     //改变数据
-    function changeNum (obj,num){
+    function addCart (on_this){
+        
+        this_num = $(on_this).parent().parent().children('.calc').children('.item_num');
+//      var get_this_num = parseInt(this_num.text())+1;
+        var get_this_num = parseInt(this_num.val());
+        this_num.html(get_this_num);
         //获取id
-        var proId = $(obj).parent().parent().children('.calc').children('.proId');
-//      alert(proId.text())
-//      alert(num)
+        var proId = $(on_this).parent().parent().children('.calc').children('.proId');
         $.ajax({
         	type:"post",
         	url:"php/NumChange.php",
         	async:true,
         	data:{
         	    proId:proId.text(),
-        	    num:num
+        	    num:get_this_num
         	},
         	success:function(data){
+        	    //改变回收车数值
+        	    
+        	    var NumAll = parseInt(count_num)-parseInt(this_num_Old)+parseInt(get_this_num)
+        	    $('#count_num').html(NumAll);
 //      	    console.log(data)
         	},
         	error:function(s,e,t){
@@ -344,10 +347,14 @@
                     EleText += "</a>"
                     EleText += "<div class='calc select div_right'>"                   
                     EleText += "<p class='proId' hidden='hidden'>"+data['pro'][i]['id']+"</p>"
-                    EleText += "<i onclick='num_sub(this)' class='item_sub'>-</i>" 
-                    EleText += "<span class='item_num'>"+data['pro'][i]['num']+"</span>"
+//                  EleText += "<i onclick='num_sub(this)' class='item_sub'>-</i>" 
+//                  EleText += "<span class='item_num'>"+data['pro'][i]['num']+"</span>"
+//                  EleText += "<input type='hidden' value='84'>"
+//                  EleText += "<i class='item_add' onclick='num_add(this)'>+</i>"         
+                    EleText += "<input style='width:70%;float:left;height:30px;' class='zi item_num' value='"+data['pro'][i]['num']+"' onclick='getCart(this)' />"
                     EleText += "<input type='hidden' value='84'>"
-                    EleText += "<i class='item_add' onclick='num_add(this)'>+</i>"                    
+                    EleText += "<i class='icon iconfont icon-shoppingcart' style='width:29%;background-color:#bfe1c1;height:30px;' onclick='addCart(this)'></i>"
+                    
 //                  EleText += "<p class='item_sub' onclick='num_sub(this)'></p>"
 //                  EleText += "<p class='item_num'>"+data['pro'][i]['num']+"</p>"
 //                  EleText += "<p class='item_add' onclick='num_add(this)'></p>"

@@ -2,8 +2,13 @@
     header("Access-Control-Allow-Origin: *");
     session_start();
     require('conn.php');
-    $useId = $_SESSION['UseId'];
-//  $useId = 1;
+//  $useId = $_SESSION['UseId'];
+    $useId = 1;
+    
+    //检测数据库中为0的数据，若有则删除
+    $sql_del = "delete from 回收车 where 产品数量=0 and 用户信息id='".$useId."'";
+    $conn->query($sql_del);
+    
     //获取产品类型
     $sql02 = "select * from `查询回收车` where 用户信息id='".$useId."'  group by 类型id";
     $result02 = $conn->query($sql02);
@@ -21,9 +26,9 @@
 //      print_r($data);
 //      echo '<br/>';
     }
-    
+    //获取数据
     foreach($data['type'] as $v)
-    {   
+    {
         $Mid = $v['TypeId'];
         $sql01 = "select * from `查询回收车` where 类型id = '".$Mid."' and 用户信息id='".$useId."'";
         $result01 = $conn->query($sql01);

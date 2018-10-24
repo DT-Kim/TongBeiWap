@@ -156,7 +156,7 @@
                     
                 },
                 success:function(data){
-//                  console.log(data)
+//                  console.log(data['type'].length)
                     if(data['type'].length){
                         var EleTextType = ''
                         var EleTextDatali = ''
@@ -187,10 +187,10 @@
                                     EleTextDatali += "<div class='div_right'>"
 //                                  EleTextDatali += "<i style='width:33%;' onclick='reducew(this)'>-</i>"
 //                                  EleTextDatali += "<span class='zi'>"+data[Mid][y]['num']+"</span>"
-                                    EleTextDatali += "<input style='width:70%;float:left;height:30px;' class='zi' value='"+data[Mid][y]['num']+"' />"
+                                    EleTextDatali += "<input style='width:100%;float:left;height:30px;' class='zi' value='"+data[Mid][y]['num']+"' onchange='addCart(this)' />"
                                     EleTextDatali += "<input type='hidden' value='84'>"
                                     
-                                    EleTextDatali += "<i class='am-icon-shopping-cart' style='width:29%;background-color:#bfe1c1;' onclick='addCart(this)'></i>"
+//                                  EleTextDatali += "<i class='am-icon-shopping-cart' style='width:29%;background-color:#bfe1c1;' onclick='addCart(this)'></i>"
                                     EleTextDatali += "</div>"
                                     EleTextDatali += "</li>"
                                 }
@@ -434,18 +434,22 @@
                         type:"post",
                         url:"php/cartRemove.php",
                         async:true,
-                        dataType:'json',
                         data:{
                             //回收id
                             MId:$(".commodity_list_term .pitch_on").eq(i).parent().find('.MID').html()
                         },
                         success:function(data){
-//                          console.log(data)
-                            $(".commodity_list_term .pitch_on").parent().remove();
-                            $(".commodity_list .tite_tim > em.pitch_on").parents(".commodity_box").remove();
+                            console.log(data)
+                            if(data == 'ok'){
+                                $(".commodity_list_term .pitch_on").parent().remove();
+                                $(".commodity_list .tite_tim > em.pitch_on").parents(".commodity_box").remove();
+                                return;
+                            }
+                            alert('出现错误，错误类型：数据错误')
                         },
                         error:function(s,e,t){
 //                          console.log(e)
+                            
                             alert('出现错误，错误类型'+e)
                         }
                     });
@@ -518,7 +522,6 @@
                         if (fot.length == fot1.length) {
                             $("#all_pitch_on").addClass("pitch_on");
                         }
-        
                     }
                 }
                 //计算选择数值
@@ -581,7 +584,7 @@
                         ProNum:$(obj).parents('li').find('.zi').val()//数量
                     },
                     success:function(data){
-                        console.log('ok')
+//                      console.log('ok')
                     },
                     error:function(s,e,t){
                         console.log(e)
