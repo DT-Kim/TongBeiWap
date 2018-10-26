@@ -121,16 +121,29 @@
                 $('input').attr("readonly",false)
 		        $('#mesChange').html('提交信息')
 		    }else{
-		        if((cityAll.province)&&(cityAll.city)&&(cityAll.district)&&($('#PeoName').val())&&($('#PeoPhone').val())&&($('#localD').val())){
+//		        ($('#picCity').text()||(cityAll.province)&&(cityAll.city)&&(cityAll.district))&&
+//              ($('#picCity').text())
+                try{
+                    var cityAllMes = $('#picCity').text().split('/')
+                    province = cityAllMes[0]
+                    city = cityAllMes[1]
+                    district = cityAllMes[2]
+                }
+                catch(e){
+                    province = cityAll.province
+                    city = cityAll.city
+                    district = cityAll.district
+                }
+		        if(($('#PeoName').val())&&($('#PeoPhone').val())&&($('#localD').val())){
 		            $.ajax({
                         type:"post",
                         url:"php/person.php",
                         async:true,
                         dataType:'json',
                         data:{
-                            province:cityAll.province,
-                            city:cityAll.city,
-                            district:cityAll.district,
+                            province:province,
+                            city:city,
+                            district:district,
                             PeoName:$('#PeoName').val(),
                             PeoPhone:$('#PeoPhone').val(),
                             localD:$('#localD').val(),
