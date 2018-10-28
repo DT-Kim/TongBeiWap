@@ -90,10 +90,10 @@
                                 </li>-->
                         </ul>
                     </div>
-                    <div class="cart_foot">总价：<span class="red2 bold" id="total_amount">{$price}</span>元；总积分：<span class="red2 bold" id="total_jifen">{$jifen}</span></div>
+                    <div class="cart_foot">总积分：<span class="red2 bold" id="total_jifen">{$jifen}</span></div>
                     <div class="cart-tool">
-                        <a class="am-btn am-btn-sm am-btn-success am-radius" href="cart.html">
-                          <i class="am-icon-chevron-left"></i>返回回收车
+                        <a class="am-btn am-btn-sm am-btn-success am-radius" href="exc_cart.html">
+                          <i class="am-icon-chevron-left"></i>返回购物车
                         </a>
                     </div>
                 </div>
@@ -133,33 +133,35 @@
                     async:false,
                     dataType:'json',
                     data:{
-                    	flag:'pro',
+                    	flag:'exc',
                         data:getQueryString('data')
                     },
                     success:function(data){
                         //显示信息
+                        console.log(data)
                         var EleText = ''
                         var TotalCode = 0
                         var TotalPrice = 0
                         if(data['status'] == 'success'){
+                        	
                             for(var i=0;i<data['RowNum'];i++){
                                 EleText += "<li>"
                                 EleText += "<div class='imgpanel'><a href='#'><img src='"+data[i]['Img']+"' class='am-img-responsive' /></a></div>"
                                 EleText += "<div class='infopanel'>"
                                 EleText += "<h3><a href='#'>"+data[i]['name']+"</a></h3>"
                                 EleText += "<p>单位：<span class='red2 bold'>"+data[i]['unit']+"</span></p>"
-                                EleText += "<p>单价：<span class='red2 bold'>"+data[i]['price']+"</span> 元  </p>"
+                                EleText += "<p>积分要求：<span class='red2 bold'>"+data[i]['req']+"</span> 分  </p>"
                                 EleText += "<p>数量：<span class='red2 bold'>"+data[i]['num']+"</span></p>"
-                                EleText += "<p>积分：<span class='red2 bold'>"+data[i]['code']+"</span></p>"
+//                              EleText += "<p>积分：<span class='red2 bold'>"+data[i]['code']+"</span></p>"
                                 EleText += "</div>"
                                 EleText += "</li>"
-                                TotalPrice +=  (data[i]['price']*data[i]['num'])
-                                TotalCode +=  (data[i]['code']*data[i]['num'])
+//                              TotalPrice +=  (data[i]['req']*data[i]['num'])
+                                TotalCode +=  (data[i]['req']*data[i]['num'])
                             }
                             $("#ProList").append(EleText)
                         }
                         //计算总价
-                        $('#total_amount').html(TotalPrice)
+//                      $('#total_amount').html(TotalPrice)
                         //计算总积分
                         $('#total_jifen').html(TotalCode)
                         
@@ -173,7 +175,7 @@
                         cityA = data['peo']['cityA']
                     },
                     error:function(s,e,t){
-//                      console.log(e)
+                        console.log(e)
                         alert('出现错误，错误类型'+e)
                     }
                 })
@@ -184,14 +186,13 @@
             //提交订单
             $('#HandUpMes').on('click',function(){
                 $.ajax({
-                    url:'php/CheckOutSave.php',
+                    url:'php/CheckOutSave_exc.php',
                     type:'post',
                     async:true,
                     dataType:'json',
                     data:{
-                    	
                         MId:getQueryString('data'),
-                        priceAll:$('#total_amount').html(),
+//                      priceAll:$('#total_amount').html(),
                         codeAll:$('#total_jifen').html(),
                     },
                     success:function(data){
@@ -199,7 +200,7 @@
                         if(data['status'] == 'success')
                         {
                             alert('下单成功')
-                            self.location = "cart.html"
+                            self.location = "exc_cart.html"
                         }
                         else{
                             alert('操作失败')

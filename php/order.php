@@ -2,8 +2,8 @@
     header("Access-Control-Allow-Origin: *");
     session_start();
     require('conn.php');
-//  $useId = $_SESSION['UseId'];
-    $useId = 1;
+    $useId = $_SESSION['UseId'];
+//  $useId = 1;
     //查询全部订单
     $sql01 = "select * from `查询订单详情` where `用户id` = '".$useId."' group by `订单号` ";
     $result01 = $conn->query($sql01);

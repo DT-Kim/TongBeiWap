@@ -5,7 +5,6 @@
         <title>TongBei 产品列表</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/weui.min.css">
-        <link rel="stylesheet" href="font_else/iconfont.css" />
         <link rel="stylesheet" href="css/jquery-weui.min.css">
         <link rel="stylesheet" href="css/bootstrap.min.css" >
         <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -21,9 +20,9 @@
             .class-body{
                 margin-bottom: 5rem;
             }
-            .div_right {display:flex; bottom: 10px; right: 4%; border: solid 0px #e6e6e6; border-radius: 4px; width: 82px; overflow: hidden; text-align: center;padding-top: 50px;  }
-			/*.div_right i { float: left; height:33%; width: 33%; color: #333; font-style: normal; margin-top: 40%;}
-			.div_right span { float: left; height:33%; width: 33%; border-left: solid 0px #e6e6e6; border-right: solid 0px #e6e6e6; color: #333; margin-top: 40%;}*/
+            .div_right {display:flex; bottom: 10px; right: 4%; border: solid 0px #e6e6e6; border-radius: 4px; width: 82px; overflow: hidden; text-align: center; /*line-height: 77px;*/ }
+			.div_right i { float: left; height:33%; width: 33%; color: #333; font-style: normal; margin-top: 40%;}
+			.div_right span { float: left; height:33%; width: 33%; border-left: solid 0px #e6e6e6; border-right: solid 0px #e6e6e6; color: #333; margin-top: 40%;}
 			
             /*html{ font-size: 10px; font-family: "Microsoft YaHei";}
             *{
@@ -87,6 +86,7 @@
             .select_list li .calc p{ width: 1.6rem; height: 1.6rem; margin:0 1%;border-radius: 1.8rem; overflow: hidden; text-align: center; line-height: 1.6rem;font-size: 1.6rem;}
             .select_list li .calc .item_sub{ background: #000 url("img/03.png") no-repeat; background-size: contain;}
             .select_list li .calc .item_add{ background: #000 url("img/02.png") no-repeat; background-size: contain;}*/
+    
         </style>
     </head>
     <body>
@@ -161,65 +161,31 @@
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
                                 <ul id="ProList">
-                                        <!--<li>
-                                            <div class="class-title">类型1</div>
-                                                    <ul class="item_list">
-                                                        <li>
-                                                            <div class="item_img"><img src="img/food.png"></div>
-                                                            <div class="item_content">
-                                                                <p class="item_title">疯狂半价</p>
-                                                                <p class="item_activity">限时特价</p>
-                                                                <p class="item_price"><span>8.01</span><s>8.09</s></p>
-                                                            </div>
-                                                            <div class="calc">
-                                                                <p class="item_sub" onclick="num_sub(this)"></p>
-                                                                <p class="item_num">0</p>
-                                                                <p class="item_add" onclick="num_add(this)"></p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                            </div>
-                                        </li>-->
+                                    <!--<li>
+                                        <div class="class-title">类型1</div>
+                                            <ul class="item_list">
+                                                <li>
+                                                    <div class="item_img"><img src="img/food.png"></div>
+                                                    <div class="item_content">
+                                                        <p class="item_title">疯狂半价</p>
+                                                        <p class="item_activity">限时特价</p>
+                                                        <p class="item_price"><span>8.01</span><s>8.09</s></p>
+                                                    </div>
+                                                    <div class="calc">
+                                                        <p class="item_sub" onclick="num_sub(this)"></p>
+                                                        <p class="item_num">0</p>
+                                                        <p class="item_add" onclick="num_add(this)"></p>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>-->
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!--<div class="select_list_parent" style="top: 100%;">
-                <div class="select_num">已选商品(<span>1</span>)</div>
-                <ul class="select_list">
-                    <li>
-                        <p class="name">薯片</p>
-                        <p class="price">32.04</p>
-                        <div class="calc">
-                            <p class="item_sub" onclick="num_sub(this)"></p>
-                            <p class="item_num">0</p>
-                            <p class="item_add" onclick="num_add(this)"></p>
-                        </div>
-                    </li>
-                    <li>
-                        <p class="name">薯片</p>
-                        <p class="price">32.04</p>
-                        <div class="calc">
-                            <p class="item_sub" onclick="num_sub(this)"></p>
-                            <p class="item_num">0</p>
-                            <p class="item_add" onclick="num_add(this)"></p>
-                        </div>
-                    </li>
-                    <li>
-                        <p class="name">薯片</p>
-                        <p class="price">32.04</p>
-                        <div class="calc">
-                            <p class="item_sub" onclick="num_sub(this)"></p>
-                            <p class="item_num">0</p>
-                            <p class="item_add" onclick="num_add(this)"></p>
-                        </div>
-                    </li>
-            
-                </ul>
-            </div>-->
         </section>
         <script src="js/jquery.js"></script>
         <script src="js/jquery.fly.min.js"></script>
@@ -241,42 +207,42 @@
                 $('.type_list li').removeClass('select');
                 $(this).addClass('select');
             })
-        //    点击添加效果
-            $('.item_add').click(function (event){
-                var thisItem = $(this);
-                var flyer = thisItem.clone().css({"background":"#000", "width": "20px", "height": "20px","border-radius": "20px"});
-                flyer.fly({
-                    start: {
-                        width: 20,
-                        height:20,
-                        left: event.pageX - 20,
-                        top: event.pageY - 20
-                    },
-                    end: {
-                        left: offset.left + 40,
-                        top: offset.top + 0,
-                        width: 20,
-                        height:20
-                    },
-                    onEnd: function () {
-        //                $('.end').css({
-        //                    background: 'red'
-        //                });
-        //                setTimeout(function () {
-        //                    $('.end').css({
-        //                        background: 'blue'
-        //                    });
-        //                }, 200);
-                        this.destory();
-                    },
-        //      autoPlay: false,//是否直接运动,默认true
-                    speed: 1.1, //越大越快，默认1.2
-                    vertex_Rtop: 100,//运动轨迹最高点top值，默认20
-              onEnd: function(){
-                  flyer.remove();
-              } //结束回调
-                });
-            });
+        //    点击添加效果()
+//          $('.item_add').click(function (event){
+//              var thisItem = $(this);
+//              var flyer = thisItem.clone().css({"background":"#000", "width": "20px", "height": "20px","border-radius": "20px"});
+//              flyer.fly({
+//                  start: {
+//                      width: 20,
+//                      height:20,
+//                      left: event.pageX - 20,
+//                      top: event.pageY - 20
+//                  },
+//                  end: {
+//                      left: offset.left + 40,
+//                      top: offset.top + 0,
+//                      width: 20,
+//                      height:20
+//                  },
+//                  onEnd: function () {
+//      //                $('.end').css({
+//      //                    background: 'red'
+//      //                });
+//      //                setTimeout(function () {
+//      //                    $('.end').css({
+//      //                        background: 'blue'
+//      //                    });
+//      //                }, 200);
+//                      this.destory();
+//                  },
+//      //      autoPlay: false,//是否直接运动,默认true
+//                  speed: 1.1, //越大越快，默认1.2
+//                  vertex_Rtop: 100,//运动轨迹最高点top值，默认20
+//            onEnd: function(){
+//                flyer.remove();
+//            } //结束回调
+//              });
+//          });
             $(".count_num").click(function(){
                 var this_type = parseInt($(this).attr('data-type'));
                 if(this_type == 0){
@@ -292,85 +258,70 @@
 //          var count_num = 0;
             var parice = 0;
             var this_parice;
-            var this_num;
-            var this_num_Old;
-//          function num_add(on_this){
-//      //        总数和总价格
-//              count_num++;
-//              $('.count_num span').html(count_num);
-//              this_parice = $(on_this).parent().parent().children('.item_content').children('.item_price').children('span').text();
-//              this_parice = parseFloat(this_parice);
-//              parice += this_parice;
-//              $('.price').html(parice.toFixed(2));
-//      //        当前商品数量
-//              this_num = $(on_this).parent().parent().children('.calc').children('.item_num');
-//              var get_this_num = parseInt(this_num.text())+1;
-//              this_num.html(get_this_num);
-//              this_num.parent().addClass('select');
-//              
-//              changeNum(on_this,get_this_num)
-//          }
-//          function num_sub(on_this){
-//          	this_num = $(on_this).parent().parent().children('.calc').children('.item_num');
-//          	if(parseInt(this_num.text())>0){
-//      //        总数和总价格
-//              count_num--;
-//              $('.count_num span').html(count_num);
-//              this_parice = $(on_this).parent().parent().children('.item_content').children('.item_price').children('span').text();
-//              this_parice = parseFloat(this_parice);
-//              parice -= this_parice;
-//              $('.price').html(parice.toFixed(2));
-//      //        当前商品数量
-//              this_num = $(on_this).parent().parent().children('.calc').children('.item_num');
-//              var get_this_num = parseInt(this_num.text())-1;
-//              this_num.html(get_this_num);
-//              if(get_this_num == 0){
-//                  this_num.parent().removeClass('select');
-//              }
-//              
-//              changeNum(on_this,get_this_num)
-//             }
-//          }
-            //获取数据
-            function getCart (on_this){
-                //获取原购物车数量
-                count_num = $('#count_num').html();
-                //获取原此输入框数量
-                this_num_Obj = $(on_this).parent().parent().children('.calc').children('.item_num');
-                this_num_Old = parseInt(this_num_Obj.val());
-        //      alert(parseInt(this_num_Old.val()))
-            }
-            
-            //改变数据
-            function addCart (on_this){
-                
+            var this_num;           
+            function num_add(on_this){
+        //        总数和总价格
+                count_num++;
+                $('.count_num span').html(count_num);
+                this_parice = $(on_this).parent().parent().children('.item_content').children('.item_price').children('span').text();
+                this_parice = parseFloat(this_parice);
+                parice += this_parice;
+                $('.price').html(parice.toFixed(2));
+        //        当前商品数量
                 this_num = $(on_this).parent().parent().children('.calc').children('.item_num');
-        //      var get_this_num = parseInt(this_num.text())+1;
-                var get_this_num = parseInt(this_num.val());
+                var get_this_num = parseInt(this_num.text())+1;
                 this_num.html(get_this_num);
+                this_num.parent().addClass('select');
+                
+                changeNum(on_this,get_this_num)
+            }
+            function num_sub(on_this){
+            	this_num = $(on_this).parent().parent().children('.calc').children('.item_num');
+            	if(parseInt(this_num.text())>0){
+        //        总数和总价格
+                count_num--;
+                $('.count_num span').html(count_num);
+                this_parice = $(on_this).parent().parent().children('.item_content').children('.item_price').children('span').text();
+                this_parice = parseFloat(this_parice);
+                parice -= this_parice;
+                $('.price').html(parice.toFixed(2));
+        //        当前商品数量
+                this_num = $(on_this).parent().parent().children('.calc').children('.item_num');
+                var get_this_num = parseInt(this_num.text())-1;
+                this_num.html(get_this_num);
+                if(get_this_num == 0){
+                    this_num.parent().removeClass('select');
+                }
+                
+                changeNum(on_this,get_this_num)
+               }
+            }
+            //改变数据
+            function changeNum (obj,num){
                 //获取id
-                var proId = $(on_this).parent().parent().children('.calc').children('.proId');
+                var proId = $(obj).parent().parent().children('.item_content').find('.proId');
+//              console.log(proId.html())
 //              console.log(proId.text())
-//              console.log(get_this_num)
+//              alert(num)
                 $.ajax({
                     type:"post",
                     url:"php/NumChange.php",
                     async:true,
                     data:{
+                    	flag:'pro',
                         proId:proId.text(),
-                        num:get_this_num
+                        num:num
                     },
                     success:function(data){
-                        //改变回收车数值
-                        var NumAll = parseInt(count_num)-parseInt(this_num_Old)+parseInt(get_this_num)
-                        $('#count_num').html(NumAll);
-//                      console.log(data)
+                        console.log(data)
                     },
                     error:function(s,e,t){
                         alert('出现错误，错误类型'+e)
                     }
                 });
             }
+        </script>
+        <script type="text/javascript">
             $(function(){
                 $.ajax({
                 	type:"post",
@@ -378,6 +329,7 @@
                 	async:true,
                 	dataType:'json',
                 	success:function(data){
+                		console.log(data['type'].length)
                 	    //显示产品类型
                 	    for (var i=0;i<data['type'].length;i++) {
                 	    	var TypeText = "<li> "+data['type'][i]['name']+" </li>"
@@ -395,32 +347,26 @@
                                 for (var y=0;y<data[ProTyprId].length;y++) {
                                     ProText += "<li>"
                                     
-                                    ProText += "<div class='item_img'>"
-                                    ProText += "<a href='item.html?ProId="+data[ProTyprId][y]['ProId']+"'>"
-                                    ProText += "<img src='"+data[ProTyprId][y]['url']+"'>"
-                                    ProText += "</a></div>"
+                                    ProText += "<div class='item_img'><img src='"+data[ProTyprId][y]['url']+"'></div>"
                                     ProText += "<div class='item_content'>"
                                     ProText += "<a href='item.html?ProId="+data[ProTyprId][y]['ProId']+"'>"
                                     ProText += "<p class='item_title title'>"+data[ProTyprId][y]['name']+"</p>"
                                     ProText += "<p class='item_activity'>"+data[ProTyprId][y]['else']+"</p>"
 //                                  ProText += "<p class='item_price'><span>8.01</span><s>8.09</s></p>"
                                     ProText += "<p class='item_price'><span>"+data[ProTyprId][y]['price']+'/'+data[ProTyprId][y]['unit']+"</span></p>"
-                                    
+                                    ProText += "<p class='proId' hidden='hidden'>"+data[ProTyprId][y]['ProId']+"</p>" //hidden='hidden'
                                     ProText += "</a>"
                                     ProText += "</div>"
                                     
                                     ProText += "<div class='calc sProct div_right'>"
 //                  				ProText += "<p class='proId' hidden='hidden'>"+data['pro'][i]['id']+"</p>"
-//                  				ProText += "<i onclick='num_sub(this)' class='item_sub'>-</i>" 
-//                  				ProText += "<span class='item_num'>"+data[ProTyprId][y]['num']+"</span>"
-                    				ProText += "<p class='proId' hidden='hidden'>"+data[ProTyprId][y]['ProId']+"</p>"
-                    				ProText += "<input style='width:70%;float:left;height:30px;' class='zi item_num' value='"+data[ProTyprId][y]['num']+"' onclick='getCart(this)' />"
+                    				ProText += "<i onclick='num_sub(this)' class='item_sub'>-</i>" 
+                    				ProText += "<span class='item_num'>"+data[ProTyprId][y]['num']+"</span>"
                     				ProText += "<input type='hidden' value='84'>"
-                    				ProText += "<i class='icon iconfont icon-shoppingcart' style='width:29%;background-color:#bfe1c1;height:30px;' onclick='addCart(this)'></i>"
-                    				
-//                                  ProText += "<input style='width:70%;float:left;height:30px;' class='zi' value='"+data[ProTyprId][y]['num']+"' />"
-//                                  ProText += "<input type='hidden' value='84'>"
-//                                  ProText += "<i class='am-icon-shopping-cart' style='width:29%;background-color:#bfe1c1;' onclick='addCart(this)'></i>"
+                    				ProText += "<i class='item_add' onclick='num_add(this)'>+</i>"                                     
+//                                  ProText += "<p class='item_sub' onclick='num_sub(this)'></p>"
+//                                  ProText += "<p class='item_num'>"+data[ProTyprId][y]['num']+"</p>"
+//                                  ProText += "<p class='item_add' onclick='num_add(this)'></p>"
                                     ProText += "</div>"
                                     
                                     ProText += "</li>"
