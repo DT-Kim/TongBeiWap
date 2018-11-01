@@ -1713,9 +1713,9 @@ span.sqsh_zuix_text{
 .shouru_mxi .ul_mx li{overflow: hidden;margin-top: 0.25rem;padding-bottom:0.2rem; text-align: left; border-bottom: solid 1px #ededed;}
 .shouru_mxi .ul_mx li h1{float: left;width:30%;}
 .shouru_mxi .ul_mx li h1 img{width: 1.6rem; height:1.2rem;}
-.shouru_mxi .ul_mx li .zhong_wenz{width: 60%; float:left;text-align: left; margin-top: 10px;}
-.shouru_mxi .ul_mx li .zhong_wenz p{font-size: 1.2rem;line-height: 0.35rem;color: #626262;}
-.shouru_mxi .ul_mx li .zhong_wenz span{font-size: 1.2rem; color: #e74040; font-weight: 1000;}
+.shouru_mxi .ul_mx li .zhong_wenz{width: 60%; float:left;text-align: left; }
+.shouru_mxi .ul_mx li .zhong_wenz p{line-height: 0.35rem;color: #626262;}
+.shouru_mxi .ul_mx li .zhong_wenz span{color: #c1c1c1;line-height: 0.35rem;}
 .shouru_mxi .ul_mx li .mx{width:10%;float: left;color: #288c29; text-align: right;}
 .shouru_mxi .ul_mx li .mx_1{color: #f9af21;}
 

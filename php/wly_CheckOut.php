@@ -4,8 +4,8 @@
     //显示订单信息
     $MId = $_POST['data'];
 //  $MId = '25';
-    $useId = $_SESSION['UseId'];
-//  $useId = 1;
+//  $useId = $_SESSION['UseId'];
+    $useId = 1;
     //数据处理
     $domain = strstr($MId, '@'); 
     if($domain)

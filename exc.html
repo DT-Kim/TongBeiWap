@@ -7,19 +7,6 @@
 		<link rel="stylesheet" href="css/main.css">
 		<link rel="stylesheet" href="css/out/zy.css" type="text/css">
 		<script type="text/javascript" src="js/jquery.min.js"></script>  
-		<style type="text/css">
-			.excsum{
-				font-size: 24px;
-				color:red;
-				font-family: "微软雅黑";
-				font-weight: 900;
-			}
-			.set{
-				width:100px;
-				/*height:100px;*/
-				/*margin-left: 100px;*/
-			}
-		</style>
 	</head>
 	<body>
 		<header class="zyw-header">
@@ -35,20 +22,20 @@
 					<li><a href="excstore.html">积分商城</a><i></i></li>
 				</ul>
 				<div class="jifen_shue">
-					<div class="set">
-						<p >可用积分</p>
-						<span class="excsum">2100</span>
+					<div>
+						<p>可用积分</p>
+						<h1>2100</h1>
 					</div>
-					<!--<div>
+					<div>
 						<p>将要过期的积分</p>
 						<h1 class="color">0</h1>
-					</div>-->
-					<!--<span class="tis"><em>*</em> 温馨提示：积分将会在每年年底过期，尽量提前使用。</span>-->
+					</div>
+					<span class="tis"><em>*</em> 温馨提示：积分将会在每年年底过期，尽量提前使用。</span>
 				</div>
 				<div class="shouru_mxi">
 					<h1 class="jifenshouru_biaot">积分收入明细</h1>
 					<ul class="ul_mx">
-						<!--<li>
+						<li>
 							<a href="#">
 								<h1><img src="images/web/wodejif_img.jpg"></h1>
 								<div class="zhong_wenz">
@@ -57,27 +44,64 @@
 								</div>
 							</a>
 							<div class="mx">+15</div>
-						</li>-->
+						</li>
+						<li>
+							<a href="#">
+								<h1><img src="images/web/jif_img4.jpg"></h1>
+								<div class="zhong_wenz">
+									<p>大杯,杯子,咖啡,饮料,桌子,酒 吧,酒馆,餐馆,室内</p>
+									<span>2017年10月30日 10:42:17</span>
+								</div>
+							</a>
+							<div class="mx">+15</div>
+						</li>
+						<li>
+							<a href="#">
+								<h1><img src="images/web/wodejif_img.jpg"></h1>
+								<div class="zhong_wenz">
+									<p>大杯,杯子,咖啡,饮料,桌子,酒 吧,酒馆,餐馆,室内</p>
+									<span>2017年10月30日 10:42:17</span>
+								</div>
+							</a>
+							<div class="mx">+15</div>
+						</li>
+						<li>
+							<a href="#">
+								<h1><img src="images/web/jif_img3.jpg"></h1>
+								<div class="zhong_wenz">
+									<p>大杯,杯子,咖啡,饮料,桌子,酒 吧,酒馆,餐馆,室内</p>
+									<span>2017年10月30日 10:42:17</span>
+								</div>
+							</a>
+							<div class="mx">+15</div>
+						</li>
+						<li>
+							<a href="#">
+								<h1><img src="images/web/jif_img2.jpg"></h1>
+								<div class="zhong_wenz">
+									<p>大杯,杯子,咖啡,饮料,桌子,酒 吧,酒馆,餐馆,室内</p>
+									<span>2017年10月30日 10:42:17</span>
+								</div>
+							</a>
+							<div class="mx">+15</div>
+						</li>
+						<li>
+							<a href="#">
+								<h1><img src="images/web/wodejif_img.jpg"></h1>
+								<div class="zhong_wenz">
+									<p>大杯,杯子,咖啡,饮料,桌子,酒 吧,酒馆,餐馆,室内</p>
+									<span>2017年10月30日 10:42:17</span>
+								</div>
+							</a>
+							<div class="mx">+15</div>
+						</li>
 					</ul>
 				</div>
+				<!--<div class="jiazz">
+					<p class="px22">拼命加载中...</p>
+				</div>-->
 			</div>
 		</section>
+		
 	</body>
-	<script type="text/javascript">
-		$(document).ready(function (){
-			$.ajax({
-				type:"post",
-				url:"php/excshow.php",
-				async:true,
-				dataType:'json',
-				data:{},
-				success:function(data){
-					$('.excsum').html(data['sum'])
-				},
-				error:function(s,e,t){
-					alert('显示异常')
-				}
-			});
-		})
-	</script>
 </html>

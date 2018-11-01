@@ -26,13 +26,14 @@
     $result02 = $conn->query($sql02)->fetch_assoc();
     $data['mes'] = array();
     $data['mes']['content'] = $result02['介绍'];
+    
     $data['mes']['ProName'] = $result02['产品名称'];
     $data['mes']['ProUnit'] = $result02['单位'];
     $data['mes']['ProPrice'] = $result02['价格'];
     $data['mes']['ProPic'] = $result02['展示图'];
     $data['mes']['ProCode'] = $result02['积分倍数'];
     $ProHot = '非热门';
-    if($result02['热门状态']=='是')
+    if($result02['热门状态'])
     {
         $ProHot = '热门';
     }

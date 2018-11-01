@@ -5,6 +5,7 @@
         <title>TongBei 回收车</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/weui.min.css">
+        <link rel="stylesheet" href="css/amazeui.min.css"/>
         <link rel="stylesheet" href="css/jquery-weui.min.css">
         <link rel="stylesheet" href="css/bootstrap.min.css" >
         <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -13,7 +14,6 @@
         <link rel="stylesheet" href="css/cart.css">
         <link rel="stylesheet" href="css/theme-color.css">
         <link rel="stylesheet" href="css/item.css">
-        <link rel="stylesheet" href="css/out/zy.css" type="text/css">
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
@@ -35,11 +35,6 @@
             </div>
         </header><!--zyw-footer-->
         <div class="zyw-container">
-        	<!--<ul class="jif_daoh" style="height: 30px;padding-bottom: 10px; margin-bottom:5px;">
-					<li class="no" style="margin-left:10px;"><a href="cart.html">产品列表</a><i></i></li>
-					<li style="font-size: 12px;">|</li>
-					<li><a href="exc_cart.html">积分商品列表</a><i></i></li>
-			</ul>-->
             <div class=" white-bgcolor">
                 <div class="settle_box">
                     <dl class="all_check select">
@@ -60,38 +55,38 @@
                     <a class="settle_btn" href="javascript:void(0);" id="confirm_cart1" onclick="big_cart_remove()">删除</a>
                 </div>
             </div>
-			</div>
-			<footer class="zyw-footer">
-			    <div class="zyw-container white-bgcolor clearfix">
-			        <div class="weui-tabbar">
-			            <a href="index.html" class="weui-tabbar__item">
-			                <div class="weui-tabbar__icon">
-			                    <img src="./img/svg/foot-1.svg" alt="">
-			                </div>
-			                <p class="weui-tabbar__label">首页</p>
-			            </a>
-			            <a href="class.html" class="weui-tabbar__item">
-			                <div class="weui-tabbar__icon">
-			                    <img src="./img/svg/foot-2.svg" alt="">
-			                </div>
-			                <p class="weui-tabbar__label">分类</p>
-			            </a>
-			            <a href="cart.html" class="weui-tabbar__item">
-			                <!--<span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;" id="count_num">8</span>-->
-			                <div class="weui-tabbar__icon">
-			                    <img src="./img/svg/foot-4-1.svg" alt="">
-			                </div>
-			                <p class="weui-tabbar__label">回收车</p>
-			            </a>
-			            <a href="home.html" class="weui-tabbar__item">
-			                <div class="weui-tabbar__icon">
-			                    <img src="./img/svg/foot-5.svg" alt="">
-			                </div>
-			                <p class="weui-tabbar__label">个人中心</p>
-			            </a>
-			        </div>
-			    </div>
-			</footer>			
+            </div>
+            <footer class="zyw-footer">
+                <div class="zyw-container white-bgcolor clearfix">
+                    <div class="weui-tabbar">
+                        <a href="index.html" class="weui-tabbar__item">
+                            <div class="weui-tabbar__icon">
+                                <img src="./img/svg/foot-1.svg" alt="">
+                            </div>
+                            <p class="weui-tabbar__label">首页</p>
+                        </a>
+                        <a href="class.html" class="weui-tabbar__item">
+                            <div class="weui-tabbar__icon">
+                                <img src="./img/svg/foot-2.svg" alt="">
+                            </div>
+                            <p class="weui-tabbar__label">分类</p>
+                        </a>
+                        <a href="cart.html" class="weui-tabbar__item">
+                            <!--<span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;" id="count_num">8</span>-->
+                            <div class="weui-tabbar__icon">
+                                <img src="./img/svg/foot-4-1.svg" alt="">
+                            </div>
+                            <p class="weui-tabbar__label">回收车</p>
+                        </a>
+                        <a href="home.html" class="weui-tabbar__item">
+                            <div class="weui-tabbar__icon">
+                                <img src="./img/svg/foot-5.svg" alt="">
+                            </div>
+                            <p class="weui-tabbar__label">个人中心</p>
+                        </a>
+                    </div>
+                </div>
+            </footer>           
         <section class=""><!--zyw-container-->
                 <!--list-->
                 <div class="commodity_list_box" id="ProList">
@@ -151,6 +146,8 @@
             cart_id=new Object();
             //备份商品ID，用于全选后去掉全选又再次全选
             cart_id_copy=new Object();
+            //保存点击对象
+            var Cart_Obj;
             
             $.ajax({
                 type:"post",
@@ -161,12 +158,11 @@
                     
                 },
                 success:function(data){
-//                  console.log(data)
-					//产品回收站列表
+//                  console.log(data['type'].length)
                     if(data['type'].length){
                         var EleTextType = ''
                         var EleTextDatali = ''
-                    	var EleText = "<div class='commodity_box'>"
+                        var EleText = "<div class='commodity_box'>"
                         for (var z=0;z<data['type'].length;z++) {
                             EleTextType += "<div class='commodity_list'>"
                             EleTextType += "<div class='tite_tim select'>"
@@ -191,10 +187,12 @@
                                     EleTextDatali += "</div>"
                                     EleTextDatali += "</a>"
                                     EleTextDatali += "<div class='div_right'>"
-                                    EleTextDatali += "<i onclick='reducew(this)'>-</i>"
-                                    EleTextDatali += "<span class='zi'>"+data[Mid][y]['num']+"</span>"
+//                                  EleTextDatali += "<i style='width:33%;' onclick='reducew(this)'>-</i>"
+//                                  EleTextDatali += "<span class='zi'>"+data[Mid][y]['num']+"</span>"
+                                    EleTextDatali += "<input style='width:100%;float:left;height:30px;' class='zi' value='"+data[Mid][y]['num']+"' onchange='addCart(this)' onclick='getCart(this)' />"
                                     EleTextDatali += "<input type='hidden' value='84'>"
-                                    EleTextDatali += "<i onclick='plusw(this)'>+</i>"
+                                    
+//                                  EleTextDatali += "<i class='am-icon-shopping-cart' style='width:29%;background-color:#bfe1c1;' onclick='addCart(this)'></i>"
                                     EleTextDatali += "</div>"
                                     EleTextDatali += "</li>"
                                 }
@@ -237,7 +235,8 @@
             function reduceMod(e, totalH, mod, noX) {
                 var tn = e.siblings().find(".qu_su").text();
                 /* 当前选中商品  */
-                var tn1 = e.siblings().find(".zi").text();
+//              var tn1 = e.siblings().find(".zi").text();
+                var tn1 = e.siblings().find(".zi").val();
                 /* 商品数量  */
                 if (mod != 2) {
                     var Total = parseFloat(totalH) - (tn * tn1);
@@ -254,7 +253,8 @@
             function plusMod(e, totalH, mod) {
                 var tn = e.siblings().find(".qu_su").text();
                 /* 当前选中商品  */
-                var tn1 = e.siblings().find(".zi").text();
+//              var tn1 = e.siblings().find(".zi").text();
+                var tn1 = e.siblings().find(".zi").val();
                 /* 商品数量  */
                 if (mod != 2) {
                     var Total = parseFloat(totalH) + (tn * tn1);
@@ -276,7 +276,8 @@
                 /* 该商品全部金额  */
                 for (var i = 0; i < qu.length; i++) {
                     var n = qu.eq(i).text();
-                    var n1 = quj.eq(i).text();
+//                  var n1 = quj.eq(i).text();
+                    var n1 = quj.eq(i).val();
                     /*合计价格*/
                     if (erTotal) {
                         Total = parseFloat(totalH) + (parseFloat(n) * parseFloat(n1));
@@ -301,7 +302,8 @@
                 /* 该商品全部金额  */
                 for (var i = 0; i < qu.length; i++) {
                     var n = qu.eq(i).text();
-                    var n1 = quj.eq(i).text();
+//                  var n1 = quj.eq(i).text();
+                    var n1 = quj.eq(i).val();
                     /*合计价格*/
                     if (erTotal) {
                         Total = parseFloat(totalH) - (parseFloat(n) * parseFloat(n1));
@@ -328,7 +330,8 @@
                 var TotalJe = 0;
                 for (var i = 0; i < je.length; i++) {
                     var n = je.eq(i).text();
-                    var n1 = je1.eq(i).text();
+//                  var n1 = je1.eq(i).text();
+                    var n1 = je1.eq(i).val();
                     TotalJe = TotalJe + (parseFloat(n) * parseFloat(n1));
                 }
                 $("#total_price b").text(TotalJe.toFixed(2));
@@ -429,24 +432,28 @@
 //              console.log($(".commodity_list_term .pitch_on").length)
                 for (var i=0;i<$(".commodity_list_term .pitch_on").length;i++) {
 //                  console.log($(".commodity_list_term .pitch_on").eq(i).parent().find('.MID').html())
-                	$.ajax({
-                    	type:"post",
-                    	url:"php/cartRemove.php",
-                    	async:true,
-//                  	dataType:'json',
-                    	data:{
-                    	    //回收id
-                    	    MId:$(".commodity_list_term .pitch_on").eq(i).parent().find('.MID').html()
-                    	},
-                    	success:function(data){
-//                  	    console.log(data)
-                    	    $(".commodity_list_term .pitch_on").parent().remove();
-                            $(".commodity_list .tite_tim > em.pitch_on").parents(".commodity_box").remove();
-                    	},
-                    	error:function(s,e,t){
-//                  	    console.log(e)
-                    	    alert('出现错误，错误类型'+e)
-                    	}
+                    $.ajax({
+                        type:"post",
+                        url:"php/cartRemove.php",
+                        async:true,
+                        data:{
+                            //回收id
+                            MId:$(".commodity_list_term .pitch_on").eq(i).parent().find('.MID').html()
+                        },
+                        success:function(data){
+                            console.log(data)
+                            if(data == 'ok'){
+                                $(".commodity_list_term .pitch_on").parent().remove();
+                                $(".commodity_list .tite_tim > em.pitch_on").parents(".commodity_box").remove();
+                                return;
+                            }
+                            alert('出现错误，错误类型：数据错误')
+                        },
+                        error:function(s,e,t){
+//                          console.log(e)
+                            
+                            alert('出现错误，错误类型'+e)
+                        }
                     });
                 }
             }
@@ -517,7 +524,6 @@
                         if (fot.length == fot1.length) {
                             $("#all_pitch_on").addClass("pitch_on");
                         }
-        
                     }
                 }
                 //计算选择数值
@@ -550,37 +556,58 @@
                 //计算选择数值
                 //number();
             });
-            //结算
+            //结算，提交
             $('#confirm_cart').on('click',function(){
+                UpdateMesInDataBase(Cart_Obj)
                 //组成数据对象
                 var StrMes = ''
+//              console.log($(".commodity_list_term .pitch_on").length)
                 for (var i=0;i<$(".commodity_list_term .pitch_on").length;i++) {
                     StrMes += $(".commodity_list_term .pitch_on").eq(i).parent().find('.MID').html()
                     StrMes += '@'
+//                  console.log(StrMes)                
                 }
                 StrMes = StrMes.substr(0,StrMes.length-1)
+//              alert(StrMes)
                 self.location='checkout.html?data='+StrMes;
             })
             //更新数据库数据【数量信息】
             function UpdateMesInDataBase(obj){
 //              var $this = $(obj);
+//              alert($(obj).parents('li').find('.MID').html())
 //              console.log($(obj).parents('li').find('.MID').html())
-//              console.log($(obj).parents('li').find('.zi').html())
+//              alert($(obj).parents('li').find('.zi').val())
+//              console.log($(obj).parents('li').find('.zi').val())
                 $.ajax({
                     url:'php/cartUpdateData.php',
                     async:true,
                     type:'post',
                     data:{
                         MId:$(obj).parents('li').find('.MID').html(),//产品id
-                        ProNum:$(obj).parents('li').find('.zi').html()//数量
+                        ProNum:$(obj).parents('li').find('.zi').val()//数量
                     },
                     success:function(data){
-                        console.log(data)
+//                      console.log('ok')
                     },
                     error:function(s,e,t){
                         console.log(e)
                     }
                 })
+            }
+            //获取数据
+            function getCart (on_this){
+                Cart_Obj = on_this;
+//              //获取原购物车数量
+//              count_num = $('#count_num').html();
+//              //获取原此输入框数量
+//              this_num_Obj = $(on_this).parent().parent().children('.calc').children('.item_num');
+//              this_num_Old = parseInt(this_num_Obj.val());
+//      //      alert(parseInt(this_num_Old.val()))
+            }
+            //改变数据
+            function addCart(obj){
+                //更新数据库数据
+                UpdateMesInDataBase(obj)
             }
         </script>
         

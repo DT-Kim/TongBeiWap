@@ -133,7 +133,6 @@
                     async:false,
                     dataType:'json',
                     data:{
-                    	flag:'pro',
                         data:getQueryString('data')
                     },
                     success:function(data){
@@ -189,7 +188,6 @@
                     async:true,
                     dataType:'json',
                     data:{
-                    	
                         MId:getQueryString('data'),
                         priceAll:$('#total_amount').html(),
                         codeAll:$('#total_jifen').html(),
