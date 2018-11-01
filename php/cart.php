@@ -2,8 +2,8 @@
     header("Access-Control-Allow-Origin: *");
     session_start();
     require('conn.php');
-//  $useId = $_SESSION['UseId'];
-    $useId = 1;
+    $useId = $_SESSION['UseId'];
+//  $useId = 1;
     
     //检测数据库中为0的数据，若有则删除
     $sql_del = "delete from 回收车 where 产品数量=0 and 用户信息id='".$useId."'";

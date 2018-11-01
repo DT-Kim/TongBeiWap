@@ -2,8 +2,8 @@
     header("Access-Control-Allow-Origin: *");
     session_start();
     $MId = $_POST['data'];
-//  $useId = $_SESSION['UseId'];
-    $useId = 1;
+    $useId = $_SESSION['UseId'];
+//  $useId = 1;
     //数据处理
     $domain = strstr($MId, '@'); 
     if($domain)

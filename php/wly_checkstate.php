@@ -1,8 +1,8 @@
 <?php
 header("Access-Control-Allow-Origin: * ");
     session_start();
-//  $useId = $_SESSION['UseId'];
-    $useId = 1;
+    $useId = $_SESSION['UseId'];
+//  $useId = 1;
     require('conn.php');
     $flag = $_POST['flag'];
     $sql="select `用户级别id` from 用户信息 where id='".$useId."'";
