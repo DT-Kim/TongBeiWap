@@ -199,7 +199,8 @@ ul, ol, li{list-style-type: none;}
     padding: 2px;
 }
 .index-wares .wares-cont .ware-box .ware-img img{
-    width: 100%;
+    width: 150px;
+    height: 150px;
 }
 .index-wares .wares-cont .ware-box .ware-img .ware-vip{
     position: absolute;

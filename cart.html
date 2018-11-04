@@ -189,7 +189,7 @@
                                     EleTextDatali += "<div class='div_right'>"
 //                                  EleTextDatali += "<i style='width:33%;' onclick='reducew(this)'>-</i>"
 //                                  EleTextDatali += "<span class='zi'>"+data[Mid][y]['num']+"</span>"
-                                    EleTextDatali += "<input style='width:100%;float:left;height:30px;' class='zi' value='"+data[Mid][y]['num']+"' onchange='addCart(this)' onclick='getCart(this)' />"
+                                    EleTextDatali += "<input style='width:100%;float:left;height:30px;' class='zi' value='"+data[Mid][y]['num']+"' onkeyup='onlyNum(this)' onchange='addCart(this)' onclick='getCart(this)' />"
                                     EleTextDatali += "<input type='hidden' value='84'>"
                                     
 //                                  EleTextDatali += "<i class='am-icon-shopping-cart' style='width:29%;background-color:#bfe1c1;' onclick='addCart(this)'></i>"
@@ -609,6 +609,10 @@
                 //更新数据库数据
                 UpdateMesInDataBase(obj)
             }
+            function onlyNum(Obj){
+		//      Obj = Obj
+		        Obj.value=Obj.value.replace(/[^\d]/g,'')
+		    }
         </script>
         
     </body>

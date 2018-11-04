@@ -3,6 +3,9 @@
     session_start();
 	require('conn.php');
 	$id=$_POST['id'];
+//	$id = 39;
+	$UseId = $_SESSION['UseId'];
+//	$UseId =1;
 //	$id='35';
 //产品轮播
     $sql01 ="select * from 产品轮播图  where 产品信息id='".$id."' AND 有效状态 = 0 order by 位置信息";
@@ -41,6 +44,15 @@
     $data['mes']['ProText'] = $result02['内容摘要'];
 //      print_r($data) ;
 //      echo '<br/>';
+    //产品数量
+    $sql_Cart = "SELECT 产品数量 from 回收车 where `产品信息id` = '".$id."' and `用户信息id` = '".$UseId."' ";
+    $resultCart = $conn->query($sql_Cart)->fetch_assoc();
+    if(isset($resultCart['产品数量'])){
+        $data['mes']['ProNum'] = $resultCart['产品数量'];
+    }else{
+        $data['mes']['ProNum'] = 0;
+    }
+
     $json = json_encode($data);
     echo $json;   
 ?>

@@ -410,17 +410,10 @@
                                     ProText += "</div>"
                                     
                                     ProText += "<div class='calc sProct div_right'>"
-//                  				ProText += "<p class='proId' hidden='hidden'>"+data['pro'][i]['id']+"</p>"
-//                  				ProText += "<i onclick='num_sub(this)' class='item_sub'>-</i>" 
-//                  				ProText += "<span class='item_num'>"+data[ProTyprId][y]['num']+"</span>"
                     				ProText += "<p class='proId' hidden='hidden'>"+data[ProTyprId][y]['ProId']+"</p>"
-                    				ProText += "<input style='width:70%;float:left;height:30px;' class='zi item_num' value='"+data[ProTyprId][y]['num']+"' onclick='getCart(this)' />"
+                    				ProText += "<input style='width:70%;float:left;height:30px;' class='zi item_num' value='"+data[ProTyprId][y]['num']+"' onclick='getCart(this)' onkeyup='onlyNum(this)' />"
                     				ProText += "<input type='hidden' value='84'>"
                     				ProText += "<i class='icon iconfont icon-shoppingcart' style='width:29%;background-color:#bfe1c1;height:30px;' onclick='addCart(this)'></i>"
-                    				
-//                                  ProText += "<input style='width:70%;float:left;height:30px;' class='zi' value='"+data[ProTyprId][y]['num']+"' />"
-//                                  ProText += "<input type='hidden' value='84'>"
-//                                  ProText += "<i class='am-icon-shopping-cart' style='width:29%;background-color:#bfe1c1;' onclick='addCart(this)'></i>"
                                     ProText += "</div>"
                                     
                                     ProText += "</li>"
@@ -490,6 +483,11 @@
                 });
                 
             });
+            //changeNum
+    	function onlyNum(Obj){
+//      Obj = Obj
+        Obj.value=Obj.value.replace(/[^\d]/g,'')
+    }
         </script>
     </body>
 </html>
