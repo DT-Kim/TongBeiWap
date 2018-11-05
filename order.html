@@ -60,7 +60,7 @@
             	            var ElmTextAll = "<div class='order-group'>"
             	            ElmTextAll += "<div class='order-group-item clearfix'>"
             	            ElmTextAll += "<div class='order-item-box'>"
-            	            ElmTextAll += "<h4 class='order-item-id'>订单号："+data['all'][i]['code']
+            	            ElmTextAll += "<h4 class='order-item-id'>订单号："+data['all'][i]['code'];
             	            ElmTextAll += "<span class='order-item-state theme-color pull-right'>状态："+data['all'][i]['type']+"</span>"
             	            ElmTextAll += "</h4>"
             	            var Mid = data['all'][i]['id']
@@ -84,12 +84,36 @@
             	            ElmTextAll += "</div>"
             	            ElmTextAll += "<p class='text-right order-item-sum'>合计："+data['all'][i]['priceA']+"</p>"
             	            ElmTextAll += "<div class='order-item-btn pull-right'>"
-            	            ElmTextAll += "<button class='btn btn-sm btn-default'>取消订单</button>"
-            	            ElmTextAll += "<button class='btn btn-sm btn-primary theme-bdcolor theme-bgcolor'>付款</button>"
+            	            if(data['all'][i]['type']=='待收货'){
+            	            	ElmTextAll += "<button class='btn btn-sm btn-default cancel1'>取消订单</button>" 
+            	            	ElmTextAll +="<span class='ordernum' hidden='hidden'>"+data['all'][i]['code']+"</span>"
+            	            }
+//          	            ElmTextAll += "<button class='btn btn-sm btn-primary theme-bdcolor theme-bgcolor'>付款</button>"
             	            ElmTextAll += "</div>"
             	            ElmTextAll += "</div>"
             	            ElmTextAll += "</div>"
             	           $('#order_all').append(ElmTextAll)
+//          	           //取消订单
+            	           $('.cancel1').on('click',function(){
+			            		var ordernum=$(this).parent().children('span').text();
+//			            		alert(ordernum)
+			            		$.ajax({
+			            			type:"post",
+			            			url:"php/Ordercancel.php",
+			            			async:true,
+			            			dataType:'json',
+			            			data:{
+			            				num:ordernum,
+			            			},
+			            			success:function(data){
+			            				alert('已取消')
+			            				self.location='order.html'
+			            			},
+			            			error:function(s,e,t){
+			            				alert('页面出错')
+			            			}
+			            		});
+			            	})
                 	    }
             	    }
             	    //显示待收货订单
@@ -98,7 +122,7 @@
                             var ElmTextAll = "<div class='order-group'>"
                             ElmTextAll += "<div class='order-group-item clearfix'>"
                             ElmTextAll += "<div class='order-item-box'>"
-                            ElmTextAll += "<h4 class='order-item-id'>订单号："+data['get'][i]['code']
+                            ElmTextAll += "<h4 class='order-item-id' >订单号：<span>"+data['get'][i]['code']+"</span>"
                             ElmTextAll += "<span class='order-item-state theme-color pull-right'>状态：待收货</span>"
                             ElmTextAll += "</h4>"
                             var Mid = data['get'][i]['id']
@@ -122,12 +146,33 @@
                             ElmTextAll += "</div>"
                             ElmTextAll += "<p class='text-right order-item-sum'>合计："+data['get'][i]['priceA']+"</p>"
                             ElmTextAll += "<div class='order-item-btn pull-right'>"
-                            ElmTextAll += "<button class='btn btn-sm btn-default'>取消订单</button>"
-                            ElmTextAll += "<button class='btn btn-sm btn-primary theme-bdcolor theme-bgcolor'>付款</button>"
+                            ElmTextAll += "<button class='btn btn-sm btn-default cancel'>取消订单</button>"
+                            ElmTextAll +="<span class='ordernum' hidden='hidden'>"+data['get'][i]['code']+"</span>"
+//                          ElmTextAll += "<button class='btn btn-sm btn-primary theme-bdcolor theme-bgcolor'>付款</button>"
                             ElmTextAll += "</div>"
                             ElmTextAll += "</div>"
                             ElmTextAll += "</div>"
                            $('#order_dfk').append(ElmTextAll)
+                           $('.cancel').on('click',function(){
+			            		var ordernum=$(this).parent().children('span').text();
+//			            		alert(ordernum)
+			            		$.ajax({
+			            			type:"post",
+			            			url:"php/Ordercancel.php",
+			            			async:true,
+			            			dataType:'json',
+			            			data:{
+			            				num:ordernum,
+			            			},
+			            			success:function(data){
+			            				alert('已取消')
+			            				self.location='order.html'
+			            			},
+			            			error:function(s,e,t){
+			            				alert('页面出错')
+			            			}
+			            		});
+			            	})
                         }
                     }
             	    //显示待核实订单
@@ -137,7 +182,7 @@
                             ElmTextAll += "<div class='order-group-item clearfix'>"
                             ElmTextAll += "<div class='order-item-box'>"
                             ElmTextAll += "<h4 class='order-item-id'>订单号："+data['che'][i]['code']
-                            ElmTextAll += "<span class='order-item-state theme-color pull-right'>状态：待收货</span>"
+                            ElmTextAll += "<span class='order-item-state theme-color pull-right'>状态：待核实</span>"
                             ElmTextAll += "</h4>"
                             var Mid = data['che'][i]['id']
                             for (var y=0;y<data['che'+Mid].length;y++) {
@@ -160,8 +205,8 @@
                             ElmTextAll += "</div>"
                             ElmTextAll += "<p class='text-right order-item-sum'>合计："+data['che'][i]['priceA']+"</p>"
                             ElmTextAll += "<div class='order-item-btn pull-right'>"
-                            ElmTextAll += "<button class='btn btn-sm btn-default'>取消订单</button>"
-                            ElmTextAll += "<button class='btn btn-sm btn-primary theme-bdcolor theme-bgcolor'>付款</button>"
+//                          ElmTextAll += "<button class='btn btn-sm btn-default'>取消订单</button>"
+//                          ElmTextAll += "<button class='btn btn-sm btn-primary theme-bdcolor theme-bgcolor'>付款</button>"
                             ElmTextAll += "</div>"
                             ElmTextAll += "</div>"
                             ElmTextAll += "</div>"
@@ -175,7 +220,7 @@
                             ElmTextAll += "<div class='order-group-item clearfix'>"
                             ElmTextAll += "<div class='order-item-box'>"
                             ElmTextAll += "<h4 class='order-item-id'>订单号："+data['fin'][i]['code']
-                            ElmTextAll += "<span class='order-item-state theme-color pull-right'>状态：待收货</span>"
+                            ElmTextAll += "<span class='order-item-state theme-color pull-right'>状态：已完成</span>"
                             ElmTextAll += "</h4>"
                             var Mid = data['fin'][i]['id']
                             for (var y=0;y<data['fin'+Mid].length;y++) {
@@ -198,14 +243,14 @@
                             ElmTextAll += "</div>"
                             ElmTextAll += "<p class='text-right order-item-sum'>合计："+data['fin'][i]['priceA']+"</p>"
                             ElmTextAll += "<div class='order-item-btn pull-right'>"
-                            ElmTextAll += "<button class='btn btn-sm btn-default'>取消订单</button>"
-                            ElmTextAll += "<button class='btn btn-sm btn-primary theme-bdcolor theme-bgcolor'>付款</button>"
+//                          ElmTextAll += "<button class='btn btn-sm btn-default'>取消订单</button>"
+//                          ElmTextAll += "<button class='btn btn-sm btn-primary theme-bdcolor theme-bgcolor'>付款</button>"
                             ElmTextAll += "</div>"
                             ElmTextAll += "</div>"
                             ElmTextAll += "</div>"
                            $('#order_dsh').append(ElmTextAll)
                         }
-                    }
+                   }
             	},
             	error:function(s,e,t){
             	    alert('出现错误，错误类型：'+e)

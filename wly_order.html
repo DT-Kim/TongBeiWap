@@ -398,11 +398,12 @@
 							                        data:StrMes,
 							                    },
 							                    success:function(data){
-							                    	
+//							                    	获取状态
 								                    for(var i=0;i<data['RowNum'];i++){
 								                    	var state=data[i]['static'];
 								                    	var num=data[i]['number'];
 	//							                    	alert(num)
+//	                                               		    物流员收货
 								                    	if(state=='待收货'){
 	//							                    		alert(num)
 								                    		state="待核实"
@@ -430,33 +431,33 @@
 								                    			}
 								                    		});
 								                    	}
-								                    	 else if(state=='待核实'){
-								                    		state="已完成"
-	//							                    		alert(state)
-								                    		$.ajax({
-								                    			type:"POST",
-								                    			url:"php/wly_checkstate.php",
-								                    			async:false,
-								                    			dataType:'json',
-								                    			data:{
-								                    				state:state,
-								                    				id:num,
-								                    				flag:'che',
-								                    			},
-								                    			success:function(data){
-								                    				if(data['status']=='success'){
-								                    				location.reload();
-								                    				}
-								                    				if(data['status'] == 'error'){
-								                    					alert('不好意思，您无权限')
-								                    				}
-								                    				location.reload();
-								                    			},
-								                    			error:function(s,e,t){
-								                    				alert('页面出错')
-								                    			}
-								                    		});
-								                    	}
+//								                    	管理员的权限，现只在后台管理那可执行
+//								                    	 else if(state=='待核实'){
+//								                    		state="已完成"
+//								                    		$.ajax({
+//								                    			type:"POST",
+//								                    			url:"php/wly_checkstate.php",
+//								                    			async:false,
+//								                    			dataType:'json',
+//								                    			data:{
+//								                    				state:state,
+//								                    				id:num,
+//								                    				flag:'che',
+//								                    			},
+//								                    			success:function(data){
+//								                    				if(data['status']=='success'){
+//								                    				location.reload();
+//								                    				}
+//								                    				if(data['status'] == 'error'){
+//								                    					alert('不好意思，您无权限')
+//								                    				}
+//								                    				location.reload();
+//								                    			},
+//								                    			error:function(s,e,t){
+//								                    				alert('页面出错')
+//								                    			}
+//								                    		});
+//								                    	}
 								                    	else{
 								                    	 	location.reload();
 								                    	 }

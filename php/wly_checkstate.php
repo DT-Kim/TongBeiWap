@@ -24,23 +24,24 @@ header("Access-Control-Allow-Origin: * ");
     $json = json_encode($data);
     echo $json;
     break;
-    case 'che':
-     $state= $_POST['state'];
-     $id = $_POST['id'];
-//   $state= '待收货';
-//   $id = '25';
-	$data['status'] = 'error';
-	 if($result['用户级别id']=='1'){
-     $sql102="update `查询订单详情` set `交易确认状态`= '".$state."' where `订单id` = '".$id."' ";
-     $result102 = $conn->query($sql102);
-     $data['status'] = 'error';
-        if($result102){
-            $data['status'] = 'success';
-        }
-    }
-    $json = json_encode($data);
-    echo $json;
-     break;
+//  管理员的待核实
+//  case 'che':
+//   $state= $_POST['state'];
+//   $id = $_POST['id'];
+////   $state= '待收货';
+////   $id = '25';
+//	$data['status'] = 'error';
+//	 if($result['用户级别id']=='1'){
+//   $sql102="update `查询订单详情` set `交易确认状态`= '".$state."' where `订单id` = '".$id."' ";
+//   $result102 = $conn->query($sql102);
+//   $data['status'] = 'error';
+//      if($result102){
+//          $data['status'] = 'success';
+//      }
+//  }
+//  $json = json_encode($data);
+//  echo $json;
+//   break;
 	default:break;
 	}
 ?>
