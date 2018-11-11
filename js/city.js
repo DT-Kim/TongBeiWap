@@ -1034,7 +1034,12 @@ const Province = [
  * @param { Object } city 选传 可支持传入城市对象{province: '四川', city: '成都', district: '锦江区'}
  * @return { Object } {show, hide, destroy} 分别对应显示，隐藏，销毁
  */
- 
+function yeluochenCity(id, callBack, city) {
+    let userCity = {
+        province: null,
+        city: null,
+        district: null
+    };
     const target = $(`#${id}`);
     target.css({
         lineHeight: target.css('height'),

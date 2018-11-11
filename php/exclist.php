@@ -21,16 +21,16 @@
                 $data['exc'][$i]['exctext'] = $row['详细内容'];
                 $data['exc'][$i]['excElse'] = $row['商品描述'];
                 $data['exc'][$i]['url'] = $row['展示图'];
-                //获取积分购物车中的数量信息
-                $sql_Cart = "SELECT 商品数量 from 积分购物车 where `积分商品id` = '".$row['id']."' and `用户信息id` = '".$useId."' and 是否付款 = 0";
-                $resultCart = $conn->query($sql_Cart)->fetch_assoc();
-                if(isset($resultCart['商品数量']))
-                {
-                    $data['exc'][$i]['num'] = $resultCart['商品数量'];
-                }else{
-                    $data['exc'][$i]['num'] = 0;
-                }
-                
+                //获取回收车中的数量信息
+                    $sql_Cart = "SELECT 商品数量 from 积分购物车 where `积分商品id` = '".$row['id']."' and `用户信息id` = '".$useId."' ";
+                    $resultCart = $conn->query($sql_Cart)->fetch_assoc();
+                    if(isset($resultCart['商品数量']))
+                    {
+                        $data['exc'][$i]['num'] = $resultCart['商品数量'];
+                    }else{
+                        $data['exc'][$i]['num'] = 0;
+                    }
+                    
                 $i++;
             }
             }
