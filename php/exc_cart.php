@@ -5,7 +5,7 @@
     $useId = $_SESSION['UseId'];
 //  $useId = 1;
     //获取产品类型
-    $sql02 = "select * from `查询商品购物车` where 用户信息id='".$useId."'";
+    $sql02 = "select * from `查询商品购物车` where 用户信息id='".$useId."' and 是否付款 = 0";
     $result02 = $conn->query($sql02);
     $data['goods'] = array();
 //  echo $sql02;

@@ -362,7 +362,7 @@
                     }
                 }
                 //更新数据库数据
-                UpdateMesInDataBase(obj)
+                UpdateMesInDataBase(obj);
                 //goods_count_adjust(gc_id,n,null);
             }
             ;
@@ -383,7 +383,7 @@
                     noX = 0;
                 }
                 //更新数据库数据
-                UpdateMesInDataBase(obj)
+                UpdateMesInDataBase(obj);
                 //goods_count_adjust(gc_id,n,null);
             }
             //删除
@@ -560,7 +560,7 @@
                         ProNum:$(obj).parents('li').find('.zi').html()//数量
                     },
                     success:function(data){
-                        console.log(data)
+//                      console.log(data)
                     },
                     error:function(s,e,t){
                         console.log(e)

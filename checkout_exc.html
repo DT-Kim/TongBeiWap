@@ -138,7 +138,7 @@
                     },
                     success:function(data){
                         //显示信息
-                        console.log(data)
+//                      console.log(data)
                         var EleText = ''
                         var TotalCode = 0
                         var TotalPrice = 0
@@ -191,9 +191,9 @@
                     async:true,
                     dataType:'json',
                     data:{
-                        MId:getQueryString('data'),
+                        MId:getQueryString('data'), 
 //                      priceAll:$('#total_amount').html(),
-                        codeAll:$('#total_jifen').html(),
+                        codeAll:$('#total_jifen').html()
                     },
                     success:function(data){
 //                      console.log(data)
@@ -203,7 +203,7 @@
                             self.location = "exc_cart.html"
                         }
                         else{
-                            alert('操作失败')
+                            alert('操作失败') 
                         }
                     },
                     error:function(s,e,t){
